@@ -1,7 +1,0 @@
-Changelog.txt
-Readme.pdf
-Integration/AStarPathfindingProjectPro.unitypackage
-Integration/RAIN.unitypackage
-Integration/Unity NavMesh.unitypackage
-Samples/README.txt
-Code/Editor/Windows/DungeonAnalysisWindow.cs
