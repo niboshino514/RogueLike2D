@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a364945ee69ae484284b203d4bc22382
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 15682
+  packageName: DunGen
+  packageVersion: 2.18.15
+  assetPath: Assets/DunGen/Code/Editor/Utility/DungeonGeneratorDrawUtil.cs
+  uploadId: 878338
