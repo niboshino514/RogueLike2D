@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 7958a83e7468c784c9a4b104d1669e33
+timeCreated: 1486425897
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Editor/Inspectors/BulletPoolInspector.cs
+  uploadId: 745331

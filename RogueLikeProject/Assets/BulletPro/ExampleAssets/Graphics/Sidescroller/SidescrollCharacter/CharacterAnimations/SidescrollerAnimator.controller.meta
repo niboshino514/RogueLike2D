@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 48a1d4953f0e0fd4bb48331aa0f2056c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/Graphics/Sidescroller/SidescrollCharacter/CharacterAnimations/SidescrollerAnimator.controller
+  uploadId: 745331

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 706091ed6a4d31340915ed704a991cb9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/BulletHell_Enemy/03_DoubleSpin.asset
+  uploadId: 745331

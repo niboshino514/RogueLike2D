@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e6bf3e103947244479133fa61cb37cdf
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/SampleBullets/DefaultShaders/Default-Additive.shader
+  uploadId: 745331

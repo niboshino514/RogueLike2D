@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4827a89ff76b9ac4aa588bf1f9378a78
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Editor/PropertyDrawers/DynamicValueDrawers/DynamicEnumValueDrawer.cs
+  uploadId: 745331

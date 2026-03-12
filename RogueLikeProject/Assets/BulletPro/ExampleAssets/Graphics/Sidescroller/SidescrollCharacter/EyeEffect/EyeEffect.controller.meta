@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 284d8088737cbcc4e80347701848814d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/Graphics/Sidescroller/SidescrollCharacter/EyeEffect/EyeEffect.controller
+  uploadId: 745331

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a0ee64bf78a8a624fa0d3b86e8c504ec
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/Sidescroller/S00_SpiralAndRain.asset
+  uploadId: 745331

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4ff1b615e67f869408a378cc2124953e
+timeCreated: 1487886760
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Editor/Resources/NewBulletBehaviourTemplate.txt
+  uploadId: 745331

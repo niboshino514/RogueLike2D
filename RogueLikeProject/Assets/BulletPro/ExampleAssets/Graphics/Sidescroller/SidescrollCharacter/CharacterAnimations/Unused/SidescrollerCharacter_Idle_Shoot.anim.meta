@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 69931a9e9ccf2714a883662826a8a5ba
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/Graphics/Sidescroller/SidescrollCharacter/CharacterAnimations/Unused/SidescrollerCharacter_Idle_Shoot.anim
+  uploadId: 745331

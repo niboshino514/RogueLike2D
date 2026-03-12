@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f834cba8a7908814692c7a4f9afc4b45
+timeCreated: 1488133420
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Resources/Default2DBulletMaterial.mat
+  uploadId: 745331

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 847d0f4d581e06f45908e9e0f597cddb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/ScriptsAndPrefabs/Asteroids/BPDemo_Crosshair.cs
+  uploadId: 745331

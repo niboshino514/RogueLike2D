@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f628c626973de2f478efbf7fa75ecb68
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/SampleBullets/BulletShaders/Bullets-ColorFilter.shader
+  uploadId: 745331

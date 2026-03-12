@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d9d857e2a2cd47e46bf6f3bd543c4fb2
+timeCreated: 1486570783
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Editor/Inspectors/BulletReceiverInspector.cs
+  uploadId: 745331

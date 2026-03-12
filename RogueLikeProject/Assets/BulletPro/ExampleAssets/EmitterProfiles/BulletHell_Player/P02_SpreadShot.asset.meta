@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ac4936cba626bb64cb8d895da54d990a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/BulletHell_Player/P02_SpreadShot.asset
+  uploadId: 745331

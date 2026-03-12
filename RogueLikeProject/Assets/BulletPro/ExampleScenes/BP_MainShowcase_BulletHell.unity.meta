@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f17fa34b41d7e4a46a790ee055499726
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleScenes/BP_MainShowcase_BulletHell.unity
+  uploadId: 745331

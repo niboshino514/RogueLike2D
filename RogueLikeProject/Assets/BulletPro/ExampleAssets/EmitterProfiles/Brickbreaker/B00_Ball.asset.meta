@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5cf3a452cb30cd14389aa99ceab856dd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/Brickbreaker/B00_Ball.asset
+  uploadId: 745331

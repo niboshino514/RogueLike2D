@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 7d8eca2ec82394d449ed31cc7753ff40
+timeCreated: 1486424469
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Components/Managers/BulletVFXManager.cs
+  uploadId: 745331

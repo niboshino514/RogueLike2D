@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5fc2c6cf4af57064083b2fa9eb8edff0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/BulletHell_Player/P03_BulletTrail.asset
+  uploadId: 745331

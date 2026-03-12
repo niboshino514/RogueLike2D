@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 52559e5444ea3bb4187583dadb718145
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/Graphics/Asteroids/ExplosionFX_Realistic/ExplosionFX_Realistic.prefab
+  uploadId: 745331

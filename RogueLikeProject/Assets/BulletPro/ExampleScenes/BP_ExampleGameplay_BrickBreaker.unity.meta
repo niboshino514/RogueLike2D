@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c894644a100f1284ca892285c264055f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleScenes/BP_ExampleGameplay_BrickBreaker.unity
+  uploadId: 745331

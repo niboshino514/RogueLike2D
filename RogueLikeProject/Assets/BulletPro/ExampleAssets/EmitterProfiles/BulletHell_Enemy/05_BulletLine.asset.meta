@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3e2845ea2a66f3a428018d0206ff627c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/BulletHell_Enemy/05_BulletLine.asset
+  uploadId: 745331

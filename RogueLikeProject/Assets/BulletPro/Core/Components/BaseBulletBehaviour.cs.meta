@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: cbba6d5aab78c9a4ca5a57f3b377312e
+timeCreated: 1487882606
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Components/BaseBulletBehaviour.cs
+  uploadId: 745331

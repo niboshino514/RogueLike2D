@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 49623358010703740955b13392dd3ffa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/Graphics/Asteroids/LightningBarrier/BPDemo_SpritesAdditive.mat
+  uploadId: 745331

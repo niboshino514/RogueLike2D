@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7015c4a8ed995a74880e88707243020e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Editor/PropertyDrawers/DynamicParameterDrawers/DynamicSlider01Drawer.cs
+  uploadId: 745331

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a4e723d8c47b75d4b83052b82ef191d9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Components/Managers/BulletProSceneSetup.cs
+  uploadId: 745331

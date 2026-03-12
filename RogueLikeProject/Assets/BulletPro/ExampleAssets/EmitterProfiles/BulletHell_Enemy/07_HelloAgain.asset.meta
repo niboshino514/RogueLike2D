@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2180da8080506974f89fd44f7e1c8209
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/BulletHell_Enemy/07_HelloAgain.asset
+  uploadId: 745331

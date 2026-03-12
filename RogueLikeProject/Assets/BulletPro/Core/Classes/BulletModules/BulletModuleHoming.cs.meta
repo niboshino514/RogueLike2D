@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ed150b951fb48b746978695c06f1d0b2
+timeCreated: 1485650005
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Classes/BulletModules/BulletModuleHoming.cs
+  uploadId: 745331

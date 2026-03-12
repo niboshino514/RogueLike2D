@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 374b287c9d5c30d46b787a78ccc356a7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/EmitterProfiles/Asteroids/A00_PlayerShot.asset
+  uploadId: 745331

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eeede4d7c17013b4db184cb14affbcb5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Resources/BulletProSettings.asset
+  uploadId: 745331

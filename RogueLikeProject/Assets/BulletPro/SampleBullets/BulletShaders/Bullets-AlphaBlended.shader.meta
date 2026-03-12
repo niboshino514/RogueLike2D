@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3ea6ab7778475f24a85ab5d7554c3bf9
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/SampleBullets/BulletShaders/Bullets-AlphaBlended.shader
+  uploadId: 745331

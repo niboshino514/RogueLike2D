@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e02e7ff7b694451478254732f748ec14
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/SampleBullets/BulletShaders/Bullets-Additive.mat
+  uploadId: 745331

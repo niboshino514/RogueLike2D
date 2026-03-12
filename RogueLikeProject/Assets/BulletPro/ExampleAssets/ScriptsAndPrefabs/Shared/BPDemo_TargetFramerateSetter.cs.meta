@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 44d3a99694a5a4145a151c06771f9086
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/ScriptsAndPrefabs/Shared/BPDemo_TargetFramerateSetter.cs
+  uploadId: 745331

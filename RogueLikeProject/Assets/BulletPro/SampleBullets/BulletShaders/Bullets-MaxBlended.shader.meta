@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b29f4a0104ed9bc41af13b0a8e1b3d7f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/SampleBullets/BulletShaders/Bullets-MaxBlended.shader
+  uploadId: 745331

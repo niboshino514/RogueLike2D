@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c988f60dd955dd04fa09eb33806f9be0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/Graphics/Asteroids/ExplosionFX_FlyingSaucerCannonFire/ExplosionFX_FlyingSaucerCannonFire.prefab
+  uploadId: 745331

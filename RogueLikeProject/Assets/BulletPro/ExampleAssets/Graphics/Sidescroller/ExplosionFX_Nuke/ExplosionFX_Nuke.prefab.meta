@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fa76cbbb74f3bea4799dd88aaff5d16b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/Graphics/Sidescroller/ExplosionFX_Nuke/ExplosionFX_Nuke.prefab
+  uploadId: 745331

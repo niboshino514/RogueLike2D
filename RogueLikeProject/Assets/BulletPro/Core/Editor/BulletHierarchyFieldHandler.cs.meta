@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: eeeec8b5a96f63849902316f7f52e4e1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/Core/Editor/BulletHierarchyFieldHandler.cs
+  uploadId: 745331

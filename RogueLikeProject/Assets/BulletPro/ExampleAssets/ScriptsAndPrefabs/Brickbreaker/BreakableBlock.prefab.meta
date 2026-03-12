@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 46a701a51bfb1c54aa0bc50e40e33272
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180601
+  packageName: BulletPro - 2D Projectile Workspace
+  packageVersion: 1.8.1
+  assetPath: Assets/BulletPro/ExampleAssets/ScriptsAndPrefabs/Brickbreaker/BreakableBlock.prefab
+  uploadId: 745331
