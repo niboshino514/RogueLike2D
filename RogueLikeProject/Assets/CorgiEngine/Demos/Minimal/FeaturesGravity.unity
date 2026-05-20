@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 0}
   m_FogMode: 3
@@ -38,13 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 0
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
     m_MixedBakeMode: 1
     m_BakeBackend: 0
@@ -306,8 +302,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "Don't worry about leaving \nyour little dopplegangers behind.\n<color=black>They'll
-    be fine.</color>"
+  m_Text: "\u81EA\u5206\u306E\u5C0F\u3055\u306A\u5206\u8EAB\u305F\u3061\u3092\u7F6E\u3044\u3066\u3044\u304F\u3053\u3068\u306B\u3064\u3044\u3066\u3001\n\u5FC3\u914D\u3059\u308B\u5FC5\u8981\u306F\u3042\u308A\u307E\u305B\u3093\u3002\n<color=black>\u5927\u4E08\u592B\u3060\u3088\u3002</color>"
 --- !u!222 &29113220
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -562,8 +557,10 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
+  ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 0}
+  TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
@@ -863,6 +860,7 @@ MonoBehaviour:
   CoyoteTime: 0
   InputBufferDuration: 0
   OneWayPlatformsJumpCollisionOffDuration: 0.3
+  MovingOneWayPlatformsJumpCollisionOffDuration: 0.2
   MovingPlatformsJumpCollisionOffDuration: 0.05
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
@@ -1061,6 +1059,8 @@ MonoBehaviour:
   Left: 1
   Right: 1
   ResetForcesOnConstrain: 1
+  LoopHorizontalOffset: 1
+  LoopVerticalOffset: 1
 --- !u!114 &44278353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &44278354
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1173,8 +1173,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1195,6 +1195,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44278329}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1218,7 +1219,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1229,12 +1231,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &44278356
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1248,6 +1249,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -1255,6 +1257,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &44278357
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1270,6 +1273,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1291,9 +1299,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1628607475
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 0.1194853, g: 0.31123227, b: 0.625, a: 1}
   m_FlipX: 0
@@ -1303,7 +1313,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &44278358
 Transform:
@@ -6114,7 +6123,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &101811451
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6130,6 +6139,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6152,9 +6166,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -6186,7 +6202,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!4 &101811452
 Transform:
   m_ObjectHideFlags: 0
@@ -6664,7 +6679,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &168719910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6687,7 +6702,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &168719911
 Canvas:
   m_ObjectHideFlags: 0
@@ -7099,6 +7114,9 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     Initialized: 0
+    ConditionPropertyName: 
+    EnumConditionPropertyName: 
+    EnumConditions: 0000000000000000000000000000000000000000000000000000000000000000
   RespawnDelay: 2
   ResetPointsOnRestart: 1
   BoundsMode: 0
@@ -7116,7 +7134,8 @@ MonoBehaviour:
     BeforeEntryFadeDelay: 0
     EntryFadeDuration: 0.25
     AfterEntryFadeDelay: 0.1
-    BeforeExitFadeDelay: 0.25
+    BeforeSceneActivationDelay: 0.25
+    AfterSceneActivationDelay: 0
     ExitFadeDuration: 0.2
     EntryFadeTween:
       MMTweenDefinitionType: 0
@@ -7128,6 +7147,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ExitFadeTween:
       MMTweenDefinitionType: 0
       MMTweenCurve: 0
@@ -7138,8 +7160,12 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ProgressBarSpeed: 5
     SpeedIntervals: []
+    DebugMode: 0
     FadeMode: 0
     UnloadMethod: 2
     AntiSpillSceneName: 
@@ -7332,23 +7358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'With these, you can not only change
-
-    gravity direction, but also strength,
-    and have
-
-    them affect all your controller parameters,
-
-    such as fall multiplier,
-    acceleration on ground,
-
-    or slope speeds.
-
-
-    <color=black>The next one
-    will reverse gravity,
-
-    and reduce it too.</color>'
+  m_Text: "\u3053\u308C\u3089\u3092\u4F7F\u3048\u3070\u3001\u91CD\u529B\u306E\u5411\u304D\u3060\u3051\u3067\u306A\u304F\n\u305D\u306E\u5F37\u3055\u3082\u5909\u66F4\u3067\u304D\u3001\n\u843D\u4E0B\u500D\u7387\u3001\u5730\u4E0A\u306E\u52A0\u901F\u5EA6\u3001\n\u659C\u9762\u3067\u306E\u901F\u5EA6\u306A\u3069\u3001\n\u3059\u3079\u3066\u306E\u30B3\u30F3\u30C8\u30ED\u30FC\u30E9\u30FC\u30D1\u30E9\u30E1\u30FC\u30BF\u306B\n\u5F71\u97FF\u3092\u4E0E\u3048\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\n\n<color=black>\u6B21\u306F\u91CD\u529B\u3092\u9006\u8EE2\u3055\u305B\u3001\n\u3055\u3089\u306B\u5F31\u3081\u308B\u3053\u3068\u306B\u306A\u308B\u3002</color>"
 --- !u!222 &253458335
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7405,7 +7415,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &257670285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7428,7 +7438,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &257670286
 Canvas:
   m_ObjectHideFlags: 0
@@ -8717,9 +8727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "This concludes this short tour of the gravity\nfeatures included in the
-    Corgi Engine.\n\n<color=black>Check out the dedicated documentation, \nand learn
-    more about how you can \nadd these to your game, they're really\neasy to use.</color>"
+  m_Text: "\u4EE5\u4E0A\u3067\u3001Corgi Engine\u306B\u642D\u8F09\u3055\u308C\u3066\u3044\u308B\n\u91CD\u529B\u95A2\u9023\u6A5F\u80FD\u306E\u7C21\u5358\u306A\u7D39\u4ECB\u3092\u7D42\u308F\u308A\u307E\u3059\u3002\n\n<color=black>\u5C02\u7528\u306E\u30C9\u30AD\u30E5\u30E1\u30F3\u30C8\u3092\u3054\u89A7\u3044\u305F\u3060\u304D\u3001\n\u3053\u308C\u3089\u3092\u30B2\u30FC\u30E0\u306B\u7D44\u307F\u8FBC\u3080\u65B9\u6CD5\u306B\u3064\u3044\u3066\n\u8A73\u3057\u304F\u3054\u78BA\u8A8D\u304F\u3060\u3055\u3044\u3002\n\u4F7F\u3044\u65B9\u306F\u3068\u3066\u3082\u7C21\u5358\u3067\u3059\u3002</color>"
 --- !u!222 &520887608
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8846,8 +8854,10 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
+  ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 0}
+  TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
@@ -9147,6 +9157,7 @@ MonoBehaviour:
   CoyoteTime: 0
   InputBufferDuration: 0
   OneWayPlatformsJumpCollisionOffDuration: 0.3
+  MovingOneWayPlatformsJumpCollisionOffDuration: 0.2
   MovingPlatformsJumpCollisionOffDuration: 0.05
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
@@ -9345,6 +9356,8 @@ MonoBehaviour:
   Left: 1
   Right: 1
   ResetForcesOnConstrain: 1
+  LoopHorizontalOffset: 1
+  LoopVerticalOffset: 1
 --- !u!114 &557746155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9446,7 +9459,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &557746156
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9457,8 +9470,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -9479,6 +9492,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557746131}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -9502,7 +9516,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -9513,12 +9528,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &557746158
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9532,6 +9546,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -9539,6 +9554,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &557746159
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9554,6 +9570,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9575,9 +9596,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1628607475
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 0.14558598, g: 0.41911763, b: 0.058553204, a: 1}
   m_FlipX: 0
@@ -9587,7 +9610,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &557746160
 Transform:
@@ -14270,7 +14292,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &563576147
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14286,6 +14308,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -14308,9 +14335,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14342,7 +14371,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!4 &563576148
 Transform:
   m_ObjectHideFlags: 0
@@ -14505,12 +14533,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "And that's not all. You can also define gravity points.\nEach point has
-    a distance of effect, and your character\nwill be attracted to the closest point,
-    if its area of effect is\nlarge enough.\n\n<color=black>Basically it's Mario
-    Galaxy all over again.\nNote that for demo purposes, after this point in the
-    level, \nthe \"reverse input settings when upside down\" will be set\nto false
-    (so going back left will be weird).</color>"
+  m_Text: "\u305D\u308C\u3060\u3051\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002\u91CD\u529B\u30DD\u30A4\u30F3\u30C8\u3082\u8A2D\u5B9A\u3067\u304D\u307E\u3059\u3002\n\u5404\u30DD\u30A4\u30F3\u30C8\u306B\u306F\u4F5C\u7528\u7BC4\u56F2\u304C\u3042\u308A\u3001\u305D\u306E\u7BC4\u56F2\u304C\n\u5341\u5206\u306B\u5E83\u3051\u308C\u3070\u3001\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u306F\n\u6700\u3082\u8FD1\u3044\u30DD\u30A4\u30F3\u30C8\u306B\u5F15\u304D\u5BC4\u305B\u3089\u308C\u307E\u3059\u3002\n\n<color=black>\u57FA\u672C\u7684\u306B\u306F\u300E\u30DE\u30EA\u30AA\u30AE\u30E3\u30E9\u30AF\u30B7\u30FC\u300F\u306E\u518D\u73FE\u3067\u3059\u3002\n\u306A\u304A\u3001\u30C7\u30E2\u306E\u90FD\u5408\u4E0A\u3001\u3053\u306E\u30B9\u30C6\u30FC\u30B8\u306E\u3053\u306E\u5730\u70B9\u4EE5\u964D\u306F\u3001\n\u300C\u9006\u3055\u307E\u306B\u306A\u3063\u305F\u3068\u304D\u306E\u64CD\u4F5C\u8A2D\u5B9A\u3092\u53CD\u8EE2\u3059\u308B\u300D\u304C\nfalse\u306B\u8A2D\u5B9A\u3055\u308C\u307E\u3059\uFF08\u305D\u306E\u305F\u3081\u3001\u5DE6\u306B\u623B\u308B\u3068\u64CD\u4F5C\u611F\u304C\u5909\u306B\u306A\u308A\u307E\u3059\uFF09\u3002</color>"
 --- !u!222 &590001734
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14847,8 +14870,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 6
-  m_GIWorkflowMode: 1
+  serializedVersion: 10
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
@@ -14858,9 +14880,17 @@ LightingSettings:
   m_UsingShadowmask: 0
   m_BakeBackend: 1
   m_LightmapMaxSize: 1024
+  m_LightmapSizeFixed: 0
+  m_UseMipmapLimits: 1
   m_BakeResolution: 50
   m_Padding: 2
   m_LightmapCompression: 0
+  m_LightmapPackingMode: 1
+  m_LightmapPackingMethod: 0
+  m_XAtlasPackingAttempts: 16384
+  m_XAtlasBruteForce: 0
+  m_XAtlasBlockAlign: 0
+  m_XAtlasRepackUnderutilizedLightmaps: 1
   m_AO: 0
   m_AOMaxDistance: 1
   m_CompAOExponent: 0
@@ -14871,13 +14901,11 @@ LightingSettings:
   m_FilterMode: 1
   m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
+  m_EnableWorkerProcessBaking: 1
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 1
   m_ForceWhiteAlbedo: 0
   m_ForceUpdates: 0
-  m_FinalGather: 0
-  m_FinalGatherRayCount: 1024
-  m_FinalGatherFiltering: 1
   m_PVRCulling: 1
   m_PVRSampling: 1
   m_PVRDirectSampleCount: 32
@@ -14901,8 +14929,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_PVRTiledBaking: 0
-  m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
 --- !u!1001 &652454294
 PrefabInstance:
@@ -15031,12 +15057,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'The Corgi Engine allows you to specify gravity per character,
-
-    or
-    in a specific zone.
-
-    <color=black>There''s one just ahead.</color>'
+  m_Text: "Corgi Engine \u3067\u306F\u3001\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u3054\u3068\u3001\n\u307E\u305F\u306F\u7279\u5B9A\u306E\u30BE\u30FC\u30F3\u3054\u3068\u306B\u91CD\u529B\u3092\u8A2D\u5B9A\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\n<color=black>\u3059\u3050\u5148\u306B\u4E00\u3064\u3042\u308A\u307E\u3059\u3002</color>"
 --- !u!222 &656621699
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20450,7 +20471,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &796445041
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -20466,6 +20487,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -20488,9 +20514,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -20522,7 +20550,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!4 &796445042
 Transform:
   m_ObjectHideFlags: 0
@@ -21106,8 +21133,10 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
+  ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 0}
+  TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
@@ -21407,6 +21436,7 @@ MonoBehaviour:
   CoyoteTime: 0
   InputBufferDuration: 0
   OneWayPlatformsJumpCollisionOffDuration: 0.3
+  MovingOneWayPlatformsJumpCollisionOffDuration: 0.2
   MovingPlatformsJumpCollisionOffDuration: 0.05
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
@@ -21605,6 +21635,8 @@ MonoBehaviour:
   Left: 1
   Right: 1
   ResetForcesOnConstrain: 1
+  LoopHorizontalOffset: 1
+  LoopVerticalOffset: 1
 --- !u!114 &893645452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21706,7 +21738,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &893645453
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21717,8 +21749,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -21739,6 +21771,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893645428}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -21762,7 +21795,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -21773,12 +21807,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &893645455
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21792,6 +21825,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -21799,6 +21833,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &893645456
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21814,6 +21849,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -21835,9 +21875,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1628607475
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 0.74782544, g: 0.08099047, b: 0.78676474, a: 1}
   m_FlipX: 0
@@ -21847,7 +21889,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &893645457
 Transform:
@@ -22854,14 +22895,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "The Corgi Engine allows you to define \ncustom gravity, and you can have
-    \na different one for each character.\n\n<color=black>Here you have a few examples\nof
-    what you can do. Each character has \nits own gravity, and can still live in
-    \nthe same world as the others. \nOf course you can set the gravity \non a full
-    360\xB0 scale, not just these.\n\nAll these characters are set as players \nand
-    bound on Player 1's input, so you \ncan see how it works just by moving your
-    \ncharacter (the white one).\n\nNotice there's an option to invert input when\nupside
-    down.</color>"
+  m_Text: "Corgi Engine \u3067\u306F\u3001\n\u72EC\u81EA\u306E\u91CD\u529B\u3092\u5B9A\u7FA9\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u3001\n\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u3054\u3068\u306B\u7570\u306A\u308B\u91CD\u529B\u3092\u8A2D\u5B9A\u3059\u308B\u3053\u3068\u3082\u53EF\u80FD\u3067\u3059\u3002\n\n<color=black>\u3053\u3053\u3067\u306F\u3001\n\u4F55\u304C\u3067\u304D\u308B\u304B\u306B\u3064\u3044\u3066\u3044\u304F\u3064\u304B\u306E\u4F8B\u3092\u7D39\u4ECB\u3057\u307E\u3059\u3002\u5404\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u306B\u306F\n\u72EC\u81EA\u306E\u91CD\u529B\u304C\u8A2D\u5B9A\u3055\u308C\u3066\u3044\u307E\u3059\u304C\u3001\n\u305D\u308C\u3067\u3082\u4ED6\u306E\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u3068\u540C\u3058\u4E16\u754C\u306B\n\u5171\u5B58\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\n\u3082\u3061\u308D\u3093\u3001\u91CD\u529B\u306F\n\u3053\u308C\u3089\u3060\u3051\u3067\u306A\u304F\u3001360\xB0\u306E\u7BC4\u56F2\u3067\u81EA\u7531\u306B\u8A2D\u5B9A\u53EF\u80FD\u3067\u3059\u3002\n\n\u3053\u308C\u3089\u306E\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u306F\u3059\u3079\u3066\u30D7\u30EC\u30A4\u30E4\u30FC\u3068\u3057\u3066\u8A2D\u5B9A\u3055\u308C\u3001\n\u30D7\u30EC\u30A4\u30E4\u30FC1\u306E\u5165\u529B\u306B\u7D10\u4ED8\u3051\u3089\u308C\u3066\u3044\u308B\u305F\u3081\u3001\n\u81EA\u5206\u306E\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\uFF08\u767D\u3044\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\uFF09\u3092\u52D5\u304B\u3059\u3060\u3051\u3067\u3001\n\u305D\u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\u3067\u304D\u307E\u3059\u3002\n\n\u9006\u3055\u307E\u306B\u306A\u3063\u305F\u3068\u304D\u306B\u5165\u529B\u3092\u53CD\u8EE2\u3055\u305B\u308B\u30AA\u30D7\u30B7\u30E7\u30F3\u304C\u3042\u308B\u3053\u3068\u306B\n\u3054\u6CE8\u76EE\u304F\u3060\u3055\u3044\u3002</color>"
 --- !u!222 &1029034880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22975,7 +23009,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1042984793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22998,7 +23032,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1042984794
 Canvas:
   m_ObjectHideFlags: 0
@@ -23131,6 +23165,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -23152,9 +23191,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1620175883
   m_SortingLayer: -1
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1072031671
 MeshCollider:
@@ -23304,7 +23345,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1095398190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23327,7 +23368,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1095398191
 Canvas:
   m_ObjectHideFlags: 0
@@ -24123,9 +24164,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "Of course, just like on each character, you can \nset these to any gravity
-    direction you want, and \nthey can take any shape you want.\n\n<color=black>The
-    next one will apply a gravity at -30\xB0.</color>"
+  m_Text: "\u3082\u3061\u308D\u3093\u3001\u5404\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u3068\u540C\u69D8\u306B\u3001\n\u3053\u308C\u3089\u3092\u4EFB\u610F\u306E\u91CD\u529B\u65B9\u5411\u306B\u8A2D\u5B9A\u3067\u304D\u3001\n\u307E\u305F\u3001\u4EFB\u610F\u306E\u5F62\u72B6\u306B\u3059\u308B\u3053\u3068\u3082\u53EF\u80FD\u3067\u3059\u3002\n\n<color=black>\u6B21\u306F\u3001-30\xB0\u306E\u91CD\u529B\u3092\u9069\u7528\u3057\u307E\u3059\u3002</color>"
 --- !u!222 &1229653813
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29252,7 +29291,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1286281875
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -29268,6 +29307,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -29290,9 +29334,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -29324,7 +29370,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!4 &1286281876
 Transform:
   m_ObjectHideFlags: 0
@@ -34180,7 +34225,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1314089848
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -34196,6 +34241,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -34218,9 +34268,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -34252,7 +34304,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!4 &1314089849
 Transform:
   m_ObjectHideFlags: 0
@@ -39211,7 +39262,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1378894024
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -39227,6 +39278,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -39249,9 +39305,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -39283,7 +39341,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!4 &1378894025
 Transform:
   m_ObjectHideFlags: 0
@@ -39719,8 +39776,10 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
+  ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 0}
+  TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
@@ -40020,6 +40079,7 @@ MonoBehaviour:
   CoyoteTime: 0
   InputBufferDuration: 0
   OneWayPlatformsJumpCollisionOffDuration: 0.3
+  MovingOneWayPlatformsJumpCollisionOffDuration: 0.2
   MovingPlatformsJumpCollisionOffDuration: 0.05
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
@@ -40218,6 +40278,8 @@ MonoBehaviour:
   Left: 1
   Right: 1
   ResetForcesOnConstrain: 1
+  LoopHorizontalOffset: 1
+  LoopVerticalOffset: 1
 --- !u!114 &1439543971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40319,7 +40381,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &1439543972
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -40330,8 +40392,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -40352,6 +40414,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439543947}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -40375,7 +40438,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -40386,12 +40450,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &1439543974
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -40405,6 +40468,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -40412,6 +40476,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1439543975
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -40427,6 +40492,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -40448,9 +40518,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1628607475
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 1, g: 0.53762674, b: 0.28676468, a: 1}
   m_FlipX: 0
@@ -40460,7 +40532,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1439543976
 Transform:
@@ -40903,7 +40974,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "180\xB0 Gravity\n<color=black>Reversed input when upside down.</color>"
+  m_Text: "180\xB0 Gravity\n<color=black>\u9006\u3055\u307E\u306B\u3059\u308B\u3068\u5165\u529B\u304C\u53CD\u8EE2\u3057\u307E\u3059\u3002</color>"
 --- !u!222 &1495221021
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46813,7 +46884,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1694738020
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -46829,6 +46900,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -46851,9 +46927,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -46885,7 +46963,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!4 &1694738021
 Transform:
   m_ObjectHideFlags: 0
@@ -47191,7 +47268,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1732181814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47214,7 +47291,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1732181815
 Canvas:
   m_ObjectHideFlags: 0
@@ -47664,7 +47741,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1827691460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47687,7 +47764,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1827691461
 Canvas:
   m_ObjectHideFlags: 0
@@ -48249,7 +48326,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1900542736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48272,7 +48349,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1900542737
 Canvas:
   m_ObjectHideFlags: 0
@@ -48648,8 +48725,10 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
+  ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 0}
+  TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
@@ -48949,6 +49028,7 @@ MonoBehaviour:
   CoyoteTime: 0
   InputBufferDuration: 0
   OneWayPlatformsJumpCollisionOffDuration: 0.3
+  MovingOneWayPlatformsJumpCollisionOffDuration: 0.2
   MovingPlatformsJumpCollisionOffDuration: 0.05
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
@@ -49147,6 +49227,8 @@ MonoBehaviour:
   Left: 1
   Right: 1
   ResetForcesOnConstrain: 1
+  LoopHorizontalOffset: 1
+  LoopVerticalOffset: 1
 --- !u!114 &1956097310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49248,7 +49330,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &1956097311
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -49259,8 +49341,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -49281,6 +49363,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956097286}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -49304,7 +49387,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -49315,12 +49399,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &1956097313
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -49334,6 +49417,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -49341,6 +49425,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1956097314
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -49356,6 +49441,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -49377,9 +49467,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1628607475
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 0.97794116, g: 0.95136017, b: 0.014381501, a: 1}
   m_FlipX: 0
@@ -49389,7 +49481,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1956097315
 Transform:
@@ -49513,8 +49604,10 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
+  ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 0}
+  TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
@@ -49814,6 +49907,7 @@ MonoBehaviour:
   CoyoteTime: 0
   InputBufferDuration: 0
   OneWayPlatformsJumpCollisionOffDuration: 0.3
+  MovingOneWayPlatformsJumpCollisionOffDuration: 0.2
   MovingPlatformsJumpCollisionOffDuration: 0.05
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
@@ -50012,6 +50106,8 @@ MonoBehaviour:
   Left: 1
   Right: 1
   ResetForcesOnConstrain: 1
+  LoopHorizontalOffset: 1
+  LoopVerticalOffset: 1
 --- !u!114 &1959436413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50113,7 +50209,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &1959436414
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50124,8 +50220,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -50146,6 +50242,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959436389}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -50169,7 +50266,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -50180,12 +50278,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &1959436416
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50199,6 +50296,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -50206,6 +50304,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1959436417
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50221,6 +50320,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -50242,9 +50346,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1628607475
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 0.8088235, g: 0.14868079, b: 0.14868079, a: 1}
   m_FlipX: 0
@@ -50254,7 +50360,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1959436418
 Transform:
@@ -50475,8 +50580,10 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
+  ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 0}
+  TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
   FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
@@ -50776,6 +50883,7 @@ MonoBehaviour:
   CoyoteTime: 0
   InputBufferDuration: 0
   OneWayPlatformsJumpCollisionOffDuration: 0.3
+  MovingOneWayPlatformsJumpCollisionOffDuration: 0.2
   MovingPlatformsJumpCollisionOffDuration: 0.05
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
@@ -50974,6 +51082,8 @@ MonoBehaviour:
   Left: 1
   Right: 1
   ResetForcesOnConstrain: 1
+  LoopHorizontalOffset: 1
+  LoopVerticalOffset: 1
 --- !u!114 &1978994903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51075,7 +51185,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &1978994904
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51086,8 +51196,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -51108,6 +51218,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978994879}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -51131,7 +51242,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -51142,12 +51254,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &1978994906
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51161,6 +51272,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -51168,6 +51280,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1978994907
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51183,6 +51296,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -51204,9 +51322,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1628607475
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 0.44381633, g: 0.8014706, b: 0.33001727, a: 1}
   m_FlipX: 0
@@ -51216,7 +51336,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1978994908
 Transform:
@@ -51980,7 +52099,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &2101568764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52003,7 +52122,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2101568765
 Canvas:
   m_ObjectHideFlags: 0
@@ -52203,7 +52322,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &2117370323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52226,7 +52345,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2117370324
 Canvas:
   m_ObjectHideFlags: 0
