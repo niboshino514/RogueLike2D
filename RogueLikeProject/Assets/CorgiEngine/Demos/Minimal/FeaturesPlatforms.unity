@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -38,13 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 0
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
     m_MixedBakeMode: 1
     m_BakeBackend: 0
@@ -302,9 +298,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "The engine also handles friction.\nWalk the blue road and see how \nit
-    feels to walk on <color=black>ice</color>,\nor take the high road, but careful
-    it's\npretty <color=black>sticky</color>."
+  m_Text: "\u30A8\u30F3\u30B8\u30F3\u304C\u6469\u64E6\u3082\u51E6\u7406\u3057\u3066\u304F\u308C\u307E\u3059\u3002\r\n\u9752\u3044\u9053\u3092\u6B69\u3044\u3066\u307F\u3066\u3001\r\n<color=black>\u6C37</color>\u306E\u4E0A\u3092\u6B69\u304F\u611F\u899A\u3092\u5473\u308F\u3063\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002\r\n\u3042\u308B\u3044\u306F\u9AD8\u3044\u9053\u3092\u884C\u304F\u306E\u3082\u3044\u3044\u3067\u3059\u304C\u3001\r\n\u304B\u306A\u308A<color=black>\u6ED1\u308A\u3084\u3059\u3044</color>\u306E\u3067\u6CE8\u610F\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &24866305
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -409,7 +403,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &34477001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +426,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &34477002
 Canvas:
   m_ObjectHideFlags: 0
@@ -473,7 +467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -101.022415, y: -2.9868512}
+  m_AnchoredPosition: {x: -100.03996, y: -2.9868512}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &35178466 stripped
@@ -1555,6 +1549,7 @@ MonoBehaviour:
       m_Calls: []
 --- !u!212 &138707687
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1570,6 +1565,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1591,9 +1591,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 600026165
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300066, guid: dbb1ff0fb3145da4581e36c16ce3cb72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1603,7 +1605,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &138707688
 Transform:
@@ -1622,7 +1623,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &138707689
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1633,8 +1634,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1655,6 +1656,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138707685}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1678,7 +1680,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1689,7 +1692,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!4 &142884022 stripped
@@ -1876,7 +1878,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &157438208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1899,7 +1901,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &157438209
 Canvas:
   m_ObjectHideFlags: 0
@@ -1940,7 +1942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -123.802414, y: -2.0468512}
+  m_AnchoredPosition: {x: -123.12, y: -2.0468512}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &160533794
@@ -2134,6 +2136,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166941176}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2157,7 +2160,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 1.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -2168,12 +2172,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.35, y: 1.85}
   m_EdgeRadius: 0
 --- !u!95 &166941180
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2187,6 +2190,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -2194,6 +2198,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &166941181
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2209,6 +2214,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2230,9 +2240,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: e3c672ca6ae2c6844b4eb82a8f4dd06d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -2242,7 +2254,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &166941182
 Transform:
@@ -2336,9 +2347,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "The engine also includes \na really cool <color=black>camera controler</color>.\nIt
-    handles camera movement but \nalso allows for stuff like looking up\nor down.
-    \n<color=black>Give it a try, you just have \nto press up or down!</color>"
+  m_Text: "\u3053\u306E\u30A8\u30F3\u30B8\u30F3\u306B\u306F\u3001\n\u3059\u3054\u304F\u4FBF\u5229\u306A<color=black>\u30AB\u30E1\u30E9\u30B3\u30F3\u30C8\u30ED\u30FC\u30E9\u30FC</color>\u3082\u642D\u8F09\u3055\u308C\u3066\u3044\u307E\u3059\u3002\n\u30AB\u30E1\u30E9\u306E\u52D5\u304D\u3092\u5236\u5FA1\u3067\u304D\u308B\u3060\u3051\u3067\u306A\u304F\u3001\n\u4E0A\u3084\u4E0B\u3092\u898B\u308B\u3068\u3044\u3063\u305F\u64CD\u4F5C\u3082\u53EF\u80FD\u3067\u3059\u3002\n<color=black>\u305C\u3072\u8A66\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002\n\u4E0A\u307E\u305F\u306F\u4E0B\u306E\u30AD\u30FC\u3092\u62BC\u3059\u3060\u3051\u3067\u3059\uFF01</color>"
 --- !u!222 &170443805
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2602,6 +2611,9 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     Initialized: 0
+    ConditionPropertyName: 
+    EnumConditionPropertyName: 
+    EnumConditions: 0000000000000000000000000000000000000000000000000000000000000000
   RespawnDelay: 2
   ResetPointsOnRestart: 1
   BoundsMode: 0
@@ -2619,7 +2631,8 @@ MonoBehaviour:
     BeforeEntryFadeDelay: 0
     EntryFadeDuration: 0.25
     AfterEntryFadeDelay: 0.1
-    BeforeExitFadeDelay: 0.25
+    BeforeSceneActivationDelay: 0.25
+    AfterSceneActivationDelay: 0
     ExitFadeDuration: 0.2
     EntryFadeTween:
       MMTweenDefinitionType: 0
@@ -2631,6 +2644,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ExitFadeTween:
       MMTweenDefinitionType: 0
       MMTweenCurve: 0
@@ -2641,8 +2657,12 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ProgressBarSpeed: 5
     SpeedIntervals: []
+    DebugMode: 0
     FadeMode: 0
     UnloadMethod: 2
     AntiSpillSceneName: 
@@ -2835,10 +2855,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Welcome to the <color=black>Corgi Engine</color>,
-
-    the most advanced
-    platformer solution for Unity.'
+  m_Text: "<color=black>Corgi Engine</color>\u3078\u3088\u3046\u3053\u305D\u3002\nUnity\u5411\u3051\u306E\u6700\u5148\u7AEF\u306E\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u958B\u767A\u30BD\u30EA\u30E5\u30FC\u30B7\u30E7\u30F3\u3067\u3059\u3002"
 --- !u!222 &258240033
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3186,9 +3203,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "You can also make them\nfollow <color=black>complex paths</color>\nmade
-    of as many points as\nyou want. You can also\nset them up so they'll <color=black>wait</color>
-    \nfor a while at certain points."
+  m_Text: "\u307E\u305F\u3001\r\n\u4EFB\u610F\u306E\u6570\u306E\u30DD\u30A4\u30F3\u30C8\u3067\u69CB\u6210\u3055\u308C\u305F\r\n<color=black>\u8907\u96D1\u306A\u7D4C\u8DEF</color>\r\n\u306B\u6CBF\u3063\u3066\u79FB\u52D5\u3055\u305B\u308B\u3053\u3068\u3082\u3067\u304D\u307E\u3059\u3002\r\n\u3055\u3089\u306B\u3001\u7279\u5B9A\u306E\u30DD\u30A4\u30F3\u30C8\u3067\r\n\u3057\u3070\u3089\u304F<color=black>\u5F85\u6A5F</color>\r\n\u3059\u308B\u3088\u3046\u306B\u8A2D\u5B9A\u3059\u308B\u3053\u3068\u3082\u53EF\u80FD\u3067\u3059\u3002"
 --- !u!222 &287223344
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3316,8 +3331,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "You can use these <color=black>portals</color> in your game\nto create
-    doors, secret passages, or \neven more original gameplays."
+  m_Text: "\u30B2\u30FC\u30E0\u5185\u3067\u3053\u308C\u3089\u306E<color=black>\u30DD\u30FC\u30BF\u30EB</color>\u3092\u4F7F\u3063\u3066\u3001\n\u30C9\u30A2\u3084\u79D8\u5BC6\u306E\u901A\u8DEF\u3092\u4F5C\u3063\u305F\u308A\u3001\n\u3055\u3089\u306B\u72EC\u5275\u7684\u306A\u30B2\u30FC\u30E0\u30D7\u30EC\u30A4\u3092\u5B9F\u73FE\u3057\u305F\u308A\u3067\u304D\u307E\u3059\u3002"
 --- !u!222 &290607346
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3408,9 +3422,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "And this is just a small part \nof what the <color=black>Corgi Engine</color>
-    will allow\nyou to do. Talk to this guy over there,\nthen go through the door
-    to check \nout all the demo levels!\n\n<color=black>Have fun!</color>"
+  m_Text: "\u3053\u308C\u306F\u3001<color=black>Corgi Engine</color>\u3067\r\n\u3067\u304D\u308B\u3053\u3068\u306E\u307B\u3093\u306E\u4E00\u90E8\u306B\u904E\u304E\u307E\u305B\u3093\u3002\r\n\u3042\u305D\u3053\u306E\u30B9\u30BF\u30C3\u30D5\u306B\u8A71\u3057\u304B\u3051\u3066\u3001\r\n\u30C9\u30A2\u3092\u304F\u3050\u3063\u3066\u3001\r\n\u3059\u3079\u3066\u306E\u30C7\u30E2\u30EC\u30D9\u30EB\u3092\u30C1\u30A7\u30C3\u30AF\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\uFF01\r\n\r\n<color=black>\u697D\u3057\u3093\u3067\u304F\u3060\u3055\u3044\uFF01</color>"
 --- !u!222 &304619810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3760,10 +3772,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "You can walk, crouch, run, jump, double jump, \ndash and more.\nAll the
-    collisions are handled via raycasts to \nget that <color=black>tight platformer
-    feeling</color>.\nOf course the engine allows you to customize all that\nin details
-    and without a line of code.\nTry crawling below that block here."
+  m_Text: "\u6B69\u304F\u3001\u3057\u3083\u304C\u3080\u3001\u8D70\u308B\u3001\u30B8\u30E3\u30F3\u30D7\u3001\u4E8C\u6BB5\u30B8\u30E3\u30F3\u30D7\u3001\n\u30C0\u30C3\u30B7\u30E5\u306A\u3069\u304C\u53EF\u80FD\u3067\u3059\u3002\n\u3059\u3079\u3066\u306E\u885D\u7A81\u5224\u5B9A\u306F\u30EC\u30A4\u30AD\u30E3\u30B9\u30C8\u306B\u3088\u3063\u3066\u51E6\u7406\u3055\u308C\u3001\n<color=black>\u7DFB\u5BC6\u306A\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30DE\u30FC\u3089\u3057\u3044\u611F\u899A</color>\u3092\u5B9F\u73FE\u3057\u3066\u3044\u307E\u3059\u3002\n\u3082\u3061\u308D\u3093\u3001\u3053\u306E\u30A8\u30F3\u30B8\u30F3\u3092\u4F7F\u3048\u3070\u3001\n\u30B3\u30FC\u30C9\u30921\u884C\u3082\u66F8\u304B\u305A\u306B\u3001\u3053\u308C\u3089\u3059\u3079\u3066\u3092\u8A73\u7D30\u306B\u30AB\u30B9\u30BF\u30DE\u30A4\u30BA\u3067\u304D\u307E\u3059\u3002\n\u3053\u3053\u3067\u3001\u3042\u306E\u30D6\u30ED\u30C3\u30AF\u306E\u4E0B\u3092\u9019\u3063\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &311806688
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4108,10 +4117,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'These two round things are <color=black>pickable weapons</color>.
-
-    Try
-    grabbing them and shooting!'
+  m_Text: "\u3053\u306E2\u3064\u306E\u4E38\u3044\u3082\u306E\u306F\u3001<color=black>\u62FE\u3048\u308B\u6B66\u5668</color>\u3067\u3059\u3002\r\n\u62FE\u3063\u3066\u6483\u3063\u3066\u307F\u3066\u304F\u3060\u3055\u3044\uFF01"
 --- !u!222 &333224079
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4235,6 +4241,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364109364}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4258,7 +4265,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -4269,7 +4277,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 40}
   m_EdgeRadius: 0
 --- !u!4 &374552217 stripped
@@ -5358,8 +5365,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "To climb a <color=black>ladder</color>, just walk \nup to it, and press
-    up."
+  m_Text: "<color=black>\u306F\u3057\u3054</color>\u3092\u767B\u308B\u306B\u306F\u3001\n\u306F\u3057\u3054\u306E\u305D\u3070\u307E\u3067\u6B69\u3044\u3066\u3044\u304D\u3001\u4E0A\u65B9\u5411\u306E\u30AD\u30FC\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &492895974
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5705,7 +5711,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &547429822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5728,7 +5734,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &547429823
 Canvas:
   m_ObjectHideFlags: 0
@@ -5769,7 +5775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 44.147583, y: -4.216851}
+  m_AnchoredPosition: {x: 45.61, y: -4.216851}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &553989508
@@ -5842,12 +5848,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'You can <color=black>walljump</color> your way
-
-    out of here, or simply
-    use
-
-    your <color=black>jetpack</color>.'
+  m_Text: "\u3053\u3053\u304B\u3089\u8131\u51FA\u3059\u308B\u306B\u306F\u3001<color=black>\u30A6\u30A9\u30FC\u30EB\u30B8\u30E3\u30F3\u30D7</color>\u3092\u3059\u308B\u304B\u3001\r\n\u3042\u308B\u3044\u306F\u5358\u306B<color=black>\u30B8\u30A7\u30C3\u30C8\u30D1\u30C3\u30AF</color>\u3092\u4F7F\u3048\u3070\u3044\u3044\u3002"
 --- !u!222 &553989511
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7164,7 +7165,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &689025346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7187,7 +7188,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &689025347
 Canvas:
   m_ObjectHideFlags: 0
@@ -7228,7 +7229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -60.582413, y: -1.7168512}
+  m_AnchoredPosition: {x: -62.01, y: -1.7168512}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &689334495
@@ -7981,6 +7982,7 @@ EdgeCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824144983}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8004,7 +8006,8 @@ EdgeCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
@@ -8016,6 +8019,7 @@ EdgeCollider2D:
   m_UseAdjacentEndPoint: 0
 --- !u!212 &824144985
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8031,6 +8035,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8052,9 +8061,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 600026165
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300038, guid: dbb1ff0fb3145da4581e36c16ce3cb72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8064,7 +8075,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &824144986
 Transform:
@@ -8837,12 +8847,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'This is a <color=black>jumper block</color>.
-
-    Step on it, and it''ll
-    throw you
-
-    up in the air.'
+  m_Text: "\u3053\u308C\u306F<color=black>\u30B8\u30E3\u30F3\u30D7\u30D6\u30ED\u30C3\u30AF</color>\u3067\u3059\u3002\n\u3053\u308C\u3092\u8E0F\u3080\u3068\u3001\n\u7A7A\u4E2D\u306B\u8DF3\u306D\u4E0A\u3052\u3089\u308C\u307E\u3059\u3002"
 --- !u!222 &889095738
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8921,9 +8926,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: '<color=black>Good job!</color>
-
-    Keep going!'
+  m_Text: "<color=black>\u3088\u304F\u3067\u304D\u307E\u3057\u305F\uFF01</color>\n\u305D\u306E\u8ABF\u5B50\u3067\u9811\u5F35\u308A\u307E\u3057\u3087\u3046\uFF01"
 --- !u!222 &889107855
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9318,17 +9321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Oh no! There''s a hole in the ground.
-
-    Grab this <color=black>rope</color>
-
-    and
-    jump over it.
-
-    Don''t worry, if you fall, you''ll respawn
-
-    at a <color=black>checkpoint</color>
-    just before the hole.'
+  m_Text: "\u3057\u307E\u3063\u305F\uFF01\u5730\u9762\u306B\u7A74\u304C\u958B\u3044\u3066\u3044\u308B\u3002\r\n\u3053\u306E<color=black>\u30ED\u30FC\u30D7</color>\u3092\u3064\u304B\u3093\u3067\u3001\u98DB\u3073\u8D8A\u3048\u3066\u304F\u3060\u3055\u3044\u3002\r\n\u5FC3\u914D\u3057\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002\u3082\u3057\u843D\u3061\u3066\u3057\u307E\u3063\u3066\u3082\u3001\r\n\u7A74\u306E\u624B\u524D\u306E<color=black>\u30C1\u30A7\u30C3\u30AF\u30DD\u30A4\u30F3\u30C8</color>\u304B\u3089\u5FA9\u6D3B\u3057\u307E\u3059\u3002"
 --- !u!222 &920584183
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10083,7 +10076,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &993798321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10106,7 +10099,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &993798322
 Canvas:
   m_ObjectHideFlags: 0
@@ -10147,7 +10140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -87.92241, y: 0.033148766}
+  m_AnchoredPosition: {x: -87.29, y: 0.033148766}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1010884180 stripped
@@ -10522,6 +10515,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -10543,9 +10541,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1620175883
   m_SortingLayer: -1
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1072031671
 MeshCollider:
@@ -11055,7 +11055,7 @@ MonoBehaviour:
   PlayerID: 
   InitialFacingDirection: 1
   DirectionOnSpawn: 0
-  CharacterAnimator: {fileID: 0}
+  CharacterAnimator: {fileID: 1124859436}
   UseDefaultMecanim: 1
   PerformAnimatorSanityChecks: 1
   DisableAnimatorLogs: 0
@@ -11184,7 +11184,7 @@ MonoBehaviour:
   MaxExtractionsIterations: 10
 --- !u!50 &1124859434
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11195,8 +11195,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -11217,6 +11217,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124859429}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -11240,7 +11241,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -11251,12 +11253,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1.22, y: 1.98}
   m_EdgeRadius: 0
 --- !u!95 &1124859436
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11270,6 +11271,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -11277,6 +11279,7 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1124859437
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11292,6 +11295,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -11313,9 +11321,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
   m_Color: {r: 0.0709883, g: 0.52030504, b: 0.74264705, a: 1}
   m_FlipX: 0
@@ -11325,7 +11335,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1124859438
 Transform:
@@ -11974,14 +11983,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Good job!
-
-    You''ve earned these <color=black>coins</color>!
-
-    The
-    Corgi Engine will help you create
-
-    pickable objects and keep track of score.'
+  m_Text: "\u3088\u304F\u3067\u304D\u307E\u3057\u305F\uFF01\r\n\u3053\u308C\u3067<color=black>\u30B3\u30A4\u30F3</color>\u3092\u7372\u5F97\u3057\u307E\u3057\u305F\uFF01\r\nCorgi
+    Engine\u3092\u4F7F\u3048\u3070\u3001\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u62FE\u3048\u308B\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u3092\u4F5C\u6210\u3057\u305F\u308A\u3001\n\u30B9\u30B3\u30A2\u3092\u7BA1\u7406\u3057\u305F\u308A\u3067\u304D\u307E\u3059\u3002"
 --- !u!222 &1175033400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12107,6 +12110,7 @@ GameObject:
   m_IsActive: 1
 --- !u!212 &1224022239
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -12122,6 +12126,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -12143,9 +12152,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1620175883
   m_SortingLayer: -1
   m_SortingOrder: -2
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 7ebbc07c3cbca984280564eb5fbd221f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12155,7 +12166,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1224022240
 Transform:
@@ -12242,15 +12252,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Do you know how to think
-
-    with <color=black>portals</color> ?
-
-
-    <color=black>Push
-    this block</color> to the right
-
-    and find out!'
+  m_Text: "<color=black>\u30DD\u30FC\u30BF\u30EB</color>\u3092\u4F7F\u3063\u3066\r\n\u8003\u3048\u308B\u65B9\u6CD5\u3092\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\uFF1F\r\n\r\n<color=black>\u3053\u306E\u30D6\u30ED\u30C3\u30AF\u3092</color>\u53F3\u306B\u62BC\u3057\u3066\r\n\u78BA\u304B\u3081\u3066\u307F\u307E\u3057\u3087\u3046\uFF01"
 --- !u!222 &1225550366
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12557,8 +12559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "But maybe you're tired of walking ? \nJust step on this <color=black>treadmill</color>\nto
-    catch a breath."
+  m_Text: "\u3067\u3082\u3001\u6B69\u304F\u306E\u306B\u75B2\u308C\u307E\u3057\u305F\u304B\uFF1F\n\u305D\u3093\u306A\u6642\u306F\u3001\u3053\u306E<color=black>\u30C8\u30EC\u30C3\u30C9\u30DF\u30EB</color>\u306B\u4E57\u3063\u3066\u3001\n\u4E00\u606F\u3064\u3044\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &1259813514
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12737,12 +12738,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Using the <color=black>Corgi Engine</color>,
-
-    You can customize these
-    surfaces
-
-    any way you like.'
+  m_Text: "<color=black>Corgi Engine</color>\u3092\u4F7F\u3048\u3070\u3001\n\u3053\u308C\u3089\u306E\u8868\u9762\u3092\n\u304A\u597D\u307F\u306E\u901A\u308A\u306B\u30AB\u30B9\u30BF\u30DE\u30A4\u30BA\u3067\u304D\u307E\u3059\u3002"
 --- !u!222 &1274280203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13377,10 +13373,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "You can customize <color=black>moving platforms</color> in a lot\nof ways.
-    \nHave them loop, wait for the player, wait for a while, accelerate...\nYou can
-    make them ease their speed as they go,\nor make them one-way platforms too. Try
-    jumping on \nthis one from underneath."
+  m_Text: "<color=black>\u52D5\u304F\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0</color>\u306F\u3001\r\n\u3055\u307E\u3056\u307E\u306A\u65B9\u6CD5\u3067\u30AB\u30B9\u30BF\u30DE\u30A4\u30BA\u3067\u304D\u307E\u3059\u3002\r\n\u30EB\u30FC\u30D7\u3055\u305B\u305F\u308A\u3001\u30D7\u30EC\u30A4\u30E4\u30FC\u3092\u5F85\u305F\u305B\u305F\u308A\u3001\u3057\u3070\u3089\u304F\u5F85\u6A5F\u3055\u305B\u305F\u308A\u3001\u52A0\u901F\u3055\u305B\u305F\u308A\u2026\u2026\r\n\u79FB\u52D5\u4E2D\u306B\u901F\u5EA6\u3092\u5F90\u3005\u306B\u7DE9\u3081\u305F\u308A\u3001\r\n\u4E00\u65B9\u901A\u884C\u306E\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u306B\u3059\u308B\u3053\u3068\u3082\u3067\u304D\u307E\u3059\u3002\r\n\u3053\u306E\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u306B\u4E0B\u304B\u3089\u30B8\u30E3\u30F3\u30D7\u3057\u3066\u4E57\u3063\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &1378449795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13557,9 +13550,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "These are <color=black>one-way platforms</color>. \nYou can climb on them
-    by jumping from underneath.\nYou can also jump down from them \nby pressing jump
-    while crouching."
+  m_Text: "\u3053\u308C\u3089\u306F<color=black>\u7247\u65B9\u5411\u306E\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0</color>\u3067\u3059\u3002\r\n\u4E0B\u304B\u3089\u30B8\u30E3\u30F3\u30D7\u3057\u3066\u4E57\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\r\n\u307E\u305F\u3001\u3057\u3083\u304C\u3093\u3060\u72B6\u614B\u3067\u30B8\u30E3\u30F3\u30D7\u30DC\u30BF\u30F3\u3092\u62BC\u3059\u3068\u3001\r\n\u305D\u3053\u304B\u3089\u4E0B\u306B\u30B8\u30E3\u30F3\u30D7\u3059\u308B\u3053\u3068\u3082\u3067\u304D\u307E\u3059\u3002"
 --- !u!222 &1403394748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13698,7 +13689,7 @@ MonoBehaviour:
       m_Calls: []
 --- !u!50 &1419015742
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -13709,8 +13700,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -13731,6 +13722,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419015740}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -13754,7 +13746,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -13765,11 +13758,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!212 &1419015744
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -13785,6 +13778,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -13806,9 +13804,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 600026165
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300066, guid: dbb1ff0fb3145da4581e36c16ce3cb72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13818,7 +13818,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1419015745
 Transform:
@@ -14070,8 +14069,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "This is a demo level\nthat will showcase a few of the things\nyou can
-    do with the engine. \n<color=black>Why don't you start moving around ?</color>"
+  m_Text: "\u3053\u308C\u306F\u3001\u3053\u306E\u30A8\u30F3\u30B8\u30F3\u3067\n\u4F55\u304C\u3067\u304D\u308B\u304B\u3092\u3044\u304F\u3064\u304B\n\u7D39\u4ECB\u3059\u308B\u30C7\u30E2\u30EC\u30D9\u30EB\u3067\u3059\u3002\n<color=black>\u3055\u3042\u3001\u52D5\u304D\u56DE\u3063\u3066\u307F\u3066\u306F\u3044\u304B\u304C\u3067\u3059\u304B\uFF1F</color>"
 --- !u!222 &1460280368
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15262,7 +15260,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "<color=black>Swim</color> \nyour way out!"
+  m_Text: "<color=black>\u6CF3\u3044\u3067</color>\n\u8131\u51FA\u3057\u3088\u3046\uFF01"
 --- !u!222 &1588121962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15486,10 +15484,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "How about <color=black>moving platforms</color> ?\nThe <color=black>Corgi
-    Engine</color> allows you to create\nand customize moving objects better and
-    easier \nthan any other system before.\n<color=black>Step on that green one to
-    the right</color>."
+  m_Text: "<color=black>\u52D5\u304F\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0</color>\u306F\u3044\u304B\u304C\u3067\u3059\u304B\uFF1F\r\n<color=black>Corgi
+    Engine</color>\u3092\u4F7F\u3048\u3070\u3001\r\n\u3053\u308C\u307E\u3067\u306E\u3069\u306E\u30B7\u30B9\u30C6\u30E0\u3088\u308A\u3082\r\n\u7C21\u5358\u304B\u3064\u30B9\u30E0\u30FC\u30BA\u306B\u3001\u52D5\u304F\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u3092\u4F5C\u6210\u30FB\u30AB\u30B9\u30BF\u30DE\u30A4\u30BA\u3067\u304D\u307E\u3059\u3002\r\n<color=black>\u53F3\u306B\u3042\u308B\u7DD1\u8272\u306E\u3082\u306E\u306E\u4E0A\u306B\u4E57\u3063\u3066\u307F\u3066\u304F\u3060\u3055\u3044</color>\u3002"
 --- !u!222 &1605935876
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16176,7 +16172,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1678109542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16199,7 +16195,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1678109543
 Canvas:
   m_ObjectHideFlags: 0
@@ -16240,7 +16236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 166.64758, y: -5.7268515}
+  m_AnchoredPosition: {x: 167.26, y: -5.7268515}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1687487107
@@ -16839,9 +16835,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "And they can be as fast as you want,\nand go as far as you want.\n\n<color=black>Try
-    this one</color>, it'll take you all the way \nacross the level, and bring you
-    back here.\n<color=black>Hold on tight</color>."
+  m_Text: "\u30B9\u30D4\u30FC\u30C9\u306F\u597D\u304D\u306A\u3060\u3051\u51FA\u305B\u308B\u3057\u3001\r\n\u3069\u3053\u307E\u3067\u3082\u884C\u3051\u308B\u3088\u3002\r\n\r\n<color=black>\u3053\u308C\u3092\u8A66\u3057\u3066\u307F\u3066</color>\u3002\u30B9\u30C6\u30FC\u30B8\u306E\u7AEF\u304B\u3089\u7AEF\u307E\u3067\r\n\u884C\u3051\u308B\u3057\u3001\u307E\u305F\u3053\u3053\u306B\u623B\u3063\u3066\u304F\u308B\u3088\u3002\r\n<color=black>\u3057\u3063\u304B\u308A\u3064\u304B\u307E\u3063\u3066\u306D</color>\u3002"
 --- !u!222 &1707785206
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17658,8 +17652,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "The Corgi Engine can simulate any kind\nof gravity or environment.\n\nLet
-    this <color=black>windy zone</color> \ncarry you over that wall."
+  m_Text: "Corgi Engine\u306F\u3001\u3042\u3089\u3086\u308B\u7A2E\u985E\u306E\n\u91CD\u529B\u3084\u74B0\u5883\u3092\u30B7\u30DF\u30E5\u30EC\u30FC\u30C8\u3067\u304D\u307E\u3059\u3002\n\n\u3053\u306E<color=black>\u98A8\u306E\u5F37\u3044\u30A8\u30EA\u30A2</color>\u306B\n\u4E57\u3063\u3066\u3001\u3042\u306E\u58C1\u3092\u8D8A\u3048\u3066\u307F\u307E\u3057\u3087\u3046\u3002"
 --- !u!222 &1780219296
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17856,8 +17849,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "The engine is really good at handling <color=black>collisions</color>,
-    \neven with slopes and weirdly shaped platforms."
+  m_Text: "\u3053\u306E\u30A8\u30F3\u30B8\u30F3\u306F\u3001\u50BE\u659C\u3084\u5947\u5999\u306A\u5F62\u306E\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u304C\u3042\u3063\u3066\u3082\u3001\n<color=black>\u885D\u7A81\u51E6\u7406</color>\u3092\u975E\u5E38\u306B\u3046\u307E\u304F\u3053\u306A\u3057\u307E\u3059\u3002"
 --- !u!222 &1812525927
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18665,6 +18657,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888694164}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -18688,7 +18681,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -18699,7 +18693,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 40}
   m_EdgeRadius: 0
 --- !u!1001 &1895758475
@@ -18848,6 +18841,7 @@ GameObject:
   m_IsActive: 1
 --- !u!212 &1913346271
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -18863,6 +18857,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -18884,9 +18883,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 600026165
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300068, guid: dbb1ff0fb3145da4581e36c16ce3cb72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -18896,7 +18897,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1913346272
 Transform:
@@ -18981,7 +18981,7 @@ MonoBehaviour:
       m_Calls: []
 --- !u!50 &1913346274
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -18992,8 +18992,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19014,6 +19014,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913346270}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19037,7 +19038,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -19048,7 +19050,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!1 &1915092249
@@ -19111,6 +19112,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915092249}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19134,7 +19136,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -19145,7 +19148,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 40}
   m_EdgeRadius: 0
 --- !u!1001 &1915893904
@@ -19388,7 +19390,7 @@ MonoBehaviour:
       m_Calls: []
 --- !u!50 &1925930375
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19399,8 +19401,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19421,6 +19423,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925930373}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19444,7 +19447,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -19455,11 +19459,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!212 &1925930377
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19475,6 +19479,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -19496,9 +19505,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 600026165
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300066, guid: dbb1ff0fb3145da4581e36c16ce3cb72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19508,7 +19519,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1925930378
 Transform:
@@ -19853,10 +19863,8 @@ MonoBehaviour:
   ActivableMoreThanOnce: 1
   InactiveTime: 2
   Dialogue:
-  - 'This is just the beginning.
-
-    There are other worlds than these.'
-  - Go explore the Corgi Engine!
+  - "\u3053\u308C\u306F\u307E\u3060\u59CB\u307E\u308A\u306B\u904E\u304E\u306A\u3044\u3002\n\u3053\u306E\u4E16\u754C\u4EE5\u5916\u306B\u3082\u3001\u3055\u307E\u3056\u307E\u306A\u4E16\u754C\u304C\u3042\u308B\u3002"
+  - "\u3055\u3042\u3001Corgi Engine\u3092\u63A2\u7D22\u3057\u3066\u307F\u3088\u3046\uFF01"
 --- !u!61 &1941995533
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19865,6 +19873,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941995530}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19888,7 +19897,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -19899,7 +19909,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 3.48, y: 2.06}
   m_EdgeRadius: 0
 --- !u!1 &1946642432
@@ -20185,7 +20194,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1965041590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20208,7 +20217,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1965041591
 Canvas:
   m_ObjectHideFlags: 0
@@ -20249,7 +20258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -50.712414, y: -5.8668513}
+  m_AnchoredPosition: {x: -49.82, y: -5.8668513}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1967534157 stripped
@@ -20391,8 +20400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "Now jump down!\n\nDon't worry, \nthere's <color=black>water</color> at
-    the bottom."
+  m_Text: "\u3055\u3042\u3001\u98DB\u3073\u964D\u308A\u3066\uFF01\n\n\u5FC3\u914D\u3057\u306A\u3044\u3067\u3001\u4E0B\u306B\u306F<color=black>\u6C34</color>\u304C\u3042\u308B\u3088\u3002"
 --- !u!222 &1975701748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20968,16 +20976,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Using the <color=black>Corgi Engine</color> you can
-
-    also create all
-    sorts of platforms,
-
-    like these <color=black>falling platforms</color>.
-
-
-    Careful
-    when you step on ''em!'
+  m_Text: "<color=black>Corgi Engine</color>\u3092\u4F7F\u3048\u3070\u3001\r\n\u3053\u3046\u3057\u305F<color=black>\u843D\u4E0B\u3059\u308B\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0</color>\u306A\u3069\u3001\r\n\u3042\u3089\u3086\u308B\u7A2E\u985E\u306E\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u3092\u4F5C\u6210\u3059\u308B\u3053\u3068\u3082\u3067\u304D\u307E\u3059\u3002\r\n\r\n\u8E0F\u3080\u3068\u304D\u306F\u6C17\u3092\u3064\u3051\u3066\uFF01"
 --- !u!222 &2065099208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21021,7 +21020,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &2070052605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21044,7 +21043,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2070052606
 Canvas:
   m_ObjectHideFlags: 0
@@ -21085,7 +21084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 131.73758, y: -1.8568513}
+  m_AnchoredPosition: {x: 131.73758, y: -2.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2072224549
@@ -21570,8 +21569,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "These are some pretty big stairs.\nWhy not take a shortcut ?\nGo through
-    the <color=black>blue door</color>\nand it'll get you \nall the way to the top!"
+  m_Text: "\u304B\u306A\u308A\u5927\u304D\u306A\u968E\u6BB5\u3067\u3059\u306D\u3002\n\u8FD1\u9053\u3057\u3066\u307F\u307E\u305B\u3093\u304B\uFF1F\n<color=black>\u9752\u3044\u30C9\u30A2</color>\u3092\u304F\u3050\u308C\u3070\u3001\n\u4E00\u6C17\u306B\u4E00\u756A\u4E0A\u307E\u3067\u884C\u3051\u307E\u3059\u3088\uFF01"
 --- !u!222 &2085265009
 CanvasRenderer:
   m_ObjectHideFlags: 0
