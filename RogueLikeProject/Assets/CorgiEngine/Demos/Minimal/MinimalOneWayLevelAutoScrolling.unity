@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 0}
   m_FogMode: 3
@@ -38,13 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 0
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
     m_MixedBakeMode: 1
     m_BakeBackend: 0
@@ -216,6 +212,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &4803203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,6 +1224,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186180916}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1248,7 +1248,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1259,7 +1260,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 12}
   m_EdgeRadius: 0
 --- !u!4 &186180919
@@ -1362,6 +1362,9 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     Initialized: 0
+    ConditionPropertyName: 
+    EnumConditionPropertyName: 
+    EnumConditions: 0000000000000000000000000000000000000000000000000000000000000000
   RespawnDelay: 2
   ResetPointsOnRestart: 1
   BoundsMode: 0
@@ -1379,7 +1382,8 @@ MonoBehaviour:
     BeforeEntryFadeDelay: 0
     EntryFadeDuration: 0.25
     AfterEntryFadeDelay: 0.1
-    BeforeExitFadeDelay: 0.25
+    BeforeSceneActivationDelay: 0.25
+    AfterSceneActivationDelay: 0
     ExitFadeDuration: 0.2
     EntryFadeTween:
       MMTweenDefinitionType: 0
@@ -1391,6 +1395,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ExitFadeTween:
       MMTweenDefinitionType: 0
       MMTweenCurve: 0
@@ -1401,8 +1408,12 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ProgressBarSpeed: 5
     SpeedIntervals: []
+    DebugMode: 0
     FadeMode: 0
     UnloadMethod: 2
     AntiSpillSceneName: 
@@ -1770,6 +1781,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &292487507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2548,6 +2562,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487118913}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2571,7 +2586,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -2582,7 +2598,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 12}
   m_EdgeRadius: 0
 --- !u!4 &487118916
@@ -3034,7 +3049,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &577522988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3057,7 +3072,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &577522989
 Canvas:
   m_ObjectHideFlags: 0
@@ -3489,6 +3504,8 @@ MonoBehaviour:
   LevelName: 
   Fade: 1
   Save: 1
+  Mode: 0
+  LoadingSceneName: LoadingScreen
 --- !u!114 &642944829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3660,6 +3677,8 @@ MonoBehaviour:
   LevelName: LevelSelection
   Fade: 1
   Save: 1
+  Mode: 0
+  LoadingSceneName: LoadingScreen
 --- !u!114 &673083358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3835,6 +3854,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &687435596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4162,10 +4184,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "You've made it!\n\n<color=black>The engine lets you control whether \nthe
-    level should be scrolling,\nand at which speed. \nIt's super easy to put trigger
-    colliders to control that \nat specific points in the level.\n\nAnd of course
-    there's an API \nif you prefer to do so via script.</color>"
+  m_Text: "\u3088\u304F\u3067\u304D\u307E\u3057\u305F\uFF01\r\n\r\n<color=black>\u3053\u306E\u30A8\u30F3\u30B8\u30F3\u3067\u306F\u3001\r\n\u30B9\u30C6\u30FC\u30B8\u3092\u30B9\u30AF\u30ED\u30FC\u30EB\u3055\u305B\u308B\u304B\u3069\u3046\u304B\u3001\r\n\u307E\u305F\u305D\u306E\u901F\u5EA6\u3092\u5236\u5FA1\u3067\u304D\u307E\u3059\u3002\r\n\u30B9\u30C6\u30FC\u30B8\u5185\u306E\u7279\u5B9A\u306E\u30DD\u30A4\u30F3\u30C8\u3067\r\n\u305D\u308C\u3092\u5236\u5FA1\u3059\u308B\u305F\u3081\u306E\u30C8\u30EA\u30AC\u30FC\u30B3\u30E9\u30A4\u30C0\u30FC\u3092\u8A2D\u7F6E\u3059\u308B\u306E\u306F\u3001\r\n\u3068\u3066\u3082\u7C21\u5358\u3067\u3059\u3002\r\n\r\n\u3082\u3061\u308D\u3093\u3001\u30B9\u30AF\u30EA\u30D7\u30C8\u3092\u4F7F\u3063\u3066\r\n\u5236\u5FA1\u3057\u305F\u3044\u5834\u5408\u306F\u3001API\u3082\u7528\u610F\u3055\u308C\u3066\u3044\u307E\u3059\u3002</color>"
 --- !u!222 &795543420
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4902,6 +4921,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &980450298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5343,7 +5365,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: You're almost there!
+  m_Text: "\u3042\u3068\u5C11\u3057\u3067\u3059\uFF01"
 --- !u!222 &1064272623
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5541,6 +5563,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5562,9 +5589,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1620175883
   m_SortingLayer: -1
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1072031671
 MeshCollider:
@@ -6057,7 +6086,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "If you don't jump over the obstacles, \nyou'll be crushed to death :("
+  m_Text: "\u969C\u5BB3\u7269\u3092\u98DB\u3073\u8D8A\u3048\u306A\u3051\u308C\u3070\u3001\r\n\u62BC\u3057\u3064\u3076\u3055\u308C\u3066\u6B7B\u3093\u3067\u3057\u307E\u3044\u307E\u3059
+    :("
 --- !u!222 &1161090790
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6977,10 +7007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'You''ve just passed an accelerator point,
-
-    the level will now scroll
-    faster.'
+  m_Text: "\u30A2\u30AF\u30BB\u30E9\u30EC\u30FC\u30BF\u30FC\u30DD\u30A4\u30F3\u30C8\u3092\u901A\u904E\u3057\u307E\u3057\u305F\u3002\r\n\u3053\u308C\u4EE5\u964D\u3001\u753B\u9762\u306E\u30B9\u30AF\u30ED\u30FC\u30EB\u901F\u5EA6\u304C\u901F\u304F\u306A\u308A\u307E\u3059\u3002"
 --- !u!222 &1396422679
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7395,7 +7422,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1519593376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7418,7 +7445,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1519593377
 Canvas:
   m_ObjectHideFlags: 0
@@ -7956,7 +7983,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1726681695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7979,7 +8006,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1726681696
 Canvas:
   m_ObjectHideFlags: 0
@@ -8187,13 +8214,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'The Corgi Engine also lets you create auto scrolling levels.
-
-
-    <color=black>This
-    level will keep scrolling to the right.
-
-    Try to keep up!</color>'
+  m_Text: "Corgi Engine \u3092\u4F7F\u3048\u3070\u3001\u81EA\u52D5\u30B9\u30AF\u30ED\u30FC\u30EB\u3059\u308B\u30B9\u30C6\u30FC\u30B8\u3092\u4F5C\u6210\u3059\u308B\u3053\u3068\u3082\u3067\u304D\u307E\u3059\u3002\r\n\r\n<color=black>\u3053\u306E\u30B9\u30C6\u30FC\u30B8\u306F\u53F3\u65B9\u5411\u306B\u30B9\u30AF\u30ED\u30FC\u30EB\u3057\u7D9A\u3051\u307E\u3059\u3002\r\n\u30B9\u30AF\u30ED\u30FC\u30EB\u306B\u8FFD\u3044\u3064\u3044\u3066\u307F\u3066\u304F\u3060\u3055\u3044\uFF01</color>"
 --- !u!222 &1745292882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8319,6 +8340,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &1746876504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8698,7 +8722,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1774807747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8721,7 +8745,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1774807748
 Canvas:
   m_ObjectHideFlags: 0
@@ -9784,7 +9808,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &2071161376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9807,7 +9831,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2071161377
 Canvas:
   m_ObjectHideFlags: 0
@@ -10054,8 +10078,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 6
-  m_GIWorkflowMode: 1
+  serializedVersion: 10
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
@@ -10063,11 +10086,19 @@ LightingSettings:
   m_AlbedoBoost: 1
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 0
-  m_BakeBackend: 0
+  m_BakeBackend: 1
   m_LightmapMaxSize: 1024
+  m_LightmapSizeFixed: 0
+  m_UseMipmapLimits: 1
   m_BakeResolution: 50
   m_Padding: 2
   m_LightmapCompression: 0
+  m_LightmapPackingMode: 1
+  m_LightmapPackingMethod: 0
+  m_XAtlasPackingAttempts: 16384
+  m_XAtlasBruteForce: 0
+  m_XAtlasBlockAlign: 0
+  m_XAtlasRepackUnderutilizedLightmaps: 1
   m_AO: 0
   m_AOMaxDistance: 1
   m_CompAOExponent: 0
@@ -10078,13 +10109,11 @@ LightingSettings:
   m_FilterMode: 1
   m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
+  m_EnableWorkerProcessBaking: 1
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 1
   m_ForceWhiteAlbedo: 0
   m_ForceUpdates: 0
-  m_FinalGather: 0
-  m_FinalGatherRayCount: 1024
-  m_FinalGatherFiltering: 1
   m_PVRCulling: 1
   m_PVRSampling: 1
   m_PVRDirectSampleCount: 32
@@ -10108,8 +10137,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_PVRTiledBaking: 0
-  m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
 --- !u!1 &2131784877
 GameObject:

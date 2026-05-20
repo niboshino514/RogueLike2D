@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 0}
   m_FogMode: 3
@@ -38,13 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 0
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
     m_MixedBakeMode: 1
     m_BakeBackend: 0
@@ -217,6 +213,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &4803203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,6 +685,9 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     Initialized: 0
+    ConditionPropertyName: 
+    EnumConditionPropertyName: 
+    EnumConditions: 0000000000000000000000000000000000000000000000000000000000000000
   RespawnDelay: 2
   ResetPointsOnRestart: 1
   BoundsMode: 0
@@ -703,7 +705,8 @@ MonoBehaviour:
     BeforeEntryFadeDelay: 0
     EntryFadeDuration: 0.25
     AfterEntryFadeDelay: 0.1
-    BeforeExitFadeDelay: 0.25
+    BeforeSceneActivationDelay: 0.25
+    AfterSceneActivationDelay: 0
     ExitFadeDuration: 0.2
     EntryFadeTween:
       MMTweenDefinitionType: 0
@@ -715,6 +718,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ExitFadeTween:
       MMTweenDefinitionType: 0
       MMTweenCurve: 0
@@ -725,8 +731,12 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       Initialized: 0
+      ConditionPropertyName: 
+      EnumConditionPropertyName: 
+      EnumConditions: 
     ProgressBarSpeed: 5
     SpeedIntervals: []
+    DebugMode: 0
     FadeMode: 0
     UnloadMethod: 2
     AntiSpillSceneName: 
@@ -921,6 +931,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &292487507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1858,7 +1871,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &577522988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1881,7 +1894,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &577522989
 Canvas:
   m_ObjectHideFlags: 0
@@ -2203,6 +2216,8 @@ MonoBehaviour:
   LevelName: 
   Fade: 1
   Save: 1
+  Mode: 0
+  LoadingSceneName: LoadingScreen
 --- !u!114 &642944829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2368,6 +2383,8 @@ MonoBehaviour:
   LevelName: LevelSelection
   Fade: 1
   Save: 1
+  Mode: 0
+  LoadingSceneName: LoadingScreen
 --- !u!114 &673083358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,6 +2560,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &687435596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2925,7 +2945,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "Good job!\n<color=black>There are many more \ndemo levels to check out.</color>"
+  m_Text: "\u3088\u304F\u3067\u304D\u307E\u3057\u305F\uFF01\r\n<color=black>\u4ED6\u306B\u3082\u305F\u304F\u3055\u3093\u306E\r\n\u30C7\u30E2\u30B9\u30C6\u30FC\u30B8\u304C\u3042\u308A\u307E\u3059\u3002</color>"
 --- !u!222 &795543420
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3540,6 +3560,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &980450298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,6 +4105,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4103,9 +4131,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1620175883
   m_SortingLayer: -1
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1072031671
 MeshCollider:
@@ -5639,9 +5669,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "The Corgi Engine allows you to add\nan option to prevent going back \nin
-    a level.\n\n<color=black>This demo showcases that with a vertical level.\nTry
-    going to the top, but falling back down will kill you.</color>"
+  m_Text: "Corgi Engine \u3067\u306F\u3001\r\n\u30B9\u30C6\u30FC\u30B8\u5185\u3067\u5F8C\u623B\u308A\u3067\u304D\u306A\u3044\u3088\u3046\u306B\u3059\u308B\r\n\u30AA\u30D7\u30B7\u30E7\u30F3\u3092\u8FFD\u52A0\u3067\u304D\u307E\u3059\u3002\r\n\r\n<color=black>\u3053\u306E\u30C7\u30E2\u3067\u306F\u3001\u7E26\u578B\u306E\u30B9\u30C6\u30FC\u30B8\u3067\u305D\u306E\u6A5F\u80FD\u3092\u7D39\u4ECB\u3057\u3066\u3044\u307E\u3059\u3002\r\n\u4E0A\u307E\u3067\u884C\u3063\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002\u305F\u3060\u3057\u3001\u843D\u3061\u3066\u304F\u308B\u3068\u30B2\u30FC\u30E0\u30AA\u30FC\u30D0\u30FC\u306B\u306A\u308A\u307E\u3059\u3002</color>"
 --- !u!222 &1745292882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5767,6 +5795,9 @@ MonoBehaviour:
   DisabledAnimationParameterName: Disabled
   PressedAnimationParameterName: Pressed
   MouseMode: 0
+  PreventLeftClick: 0
+  PreventMiddleClick: 1
+  PreventRightClick: 1
 --- !u!114 &1746876504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6023,7 +6054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 25.42, y: -27.45}
+  m_AnchoredPosition: {x: 27.23, y: -27.45}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774807746
@@ -6042,7 +6073,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 536854327
 --- !u!114 &1774807747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6065,7 +6096,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1774807748
 Canvas:
   m_ObjectHideFlags: 0
