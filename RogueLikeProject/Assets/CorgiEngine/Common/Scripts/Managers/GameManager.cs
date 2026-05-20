@@ -7,22 +7,23 @@ using MoreMountains.Feedbacks;
 
 namespace MoreMountains.CorgiEngine
 {
-	/// <summary>
-	/// A list of the possible Corgi Engine base events
-	/// LevelStart : triggered by the LevelManager when a level starts
-	///	LevelComplete : can be triggered when the end of a level is reached
-	/// LevelEnd : same thing
-	///	Pause : triggered when a pause is starting
-	///	UnPause : triggered when a pause is ending and going back to normal
-	///	PlayerDeath : triggered when the player character dies
-	///	Respawn : triggered when the player character respawns
-	///	StarPicked : triggered when a star bonus gets picked
-	///	GameOver : triggered by the LevelManager when all lives are lost
-	/// CharacterSwitch : triggered when the character gets switched
-	/// CharacterSwap : triggered when the character gets swapped
-	/// TogglePause : triggered to request a pause (or unpause)
-	/// </summary>
-	public enum CorgiEngineEventTypes
+    /// <summary>
+    /// Corgi Engine で使われる基本イベントの一覧
+    /// 
+    /// LevelStart : レベル開始時に LevelManager が発行
+    /// LevelComplete : レベルの終点に到達したときに発行される
+    /// LevelEnd : 上と同じ意味で使われることもある
+    /// Pause : ポーズ開始時に発行
+    /// UnPause : ポーズ解除時に発行
+    /// PlayerDeath : プレイヤーが死亡したときに発行
+    /// Respawn : プレイヤーが復活したときに発行
+    /// StarPicked : 星ボーナスを取得したときに発行
+    /// GameOver : 全ライフを失ったときに LevelManager が発行
+    /// CharacterSwitch : キャラクターが切り替わったときに発行
+    /// CharacterSwap : キャラクターが入れ替わったときに発行
+    /// TogglePause : ポーズ／解除を要求するときに発行
+    /// </summary>
+    public enum CorgiEngineEventTypes
 	{
 		SpawnCharacterStarts,
 		LevelStart,
@@ -42,19 +43,19 @@ namespace MoreMountains.CorgiEngine
 		LivesCountChanged
 	}
 
-	/// <summary>
-	/// A type of events used to signal level start and end (for now)
-	/// </summary>
-	public struct CorgiEngineEvent
+    /// <summary>
+    /// レベル開始や終了などを通知するためのイベント
+    /// </summary>
+    public struct CorgiEngineEvent
 	{
 		public CorgiEngineEventTypes EventType;
 		public Character OriginCharacter;
-		
-		/// <summary>
-		/// Initializes a new instance of the <see cref="MoreMountains.CorgiEngine.CorgiEngineEvent"/> struct.
-		/// </summary>
-		/// <param name="eventType">Event type.</param>
-		public CorgiEngineEvent(CorgiEngineEventTypes eventType, Character originCharacter = null)
+
+        /// <summary>
+        /// 新しい CorgiEngineEvent を作成します
+        /// </summary>
+        /// <param name="eventType">イベントの種類</param>
+        public CorgiEngineEvent(CorgiEngineEventTypes eventType, Character originCharacter = null)
 		{
 			EventType = eventType;
 			OriginCharacter = originCharacter;
@@ -67,18 +68,23 @@ namespace MoreMountains.CorgiEngine
 			e.OriginCharacter = originCharacter;
 			MMEventManager.TriggerEvent(e);
 		}
-	} 
+	}
 
-	/// <summary>
-	/// A list of the methods available to change the current score
-	/// </summary>
-	public enum PointsMethods
+    /// <summary>
+    /// スコアの変更方法
+    /// Add : 加算
+    /// Set : 値を直接セット
+    /// </summary>
+    public enum PointsMethods
 	{
 		Add,
 		Set
 	}
 
-	public struct CorgiEngineStarEvent
+    /// <summary>
+    /// 星を取得したときのイベント
+    /// </summary>
+    public struct CorgiEngineStarEvent
 	{
 		public string SceneName;
 		public int StarID;
@@ -98,19 +104,19 @@ namespace MoreMountains.CorgiEngine
 		}
 	}
 
-	/// <summary>
-	/// A type of event used to signal changes to the current score
-	/// </summary>
-	public struct CorgiEnginePointsEvent
+    /// <summary>
+    /// スコアが変更されたときのイベント
+    /// </summary>
+    public struct CorgiEnginePointsEvent
 	{
 		public PointsMethods PointsMethod;
 		public int Points;
-		/// <summary>
-		/// Initializes a new instance of the <see cref="MoreMountains.CorgiEngine.CorgiEnginePointsEvent"/> struct.
-		/// </summary>
-		/// <param name="pointsMethod">Points method.</param>
-		/// <param name="points">Points.</param>
-		public CorgiEnginePointsEvent(PointsMethods pointsMethod, int points)
+        /// <summary>
+        /// 新しい CorgiEnginePointsEvent を作成します
+        /// </summary>
+        /// <param name="pointsMethod">スコアの変更方法</param>
+        /// <param name="points">変更するスコア値</param>
+        public CorgiEnginePointsEvent(PointsMethods pointsMethod, int points)
 		{
 			PointsMethod = pointsMethod;
 			Points = points;
@@ -125,13 +131,21 @@ namespace MoreMountains.CorgiEngine
 		}
 	}
 
-	public enum PauseMethods
+    /// <summary>
+    /// ポーズの種類
+    /// PauseMenu : ポーズメニューを表示する通常のポーズ
+    /// NoPauseMenu : メニューを出さずに時間だけ止める（インベントリ用など）
+    /// </summary>
+    public enum PauseMethods
 	{
 		PauseMenu,
 		NoPauseMenu
 	}
 
-	public class PointsOfEntryStorage
+    /// <summary>
+    /// レベルの入口情報を保存するクラス
+    /// </summary>
+    public class PointsOfEntryStorage
 	{
 		public string LevelName;
 		public int PointOfEntryIndex;
@@ -145,52 +159,51 @@ namespace MoreMountains.CorgiEngine
 		}
 	}
 
-	/// <summary>
-	/// The game manager is a persistent singleton that handles points and time
-	/// </summary>
-	[AddComponentMenu("Corgi Engine/Managers/Game Manager")]
+    /// <summary>
+    /// GameManager はゲーム全体のポイントや時間、ライフなどを管理する永続シングルトン
+    /// </summary>
+    [AddComponentMenu("Corgi Engine/Managers/Game Manager")]
 	public class GameManager : 	MMPersistentSingleton<GameManager>, 
 		MMEventListener<MMGameEvent>, 
 		MMEventListener<CorgiEngineEvent>, 
 		MMEventListener<CorgiEnginePointsEvent>
-	{		
-		[Header("Settings")]
+	{
+        [Header("Settings")]
+        /// ゲームのターゲットフレームレート
+        [Tooltip("ゲームのターゲットフレームレート")]
+        public int TargetFrameRate = 300;
 
-		/// the target frame rate for the game
-		[Tooltip("the target frame rate for the game")]
-		public int TargetFrameRate=300;
+        [Header("Lives")]
+        /// キャラクターが持てる最大ライフ数
+        [Tooltip("キャラクターが持てる最大ライフ数")]
+        public int MaximumLives = 0;
+        /// 現在のライフ数
+        [Tooltip("現在のライフ数")]
+        public int CurrentLives = 0;
 
-		[Header("Lives")]
 
-		/// the maximum amount of lives the character can currently have
-		[Tooltip("the maximum amount of lives the character can currently have")]
-		public int MaximumLives = 0;
-		/// the current number of lives 
-		[Tooltip("the current number of lives ")]
-		public int CurrentLives = 0;
-		
-		[Header("Game Over")]
-		/// if this is true, lives will be reset on game over
-		[Tooltip("if this is true, lives will be reset on game over")]
-		public bool ResetLivesOnGameOver = true;
-		/// if this is true, the persistent character will be cleared on game over
-		[Tooltip("if this is true, the persistent character will be cleared on game over")]
-		public bool ResetPersistentCharacterOnGameOver = true;
-		/// if this is true, the stored character will be cleared on game over
-		[Tooltip("if this is true, the stored character will be cleared on game over")]
-		public bool ResetStoredCharacterOnGameOver = true;
-		/// the name of the scene to redirect to when all lives are lost
-		[Tooltip("the name of the scene to redirect to when all lives are lost")]
-		public string GameOverScene;
-		/// the delay (in seconds) before the game over scene gets loaded once all lives are lost
-		[Tooltip("the delay (in seconds) before the game over scene gets loaded once all lives are lost")]
-		public float DelayBeforeGameOverSceneLoad = 0f;
-		/// whether or not the game should pause when the inventory opens
-		[Tooltip("whether or not the game should pause when the inventory opens")]
-		public bool PauseGameWhenInventoryOpens = true;
+        [Header("Game Over")]
+        /// ゲームオーバー時にライフをリセットするか
+        [Tooltip("ゲームオーバー時にライフをリセットするか")]
+        public bool ResetLivesOnGameOver = true;
+        /// ゲームオーバー時に永続キャラを消すか
+        [Tooltip("ゲームオーバー時に永続キャラを消すか")]
+        public bool ResetPersistentCharacterOnGameOver = true;
+        /// ゲームオーバー時に保存されたキャラを消すか
+        [Tooltip("ゲームオーバー時に保存されたキャラを消すか")]
+        public bool ResetStoredCharacterOnGameOver = true;
+        /// 全ライフを失ったときに遷移するシーン名
+        [Tooltip("全ライフを失ったときに遷移するシーン名")]
+        public string GameOverScene;
+        /// ゲームオーバーシーンに遷移するまでの遅延時間（秒）
+        [Tooltip("ゲームオーバーシーンに遷移するまでの遅延時間（秒）")]
+        public float DelayBeforeGameOverSceneLoad = 0f;
+        /// インベントリを開いたときにゲームをポーズするか
+        [Tooltip("インベントリを開いたときにゲームをポーズするか")]
+        public bool PauseGameWhenInventoryOpens = true;
 
-		/// the current number of game points
-		public int Points { get; private set; }
+        /// the current number of game points
+        public int Points { get; private set; }
 		/// true if the game is currently paused
 		public bool Paused { get; set; } 
 		// true if we've stored a map position at least once
