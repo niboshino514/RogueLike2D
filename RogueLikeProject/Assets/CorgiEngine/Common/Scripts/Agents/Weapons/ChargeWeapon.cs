@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
@@ -14,25 +14,32 @@ namespace MoreMountains.CorgiEngine
 	public class ChargeWeaponStep
 	{
 		/// the weapon to cause an attack with at that step
-		[Tooltip("the weapon to cause an attack with at that step")]
+		[Tooltip("このステップで攻撃する武器")]
+		[Header("このステップで攻撃する武器")]
 		public Weapon TargetWeapon;
 		/// the duration (in seconds) it should take to keep the charge going to the next step
-		[Tooltip("the duration (in seconds) it should take to keep the charge going to the next step")]
+		[Tooltip("次ステップまでのチャージ時間（秒）")]
+		[Header("次ステップまでのチャージ時間（秒）")]
 		public float ChargeDuration = 1f;
 		/// if the charge is interrupted at this step, whether or not to trigger this weapon's attack
-		[Tooltip("if the charge is interrupted at this step, whether or not to trigger this weapon's attack")]
+		[Tooltip("このステップで中断したとき攻撃を発動するか")]
+		[Header("このステップで中断したとき攻撃を発動するか")]
 		public bool TriggerIfChargeInterrupted = true;
 		/// if this is true, the weapon at this step will be flipped when the charge weapon flips 
-		[Tooltip("if this is true, the weapon at this step will be flipped when the charge weapon flips")]
+		[Tooltip("チャージ武器反転時にこのステップの武器も反転するか")]
+		[Header("チャージ武器反転時にこのステップの武器も反転するか")]
 		public bool FlipWhenChargeWeaponFlips = true;
 		/// a feedback to trigger when this step starts charging
-		[Tooltip("a feedback to trigger when this step starts charging")]
+		[Tooltip("このステップのチャージ開始フィードバック")]
+		[Header("このステップのチャージ開始フィードバック")]
 		public MMFeedbacks ChargeStartFeedbacks;
 		/// a feedback to trigger when this step gets interrupted (when the charge is dropped at this step)
-		[Tooltip("a feedback to trigger when this step gets interrupted (when the charge is dropped at this step)")]
+		[Tooltip("このステップ中断フィードバック")]
+		[Header("このステップ中断フィードバック")]
 		public MMFeedbacks ChargeInterruptedFeedbacks;
 		/// a feedback to trigger when this step completes and the charge potentially moves on to the next step
-		[Tooltip("a feedback to trigger when this step completes and the charge potentially moves on to the next step")]
+		[Tooltip("このステップ完了フィードバック")]
+		[Header("このステップ完了フィードバック")]
 		public MMFeedbacks ChargeCompleteFeedbacks;
 		/// the total time (in seconds) from the complete start of the charge weapon to this weapon's charge being complete
 		public float ChargeTotalDuration { get; set; }
@@ -57,34 +64,41 @@ namespace MoreMountains.CorgiEngine
 		/// the current time value
 		public virtual float CurrentTime => TimescaleMode == TimescaleModes.Scaled ? Time.time : Time.unscaledTime;
 
-		[MMInspectorGroup("Charge Weapon", true, 22)]
-		[Header("List of Weapons in the Charge Sequence")]
+		[MMInspectorGroup("チャージ武器", true, 22)]
+		[Header("チャージシーケンスの武器リスト")]
 		/// the list of weapons that make up this charge weapon's sequence of steps
-		[Tooltip("the list of weapons that make up this charge weapon's sequence of steps")]
+		[Tooltip("武器リスト")]
+		[Header("武器リスト")]
 		public List<ChargeWeaponStep> Weapons;
-		
-		[Header("Settings")]
+
+		[Header("設定")]
 		/// whether this weapon should trigger its attack when all steps are done charging, or when input gets released
-		[Tooltip("whether this weapon should trigger its attack when all steps are done charging, or when input gets released")]
+		[Tooltip("リリースモード")]
+		[Header("リリースモード")]
 		public ReleaseModes ReleaseMode = ReleaseModes.OnInputRelease;
 		/// whether this weapon's input should run on scaled or unscaled time
-		[Tooltip("whether this weapon's input should run on scaled or unscaled time")]
+		[Tooltip("タイムスケールモード")]
+		[Header("タイムスケールモード")]
 		public TimescaleModes TimescaleMode = TimescaleModes.Scaled;
 		/// whether or not the start of the charge should trigger the first step's weapon's attack or not
-		[Tooltip("whether or not the start of the charge should trigger the first step's weapon's attack or not")]
+		[Tooltip("押下時初回ショット許可")]
+		[Header("押下時初回ショット許可")]
 		public bool AllowInitialShotOnPress = true;
 		/// whether or not releasing the charge should trigger the first step's weapon's attack or not
-		[Tooltip("whether or not releasing the charge should trigger the first step's weapon's attack or not")]
+		[Tooltip("リリース時初回ショット許可")]
+		[Header("リリース時初回ショット許可")]
 		public bool AllowInitialShotOnRelease = false;
-		
-		[Header("Debug")]
+
+		[Header("デバッグ")]
 		/// the current charge index in the Weapons step list
-		[Tooltip("the current charge index in the Weapons step list")]
+		[Tooltip("現在チャージインデックス")]
 		[MMReadOnly]
+		[Header("現在チャージインデックス")]
 		public int CurrentChargeIndex = 0;
 		/// whether this weapon is currently charging or not
-		[Tooltip("whether this weapon is currently charging or not")]
-		[MMReadOnly] 
+		[Tooltip("チャージ中")]
+		[MMReadOnly]
+		[Header("チャージ中")]
 		public bool Charging = false;
 
 		protected float _chargingStartedAt = 0f;

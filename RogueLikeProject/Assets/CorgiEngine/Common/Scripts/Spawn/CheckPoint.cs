@@ -13,23 +13,28 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Spawn/Checkpoint")]
 	public class CheckPoint : CorgiMonoBehaviour 
 	{
-		[Header("Spawn")]
+		[Header("スポーン")]
 		[MMInformation("Add this script to a (preferrably empty) GameObject and it'll be added to the level's checkpoint list, allowing you to respawn from there. If you bind it to the LevelManager's starting point, that's where your character will spawn at the start of the level. And here you can decide whether the character should spawn facing left or right.",MMInformationAttribute.InformationType.Info,false)]
 
 		/// the direction the character should face when spawning at this checkpoint
-		[Tooltip("the direction the character should face when spawning at this checkpoint")]
+		[Tooltip("向き（スポーン時）")]
+		[Header("向き（スポーン時）")]
 		public Character.FacingDirections FacingDirection = Character.FacingDirections.Right ;
 		/// whether or not this checkpoint should override any order and assign itself on entry
-		[Tooltip("whether or not this checkpoint should override any order and assign itself on entry")]
+		[Tooltip("強制割り当て")]
+		[Header("強制割り当て")]
 		public bool ForceAssignation = false;
 		/// the order of the checkpoint
-		[Tooltip("the order of the checkpoint")]
+		[Tooltip("チェックポイント順序")]
+		[Header("チェックポイント順序")]
 		public int CheckPointOrder;
 		/// whether or not this checkpoint can be reached more than once
-		[Tooltip("whether or not this checkpoint can be reached more than once")]
+		[Tooltip("複数回到達可能")]
+		[Header("複数回到達可能")]
 		public bool CanBeReachedMoreThanOnce = true;
 		/// an event to trigger when this checkpoint is reached
-		[Tooltip("an event to trigger when this checkpoint is reached")]
+		[Tooltip("チェックポイント到達イベント")]
+		[Header("チェックポイント到達イベント")]
 		public UnityEvent OnCheckpointReached;
 
 		protected bool _reached = false;

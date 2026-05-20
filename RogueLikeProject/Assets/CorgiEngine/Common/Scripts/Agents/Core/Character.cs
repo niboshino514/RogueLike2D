@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
@@ -29,113 +29,136 @@ namespace MoreMountains.CorgiEngine
 		[MMInformation("The Character script is the mandatory basis for all Character abilities. Your character can either be a Non Player Character, controlled by an AI, or a Player character, controlled by the player. In this case, you'll need to specify a PlayerID, which must match the one specified in your InputManager. Usually 'Player1', 'Player2', etc.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// Is the character player-controlled or controlled by an AI ?
-		[Tooltip("Is the character player-controlled or controlled by an AI ?")]
+		[Tooltip("キャラクタータイプ")]
+		[Header("キャラクタータイプ")]
 		public CharacterTypes CharacterType = CharacterTypes.AI;
 		/// Only used if the character is player-controlled. The PlayerID must match an input manager's PlayerID. It's also used to match Unity's input settings. So you'll be safe if you keep to Player1, Player2, Player3 or Player4
-		[Tooltip("Only used if the character is player-controlled. The PlayerID must match an input manager's PlayerID. It's also used to match Unity's input settings. So you'll be safe if you keep to Player1, Player2, Player3 or Player4")]
+		[Tooltip("プレイヤーID")]
+		[Header("プレイヤーID")]
 		public string PlayerID = "";				
 		/// the various states of the character
 		public CharacterStates CharacterState { get; protected set; }
 	
-		[Header("Direction")]
+		[Header("方向設定")]
 		[MMInformation("It's usually good practice to build all your characters facing right. If that's not the case of this character, select Left instead.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// true if the player is facing right
-		[Tooltip("true if the player is facing right")]
+		[Tooltip("初期向き方向")]
+		[Header("初期向き方向")]
 		public FacingDirections InitialFacingDirection = FacingDirections.Right;
 
 		[MMInformation("Here you can force a direction the character should face when spawning. If set to default, it'll match your model's initial facing direction.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the direction the character will face on spawn
-		[Tooltip("the direction the character will face on spawn")]
+		[Tooltip("スポーン時の向き")]
+		[Header("スポーン時の向き")]
 		public SpawnFacingDirections DirectionOnSpawn = SpawnFacingDirections.Default;
 		/// if this is true, the character is currently facing right
 		public bool IsFacingRight { get; set; }
 	
-		[Header("Animator")]
+		[Header("アニメーター設定")]
 		[MMInformation("The engine will try and find an animator for this character. If it's on the same gameobject it should have found it. If it's nested somewhere, you'll need to bind it below. You can also decide to get rid of it altogether, in that case, just uncheck 'use mecanim'.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the character animator
-		[Tooltip("the character animator")]
+		[Tooltip("キャラクターアニメーター")]
+		[Header("キャラクターアニメーター")]
 		public Animator CharacterAnimator;
 		/// Set this to false if you want to implement your own animation system
-		[Tooltip("Set this to false if you want to implement your own animation system")]
+		[Tooltip("デフォルトMecanim使用")]
+		[Header("デフォルトMecanim使用")]
 		public bool UseDefaultMecanim = true;
 		/// If this is true, sanity checks will be performed to make sure animator parameters exist before updating them. Turning this to false will increase performance but will throw errors if you're trying to update non existing parameters. Make sure your animator has the required parameters.
-		[Tooltip("If this is true, sanity checks will be performed to make sure animator parameters exist before updating them. Turning this to false will increase performance but will throw errors if you're trying to update non existing parameters. Make sure your animator has the required parameters.")]
+		[Tooltip("アニメーターパラメーター検証")]
+		[Header("アニメーターパラメーター検証")]
 		public bool PerformAnimatorSanityChecks = true;
 		/// if this is true, animator logs for the associated animator will be turned off to avoid potential spam
-		[Tooltip("if this is true, animator logs for the associated animator will be turned off to avoid potential spam")]
+		[Tooltip("アニメーターログ無効化")]
+		[Header("アニメーターログ無効化")]
 		public bool DisableAnimatorLogs = false;
         
-		[Header("Model")]
+		[Header("モデル設定")]
 		[MMInformation("Leave this unbound if this is a regular, sprite-based character, and if the SpriteRenderer and the Character are on the same GameObject. If not, you'll want to parent the actual model to the Character object, and bind it below. See the 3D demo characters for an example of that. The idea behind that is that the model may move, flip, but the collider will remain unchanged.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the 'model' (can be any gameobject) used to manipulate the character. Ideally it's separated (and nested) from the collider/corgi controller/abilities, to avoid messing with collisions.
-		[Tooltip("the 'model' (can be any gameobject) used to manipulate the character. Ideally it's separated (and nested) from the collider/corgi controller/abilities, to avoid messing with collisions.")]
+		[Tooltip("キャラクターモデル")]
+		[Header("キャラクターモデル")]
 		public GameObject CharacterModel;
 		/// the object to use as the camera target for this character
-		[Tooltip("the object to use as the camera target for this character")]
+		[Tooltip("カメラターゲット")]
+		[Header("カメラターゲット")]
 		public GameObject CameraTarget;
 		/// the speed at which the Camera Target moves
-		[Tooltip("the speed at which the Camera Target moves")]
+		[Tooltip("カメラターゲット移動速度")]
+		[Header("カメラターゲット移動速度")]
 		public float CameraTargetSpeed = 5f;
 
-		[Header("Abilities")]
+		[Header("アビリティ設定")]
 		/// A list of gameobjects (usually nested under the Character) under which to search for additional abilities
-		[Tooltip("A list of gameobjects (usually nested under the Character) under which to search for additional abilities")]
+		[Tooltip("追加アビリティノード")]
+		[Header("追加アビリティノード")]
 		public List<GameObject> AdditionalAbilityNodes;
 
 		[MMInformation("You can also decide if the character must automatically flip when going backwards or not. Additionnally, if you're not using sprites, you can define here how the character's model's localscale will be affected by flipping. By default it flips on the x axis, but you can change that to fit your model.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// whether we should flip the model's scale when the character changes direction or not
-		[Tooltip("whether we should flip the model's scale when the character changes direction or not")]
+		[Tooltip("方向変更時モデル反転")]
+		[Header("方向変更時モデル反転")]
 		public bool FlipModelOnDirectionChange = true;
 		/// the FlipValue will be used to multiply the model's transform's localscale on flip. Usually it's -1,1,1, but feel free to change it to suit your model's specs
 		[MMCondition("FlipModelOnDirectionChange", true)]
-		[Tooltip("the FlipValue will be used to multiply the model's transform's localscale on flip. Usually it's -1,1,1, but feel free to change it to suit your model's specs")]
+		[Tooltip("モデル反転値")]
+		[Header("モデル反転値")]
 		public Vector3 ModelFlipValue = new Vector3(-1,1,1);
 		/// whether we should rotate the model on direction change or not
-		[Tooltip("whether we should rotate the model on direction change or not")]
+		[Tooltip("方向変更時モデル回転")]
+		[Header("方向変更時モデル回転")]
 		public bool RotateModelOnDirectionChange;
 		/// the rotation to apply to the model when it changes direction
 		[MMCondition("RotateModelOnDirectionChange", true)]
-		[Tooltip("the rotation to apply to the model when it changes direction")]
+		[Tooltip("モデル回転値")]
+		[Header("モデル回転値")]
 		public Vector3 ModelRotationValue = new Vector3(0f,180f,0f);
 		/// the speed at which to rotate the model when changing direction, 0f means instant rotation
 		[MMCondition("RotateModelOnDirectionChange", true)]
-		[Tooltip("the speed at which to rotate the model when changing direction, 0f means instant rotation")]
+		[Tooltip("モデル回転速度")]
+		[Header("モデル回転速度")]
 		public float ModelRotationSpeed = 0f;
 
-		[Header("Health")]
+		[Header("体力設定")]
 		/// the Health script associated to this Character, will be grabbed automatically if left empty
-		[Tooltip("the Health script associated to this Character, will be grabbed automatically if left empty")]
+		[Tooltip("体力スクリプト")]
+		[Header("体力スクリプト")]
 		public Health CharacterHealth;
-		
-		[Header("Events")]
+
+		[Header("イベント設定")]
 		[MMInformation("Here you can define whether or not you want to have that character trigger events when changing state. See the MMTools' State Machine doc for more info.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// If this is true, the Character's state machine will emit events when entering/exiting a state
-		[Tooltip("If this is true, the Character's state machine will emit events when entering/exiting a state")]
+		[Tooltip("状態変更イベント送信")]
+		[Header("状態変更イベント送信")]
 		public bool SendStateChangeEvents = true;
 		/// If this is true, a state machine processor component will be added and it'll emit events on updates (see state machine processor's doc for more details)
-		[Tooltip("If this is true, a state machine processor component will be added and it'll emit events on updates (see state machine processor's doc for more details)")]
+		[Tooltip("状態更新イベント送信")]
+		[Header("状態更新イベント送信")]
 		public bool SendStateUpdateEvents = true;
 
-		[Header("Airborne")]
+		[Header("空中判定設定")]
 
 		/// The distance after which the character is considered airborne
-		[Tooltip("The distance after which the character is considered airborne")]
+		[Tooltip("空中判定距離")]
+		[Header("空中判定距離")]
 		public float AirborneDistance = 0.5f;
 		/// The time (in seconds) to consider the character airborne, used to reset Jumping state
-		[Tooltip("The time (in seconds) to consider the character airborne, used to reset Jumping state")]
+		[Tooltip("空中判定最短時間")]
+		[Header("空中判定最短時間")]
 		public float AirborneMinimumTime = 0.1f;
 		/// Whether or not the character is airborne this frame
 		public virtual bool Airborne { get { return ((_controller.DistanceToTheGround > AirborneDistance) || (_controller.DistanceToTheGround == -1)); } }
 
-		[Header("AI")]
+		[Header("AI設定")]
 		/// The brain currently associated with this character, if it's an Advanced AI. By default the engine will pick the one on this object, but you can attach another one if you'd like
-		[Tooltip("The brain currently associated with this character, if it's an Advanced AI. By default the engine will pick the one on this object, but you can attach another one if you'd like")]
+		[Tooltip("AIブレイン")]
+		[Header("AIブレイン")]
 		public AIBrain CharacterBrain;
 
 		// State Machines

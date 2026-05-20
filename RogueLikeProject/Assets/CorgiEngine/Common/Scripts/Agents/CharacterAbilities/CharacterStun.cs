@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
 using UnityEngine;
@@ -12,14 +12,16 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterStun : CharacterAbility
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Add this component to a character and it'll be able to be stunned. To stun a character, simply call its Stun or StunFor methods. You'll find test buttons at the bottom of this component's inspector. You can also use StunZones to stun your characters."; }
+		public override string HelpBoxText() { return "スタン可能にします。Stun / StunFor を呼ぶか、インスペクタ下部のテストボタン、StunZone でスタンできます。"; }
         
-		[Header("Tests")]
+		[Header("テスト")]
 		/// a test button to stun this character
 		[MMInspectorButton("Stun")]
+		[Header("スタンボタン")]
 		public bool StunButton;
 		/// a test button to exit stun on this character
 		[MMInspectorButton("ExitStun")]
+		[Header("スタン解除ボタン")]
 		public bool ExitStunButton;
         
 		protected const string _stunnedAnimationParameterName = "Stunned";

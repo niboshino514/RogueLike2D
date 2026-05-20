@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -14,13 +14,15 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Ground Normal Gravity")]
 	public class CharacterGroundNormalGravity : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This component will automatically compute the current slope's angle and change the gravity ability's direction to match the slope normal."; }
+		public override string HelpBoxText() { return "現在の坂の角度を自動計算し、重力アビリティの方向を坂の法線に合わせます。"; }
 
-		/// the length of the raycast used to detect slope angle 
-		[Tooltip("the length of the raycast used to detect slope angle")]
+		/// the length of the raycast used to detect slope angle
+		[Tooltip("下方レイキャスト長")]
+		[Header("下方レイキャスト長")]
 		public float DownwardsRaycastLength = 5f;
-		/// if this is true, slope angle will only be detected if grounded 
-		[Tooltip("if this is true, slope angle will only be detected if grounded")]
+		/// if this is true, slope angle will only be detected if grounded
+		[Tooltip("地面接触時のみ検出")]
+		[Header("地面接触時のみ検出")]
 		public bool OnlyWhenGrounded = false;
         
 		protected RaycastHit2D _raycastCenter;

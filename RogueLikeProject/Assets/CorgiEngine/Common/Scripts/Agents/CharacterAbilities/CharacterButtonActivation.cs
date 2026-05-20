@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using MoreMountains.Tools;
 #if ENABLE_INPUT_SYSTEM && !ENABLE_LEGACY_INPUT_MANAGER
 using UnityEngine.InputSystem;
@@ -15,7 +15,7 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterButtonActivation : CharacterAbility
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component allows your character to interact with button powered objects (dialogue zones, switches...). "; }
+		public override string HelpBoxText() { return "ダイアログゾーンやスイッチなど、ボタンで起動するオブジェクトと相互作用できます。"; }
 		/// true if the character is in a dialogue zone
 		public bool InButtonActivatedZone {get;set;}
 		/// true if the zone is automated
@@ -25,12 +25,14 @@ namespace MoreMountains.CorgiEngine
 		/// the current button activated zone
 		public ButtonActivated ButtonActivatedZone {get;set;}
 
-		[Header("Button Activation")]
+		[Header("ボタン起動")]
 		/// whether or not this character can jump when in a button activated zone
-		[Tooltip("whether or not this character can jump when in a button activated zone")]
+		[Tooltip("ゾーン内でジャンプを防ぐ")]
+		[Header("ゾーン内でジャンプを防ぐ")]
 		public bool PreventJumpWhenInZone = true;
 		/// the duration, in seconds, after an activation, during which no new activation can happen
-		[Tooltip("the duration, in seconds, after an activation, during which no new activation can happen")]
+		[Tooltip("起動クールダウン時間")]
+		[Header("起動クールダウン時間")]
 		public float ActivationCooldownDuration = 0f;
 
 		protected bool _activating = false;

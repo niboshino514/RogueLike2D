@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using MoreMountains.Tools;
@@ -21,76 +21,93 @@ namespace MoreMountains.CorgiEngine
 		/// the list of possible rotation modes
 		public enum RotationModes { Free, Strict4Directions, Strict8Directions }
 
-		[Header("Control Mode")]
+		[Header("コントロールモード")]
 		[MMInformation("Add this component to a Weapon and you'll be able to aim (rotate) it. It supports three different control modes : mouse (the weapon aims towards the pointer), primary movement (you'll aim towards the current input direction), or secondary movement (aims towards a second input axis, think twin stick shooters).",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the aim control mode of choice (off : no control, primary movement (typically your left stick), secondary  (right stick), mouse, script : when you want a script to drive your aim (typically for AI, but not only)
-		[Tooltip("the aim control mode of choice (off : no control, primary movement (typically your left stick), secondary  (right stick), mouse, script : when you want a script to drive your aim (typically for AI, but not only)")]
+		[Tooltip("照準コントロール")]
+		[Header("照準コントロール")]
 		public AimControls AimControl = AimControls.SecondaryMovement;
-		
-		[Header("Weapon Rotation")]
+
+		[Header("武器の回転")]
 		[MMInformation("Here you can define whether the rotation is free, strict in 4 directions (top, bottom, left, right), or 8 directions (same + diagonals). You can also define a rotation speed, and a min and max angle. For example, if you don't want your character to be able to aim in its back, set min angle to -90 and max angle to 90.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the rotation mode
-		[Tooltip("the rotation mode")]
+		[Tooltip("回転モード")]
+		[Header("回転モード")]
 		public RotationModes RotationMode = RotationModes.Free;
 		/// the the speed at which the weapon reaches its new position. Set it to zero if you want movement to directly follow input
-		[Tooltip("the the speed at which the weapon reaches its new position. Set it to zero if you want movement to directly follow input")]
+		[Tooltip("武器回転速度")]
+		[Header("武器回転速度")]
 		public float WeaponRotationSpeed = 1f;
 		/// if this is true, a flip will be instant, regardless of the weapon rotation speed
-		[Tooltip("if this is true, a flip will be instant, regardless of the weapon rotation speed")]
+		[Tooltip("即時反転")]
+		[Header("即時反転")]
 		public bool InstantFlip = false;
 		/// if this is true, you won't be able to aim this weapon's aim while it's in use
-		[Tooltip("if this is true, you won't be able to aim this weapon's aim while it's in use")]
+		[Tooltip("使用中は照準無効")]
+		[Header("使用中は照準無効")]
 		public bool PreventAimWhileWeaponIsInUse = false;
 		/// the minimum angle at which the weapon's rotation will be clamped
 		[Range(-180, 180)]
-		[Tooltip("the minimum angle at which the weapon's rotation will be clamped")]
+		[Tooltip("最小角度")]
+		[Header("最小角度")]
 		public float MinimumAngle = -180f;
 		/// the maximum angle at which the weapon's rotation will be clamped
 		[Range(-180, 180)]
-		[Tooltip("the maximum angle at which the weapon's rotation will be clamped")]
+		[Tooltip("最大角度")]
+		[Header("最大角度")]
 		public float MaximumAngle = 180f;
 		/// if this is true, slope rotation will be ignored
-		[Tooltip("if this is true, slope rotation will be ignored")]
+		[Tooltip("傾斜回転を無視")]
+		[Header("傾斜回転を無視")]
 		public bool IgnoreSlopeRotation = false;
 		/// if this is true, aiming down won't impact this WeaponAim, similar to how Contra games do it
-		[Tooltip("if this is true, aiming down won't impact this WeaponAim, similar to how Contra games do it")]
+		[Tooltip("接地中に下方向を無視")]
 		[MMEnumCondition("AimControl", (int)AimControls.PrimaryMovement)]
+		[Header("接地中に下方向を無視")]
 		public bool IgnoreDownWhenGrounded = false;
 
-		[Header("Reticle")]
+		[Header("レティクル")]
 		[MMInformation("You can also display a reticle on screen to check where you're aiming at. Leave it blank if you don't want to use one. If you set the reticle distance to 0, it'll follow the cursor, otherwise it'll be on a circle centered on the weapon. You can also ask it to follow the mouse, even replace the mouse pointer. You can also decide if the pointer should rotate to reflect aim angle or remain stable.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the gameobject to display as the aim's reticle/crosshair. Leave it blank if you don't want a reticle
-		[Tooltip("the gameobject to display as the aim's reticle/crosshair. Leave it blank if you don't want a reticle")]
+		[Tooltip("レティクル")]
+		[Header("レティクル")]
 		public GameObject Reticle;
 		/// if set to false, the reticle won't be added and displayed
-		[Tooltip("if set to false, the reticle won't be added and displayed")]
+		[Tooltip("レティクルを表示")]
+		[Header("レティクルを表示")]
 		public bool DisplayReticle = true;
 		/// the distance at which the reticle will be from the weapon
-		[Tooltip("the distance at which the reticle will be from the weapon")]
+		[Tooltip("レティクル距離")]
 		[MMCondition("DisplayReticle")]
+		[Header("レティクル距離")]
 		public float ReticleDistance;
 		/// the z position of the reticle
-		[Tooltip("the z position of the reticle")]
+		[Tooltip("レティクルZ位置")]
 		[MMCondition("DisplayReticle")]
+		[Header("レティクルZ位置")]
 		public float ReticleZPosition;
 		/// if set to true, the reticle will be placed at the mouse's position (like a pointer)
-		[Tooltip("if set to true, the reticle will be placed at the mouse's position (like a pointer)")]
+		[Tooltip("マウス位置にレティクル")]
 		[MMCondition("DisplayReticle")]
+		[Header("マウス位置にレティクル")]
 		public bool ReticleAtMousePosition;
 		/// if set to true, the reticle will rotate on itself to reflect the weapon's rotation. If not it'll remain stable.
-		[Tooltip("if set to true, the reticle will rotate on itself to reflect the weapon's rotation. If not it'll remain stable.")]
+		[Tooltip("レティクルを回転")]
 		[MMCondition("DisplayReticle")]
+		[Header("レティクルを回転")]
 		public bool RotateReticle = false;
 		/// if set to true, the reticle will replace the mouse pointer
-		[Tooltip("if set to true, the reticle will replace the mouse pointer")]
+		[Tooltip("マウスポインターを置き換え")]
 		[MMCondition("DisplayReticle")]
+		[Header("マウスポインターを置き換え")]
 		public bool ReplaceMousePointer = true;
 		/// whether or not the reticle should be hidden when the character is dead
-		[Tooltip("whether or not the reticle should be hidden when the character is dead")]
+		[Tooltip("死亡時にレティクルを無効")]
 		[MMCondition("DisplayReticle")]
+		[Header("死亡時にレティクルを無効")]
 		public bool DisableReticleOnDeath = true;
 		/// the weapon's current rotation
 		public virtual Quaternion CurrentRotation { get { return transform.rotation; } }

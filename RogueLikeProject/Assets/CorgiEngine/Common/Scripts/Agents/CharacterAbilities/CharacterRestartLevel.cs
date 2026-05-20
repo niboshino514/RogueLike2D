@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,18 +12,20 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterRestartLevel : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Add this component to a character and you'll be able to restart the level at the press of a button, either killing the player, transitioning to another scene, or teleporting to the initial, last, or current checkpoint"; }
+		public override string HelpBoxText() { return "ボタンでレベルを再開できます。プレイヤー撃破、別シーン遷移、初期／最後／現在のチェックポイントへテレポートなど。"; }
 		
 		/// the possible restart modes
 		public enum RestartModes { KillPlayer, GoToScene, CurrentCheckpoint, FirstCheckpoint, LastCheckpoint }
 
-		[Header("Restart")]
+		[Header("リスタート")]
 		/// the selected restart mode
-		[Tooltip("the selected restart mode")]
+		[Tooltip("リスタートモード")]
+		[Header("リスタートモード")]
 		public RestartModes RestartMode;
 		/// the scene to go to if RestartMode is GoToScene
-		[Tooltip("the scene to go to if RestartMode is GoToScene")]
+		[Tooltip("遷移先シーン名")]
 		[MMEnumCondition("RestartMode", (int)RestartModes.GoToScene)]
+		[Header("遷移先シーン名")]
 		public string TargetSceneName;
         
 		/// <summary>

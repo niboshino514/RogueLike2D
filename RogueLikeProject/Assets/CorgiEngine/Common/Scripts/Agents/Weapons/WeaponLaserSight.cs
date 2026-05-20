@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -11,28 +11,34 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Weapons/Weapon Laser Sight")]
 	public class WeaponLaserSight : CorgiMonoBehaviour 
 	{
-		[Header("Raycasts")]
+		[Header("レイキャスト")]
 		[MMInformation("Add this class to a weapon and it'll project a laser ray towards the direction the weapon is facing",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the origin of the raycast used to detect obstacles
-		[Tooltip("the origin of the raycast used to detect obstacles")]
+		[Tooltip("レイキャスト原点オフセット")]
+		[Header("レイキャスト原点オフセット")]
 		public Vector3 RaycastOriginOffset;
 		/// the origin of the visible laser
-		[Tooltip("the origin of the visible laser")]
+		[Tooltip("レーザー原点オフセット")]
+		[Header("レーザー原点オフセット")]
 		public Vector3 LaserOriginOffset;
 		/// the maximum distance to which we should draw the laser
-		[Tooltip("the maximum distance to which we should draw the laser")]
+		[Tooltip("レーザー最大距離")]
+		[Header("レーザー最大距離")]
 		public float LaserMaxDistance = 50;
 		/// the collision mask containing all layers that should stop the laser
-		[Tooltip("the collision mask containing all layers that should stop the laser")]
+		[Tooltip("レーザー衝突マスク")]
+		[Header("レーザー衝突マスク")]
 		public LayerMask LaserCollisionMask = LayerManager.ObstaclesLayerMask;
 		/// the width of the laser
-		[Tooltip("the width of the laser")]
+		[Tooltip("レーザー幅")]
+		[Header("レーザー幅")]
 		public Vector2 LaserWidth = new Vector2(0.05f, 0.05f);
-		
-		[Header("Appearance")]
+
+		[Header("外観")]
 		/// the material used to render the laser
-		[Tooltip("the material used to render the laser")]
+		[Tooltip("レーザーマテリアル")]
+		[Header("レーザーマテリアル")]
 		public Material LaserMaterial;
 
 		/// the world space coordinates of the laser's origin point

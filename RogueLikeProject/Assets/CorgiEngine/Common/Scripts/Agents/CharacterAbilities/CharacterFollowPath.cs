@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
@@ -13,12 +13,14 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterFollowPath : CharacterAbility
 	{
 		/// the speed at which the character follows the path
-		[Tooltip("the speed at which the character follows the path")]
+		[Tooltip("追従パス速度")]
+		[Header("追従パス速度")]
 		public float FollowPathSpeed = 6f;
 		/// a multiplier you can target to increase/reduce the follow speed
 		public float MovementSpeedMultiplier { get; set; }
-		/// whether or not the Character is always following the path, in which case it'll start immune to gravity 
-		[Tooltip("whether or not the Character is always following the path, in which case it'll start immune to gravity ")]
+		/// whether or not the Character is always following the path, in which case it'll start immune to gravity
+		[Tooltip("常にパスを追従する")]
+		[Header("常にパスを追従する")]
 		public bool AlwaysFollowingPath = false;
 
 		protected MMPathMovement _mmPathMovement;

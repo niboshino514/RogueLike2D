@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
@@ -13,10 +13,12 @@ namespace MoreMountains.CorgiEngine
 	public class AIActionMMFeedbacks : AIAction
 	{
 		/// The MMFeedbacks to play when this action gets performed by the AIBrain
-		[Tooltip("The MMFeedbacks to play when this action gets performed by the AIBrain")]
+		[Tooltip("ターゲットフィードバック")]
+		[Header("ターゲットフィードバック")]
 		public MMFeedbacks TargetFeedbacks;
 		/// If this is false, the feedback will be played every PerformAction (by default every frame while in this state), otherwise it'll only play once, when entering the state
-		[Tooltip("If this is false, the feedback will be played every PerformAction (by default every frame while in this state), otherwise it'll only play once, when entering the state")]
+		[Tooltip("ステート突入時のみ再生")]
+		[Header("ステート突入時のみ再生")]
 		public bool OnlyPlayWhenEnteringState = true;
 
 		protected bool _played = false;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -14,76 +14,93 @@ namespace MoreMountains.CorgiEngine
 	{
 		[MMInspectorGroup("Dialogue Look", true, 22)]
 		/// the prefab to use for the dialogue box
-		[Tooltip("the prefab to use for the dialogue box")]
+		[Tooltip("ダイアログボックスPrefab")]
+		[Header("ダイアログボックスPrefab")]
 		public GameObject DialogueBoxPrefab;
 		/// the color of the text background.
-		[Tooltip("the color of the text background.")]
+		[Tooltip("テキスト背景色")]
+		[Header("テキスト背景色")]
 		public Color TextBackgroundColor=Color.black;
 		/// the color of the text
-		[Tooltip("the color of the text")]
+		[Tooltip("テキスト色")]
+		[Header("テキスト色")]
 		public Color TextColor=Color.white;
 		/// if true, the dialogue box will have a small, downward pointing arrow
-		[Tooltip("if true, the dialogue box will have a small, downward pointing arrow")]
+		[Tooltip("矢印表示")]
+		[Header("矢印表示")]
 		public bool ArrowVisible=true;
 		/// the font that should be used to display the text
-		[Tooltip("the font that should be used to display the text")]
+		[Tooltip("テキストフォント")]
+		[Header("テキストフォント")]
 		public Font TextFont;
 		/// the size of the font
-		[Tooltip("the size of the font")]
+		[Tooltip("テキストサイズ")]
+		[Header("テキストサイズ")]
 		public int TextSize = 20;
 		/// the text alignment in the box used to display the text
-		[Tooltip("the text alignment in the box used to display the text")]
+		[Tooltip("テキスト整列")]
+		[Header("テキスト整列")]
 		public TextAnchor Alignment = TextAnchor.MiddleCenter;
 
 		[MMInspectorGroup("Dialogue Speed (in seconds)", true, 23)]
 
 		/// the duration of the in and out fades
-		[Tooltip("the duration of the in and out fades")]
+		[Tooltip("フェード持続時間")]
+		[Header("フェード持続時間")]
 		public float FadeDuration=0.2f;
-		/// the time between two dialogues 
-		[Tooltip("the time between two dialogues ")]
+		/// the time between two dialogues
+		[Tooltip("遷移時間")]
+		[Header("遷移時間")]
 		public float TransitionTime=0.2f;
 
 		[MMInspectorGroup("Dialogue Position", true, 24)]
 
 		/// the distance from the top of the box collider the dialogue box should appear at
-		[Tooltip("the distance from the top of the box collider the dialogue box should appear at")]
+		[Tooltip("上端からの距離")]
+		[Header("上端からの距離")]
 		public float DistanceFromTop=0;
 		/// if this is true, the dialogue boxes will follow the zone's position
-		[Tooltip("if this is true, the dialogue boxes will follow the zone's position")]
+		[Tooltip("ゾーンに追従")]
+		[Header("ゾーンに追従")]
 		public bool BoxesFollowZone = false;
 
 		[MMInspectorGroup("Player Movement", true, 25)]
 
 		/// if this is set to true, the character will be able to move while dialogue is in progress
-		[Tooltip("if this is set to true, the character will be able to move while dialogue is in progress")]
+		[Tooltip("会話中移動可")]
+		[Header("会話中移動可")]
 		public bool CanMoveWhileTalking = true;
 
 		[MMInspectorGroup("Button Handling", true, 26)]
 
 		/// whether this dialogue zone is operated via the CharacterButtonActivation ability or not
-		[Tooltip("whether this dialogue zone is operated via the CharacterButtonActivation ability or not")]
+		[Tooltip("ボタン操作")]
+		[Header("ボタン操作")]
 		public bool ButtonHandled=true;
 		/// duration of the message. only considered if the box is not button handled
 		[Range (1, 100)]
-		[Tooltip("duration of the message. only considered if the box is not button handled")]
+		[Tooltip("メッセージ持続時間")]
+		[Header("メッセージ持続時間")]
 		public float MessageDuration=3f;
-		
+
 		[MMInspectorGroup("Activations", true, 28)]
 
 		/// true if can be activated more than once
-		[Tooltip("true if can be activated more than once")]
+		[Tooltip("複数回起動可")]
+		[Header("複数回起動可")]
 		public bool ActivableMoreThanOnce=true;
 		/// if the zone is activable more than once, how long should it remain inactive between up times ?
 		[Range (1, 100)]
-		[Tooltip("if the zone is activable more than once, how long should it remain inactive between up times ?")]
+		[Tooltip("非活性時間")]
+		[Header("非活性時間")]
 		public float InactiveTime=2f;
-        
+
 		[MMInspectorGroup("Dialogue Lines", true, 29)]
 
 		/// the dialogue lines
 		[Multiline]
-		[Tooltip("the dialogue lines")]
+		[Tooltip("ダイアログ行")]
+		[Header("ダイアログ行")]
 		public string[] Dialogue;
 
 		/// private variables
@@ -95,14 +112,14 @@ namespace MoreMountains.CorgiEngine
 		protected WaitForSeconds _transitionTimeWFS;
 		protected WaitForSeconds _messageDurationWFS;
 		protected WaitForSeconds _inactiveTimeWFS;
-        
+
 		/// <summary>
 		/// Initializes the dialogue zone
 		/// </summary>
-		protected override void OnEnable () 
-		{		
+		protected override void OnEnable ()
+		{
 			base.OnEnable();
-			_currentIndex=0;					
+			_currentIndex=0;
 			_transitionTimeWFS = new WaitForSeconds (TransitionTime);
 			_messageDurationWFS = new WaitForSeconds (MessageDuration);
 			_inactiveTimeWFS = new WaitForSeconds (InactiveTime);
@@ -140,19 +157,19 @@ namespace MoreMountains.CorgiEngine
 			if (_buttonActivatedZoneCollider==null)
 			{
 				return;
-			}				
-			
+			}
+
 			// if the zone has already been activated and can't be activated more than once.
 			if (_activated && !ActivableMoreThanOnce)
 			{
 				return;
-			}				
-				
+			}
+
 			// if the zone is not activable, we do nothing and exit
 			if (!_activable)
 			{
 				return;
-			}				
+			}
 
 			// if the player can't move while talking, we notify the game manager
 			if (!CanMoveWhileTalking)
@@ -163,15 +180,15 @@ namespace MoreMountains.CorgiEngine
 					_characterButtonActivation.GetComponentInParent<Character>().MovementState.ChangeState(CharacterStates.MovementStates.Idle);
 				}
 			}
-										
+
 			// if it's not already playing, we'll initialize the dialogue box
 			if (!_playing)
-			{	
+			{
 				// we instantiate the dialogue box
 				GameObject dialogueObject = (GameObject)Instantiate(DialogueBoxPrefab);
-				_dialogueBox = dialogueObject.GetComponent<DialogueBox>();		
+				_dialogueBox = dialogueObject.GetComponent<DialogueBox>();
 				// we set its position
-				_dialogueBox.transform.position=new Vector2(_buttonActivatedZoneCollider.bounds.center.x,_buttonActivatedZoneCollider.bounds.max.y+DistanceFromTop); 
+				_dialogueBox.transform.position=new Vector2(_buttonActivatedZoneCollider.bounds.center.x,_buttonActivatedZoneCollider.bounds.max.y+DistanceFromTop);
 				// we set the color's and background's colors
 				_dialogueBox.ChangeColor(TextBackgroundColor,TextColor);
 				// if it's a button handled dialogue, we turn the A prompt on
@@ -196,9 +213,9 @@ namespace MoreMountains.CorgiEngine
 				// if we don't want to show the arrow, we tell that to the dialogue box
 				if (!ArrowVisible)
 				{
-					_dialogueBox.HideArrow();			
+					_dialogueBox.HideArrow();
 				}
-				
+
 				// the dialogue is now playing
 				_playing=true;
 			}
@@ -210,9 +227,9 @@ namespace MoreMountains.CorgiEngine
 		/// Plays the next dialogue in the queue
 		/// </summary>
 		protected virtual IEnumerator PlayNextDialogue()
-		{		
+		{
 			// we check that the dialogue box still exists
-			if (_dialogueBox == null) 
+			if (_dialogueBox == null)
 			{
 				yield break;
 			}
@@ -220,18 +237,18 @@ namespace MoreMountains.CorgiEngine
 			if (_currentIndex != 0)
 			{
 				// we turn the message off
-				_dialogueBox.FadeOut(FadeDuration);	
+				_dialogueBox.FadeOut(FadeDuration);
 				// we wait for the specified transition time before playing the next dialogue
 				yield return _transitionTimeWFS;
-			}	
-			
+			}
+
 			// if we've reached the last dialogue line, we exit
 			if (_currentIndex >= Dialogue.Length)
 			{
 				_currentIndex = 0;
 				Destroy(_dialogueBox.gameObject);
 				_buttonActivatedZoneCollider.enabled = false;
-				// we set activated to true as the dialogue zone has now been turned on		
+				// we set activated to true as the dialogue zone has now been turned on
 				_activated = true;
 				// we let the player move again
 				if (!CanMoveWhileTalking)
@@ -239,7 +256,7 @@ namespace MoreMountains.CorgiEngine
 					LevelManager.Instance.UnFreezeCharacters();
 				}
 				if ((_characterButtonActivation!=null))
-				{				
+				{
 					_characterButtonActivation.InButtonActivatedZone=false;
 					_characterButtonActivation.ButtonActivatedZone=null;
 				}
@@ -259,7 +276,7 @@ namespace MoreMountains.CorgiEngine
 				{
 					DisableZone();
 				}
-				
+
 				yield break;
 			}
 
@@ -271,9 +288,9 @@ namespace MoreMountains.CorgiEngine
 				// then we set the box's text with the current dialogue
 				_dialogueBox.DialogueText.text = Dialogue[_currentIndex];
 			}
-			
+
 			_currentIndex++;
-			
+
 			// if the zone is not button handled, we start a coroutine to autoplay the next dialogue
 			if (!ButtonHandled)
 			{
@@ -308,7 +325,7 @@ namespace MoreMountains.CorgiEngine
 			{
 				ShowPrompt();
 			}
-			
-		}			    
+
+		}
 	}
 }

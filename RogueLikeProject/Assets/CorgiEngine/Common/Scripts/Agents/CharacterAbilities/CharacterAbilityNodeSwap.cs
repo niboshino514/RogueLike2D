@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
@@ -11,10 +11,11 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Ability Node Swap")]
 	public class CharacterAbilityNodeSwap : CharacterAbility
 	{
-		[Header("Ability Node Swap")]
-        
+		[Header("アビリティ ノード 入れ替え")]
+
 		/// a list of GameObjects that will replace this Character's set of ability nodes when the ability executes
-		[Tooltip("a list of GameObjects that will replace this Character's set of ability nodes when the ability executes")]
+		[Tooltip("追加アビリティノード一覧")]
+		[Header("追加アビリティノード一覧")]
 		public List<GameObject> AdditionalAbilityNodes;
 
 		/// <summary>

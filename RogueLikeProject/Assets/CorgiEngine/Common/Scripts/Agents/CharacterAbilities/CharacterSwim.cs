@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
@@ -14,35 +14,42 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Swim")]
 	public class CharacterSwim : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This component allows a Character to swim in Water by pressing the Swim button (by default the same binding as the Jump button, but separated for convenience). Here you can define the swim force to apply, the duration of the associated animation, as well as VFX to instantiate when entering/exiting the water, and the force to apply when exiting."; }
+		public override string HelpBoxText() { return "水泳ボタン（既定ではジャンプと同じキー、別設定可）で水中を泳げます。泳ぎの力、アニメーション持続時間、入水／出水時の VFX、出水時の力などを設定できます。"; }
 
 		/// whether or not the character is in water
 		[MMReadOnly]
-		[Tooltip("whether or not the character is in water")]
+		[Tooltip("水中にいるか")]
+		[Header("水中にいるか")]
 		public bool InWater = false;
 
-		[Header("Swim")]
+		[Header("水泳")]
 
 		/// defines how high the character can jump
-		[Tooltip("defines how high the character can jump")]
+		[Tooltip("水泳の高さ")]
+		[Header("水泳の高さ")]
 		public float SwimHeight = 3.025f;
 		/// the duration (in seconds) of the swim animation before it reverts back to swim idle
-		[Tooltip("the duration (in seconds) of the swim animation before it reverts back to swim idle")]
+		[Tooltip("水泳アニメーション持続時間")]
+		[Header("水泳アニメーション持続時間")]
 		public float SwimAnimationDuration = 0.8f;
 		/// a hook to play a feedback everytime the player swims
-		[Tooltip("a hook to play a feedback everytime the player swims")]
+		[Tooltip("水泳時フィードバック")]
+		[Header("水泳時フィードバック")]
 		public MMFeedbacks OnSwimFeedback;
 
-		[Header("Splash Effects")]
+		[Header("水しぶきエフェクト")]
 
 		/// the effect that will be instantiated everytime the character enters the water
-		[Tooltip("the effect that will be instantiated everytime the character enters the water")]
+		[Tooltip("水中進入エフェクト")]
+		[Header("水中進入エフェクト")]
 		public GameObject WaterEntryEffect;
 		/// the effect that will be instantiated everytime the character exits the water
-		[Tooltip("the effect that will be instantiated everytime the character exits the water")]
+		[Tooltip("水中退出エフェクト")]
+		[Header("水中退出エフェクト")]
 		public GameObject WaterExitEffect;
 		/// the force to apply to the character when exiting water
-		[Tooltip("the force to apply to the character when exiting water")]
+		[Tooltip("水中退出時の力")]
+		[Header("水中退出時の力")]
 		public Vector2 WaterExitForce = new Vector2(0f, 12f);
 
 		protected float _swimDurationLeft = 0f;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using MoreMountains.Tools;
@@ -16,10 +16,12 @@ namespace MoreMountains.CorgiEngine
 		[MMInspectorGroup("Points of Entry", true, 23)]
 
 		/// the index of the target point of entry to spawn at in the next level
-		[Tooltip("the index of the target point of entry to spawn at in the next level")]
+		[Tooltip("入場地点インデックス")]
+		[Header("入場地点インデックス")]
 		public int PointOfEntryIndex;
 		/// the direction to face in the next level
-		[Tooltip("the direction to face in the next level")]
+		[Tooltip("向き（次レベル）")]
+		[Header("向き（次レベル）")]
 		public Character.FacingDirections FacingDirection = Character.FacingDirections.Right;
 
 		/// <summary>

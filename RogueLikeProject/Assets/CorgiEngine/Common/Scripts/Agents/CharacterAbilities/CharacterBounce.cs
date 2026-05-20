@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.CorgiEngine;
@@ -11,10 +11,12 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterBounce : CharacterAbility
 	{
 		/// the vertical  force to apply at every bounce
-		[Tooltip("the vertical force to apply at every bounce")]
+		[Tooltip("バウンス力")]
+		[Header("バウンス力")]
 		public float BounceForce = 20f;
-		/// whether or not this ability should reset the CharacterJump's flags on every bounce 
-		[Tooltip("whether or not this ability should reset the CharacterJump's flags on every bounce")]
+		/// whether or not this ability should reset the CharacterJump's flags on every bounce
+		[Tooltip("ジャンプフラグをリセット")]
+		[Header("ジャンプフラグをリセット")]
 		public bool SetJumpFlags = true;
         
 		protected CharacterJump _characterJump;

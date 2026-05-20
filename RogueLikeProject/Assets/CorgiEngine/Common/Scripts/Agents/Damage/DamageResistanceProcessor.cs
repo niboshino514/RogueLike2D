@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using MoreMountains.Tools;
 using UnityEngine;
@@ -11,20 +11,24 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Health/Damage Resistance Processor")]
 	public class DamageResistanceProcessor : CorgiMonoBehaviour
 	{
-		[Header("Damage Resistance List")]
-		
-		/// If this is true, this component will try to auto-fill its list of damage resistances from the ones found in its children 
-		[Tooltip("If this is true, this component will try to auto-fill its list of damage resistances from the ones found in its children")]
+		[Header("ダメージ耐性リスト")]
+
+		/// If this is true, this component will try to auto-fill its list of damage resistances from the ones found in its children
+		[Tooltip("耐性リストを自動入力")]
+		[Header("耐性リストを自動入力")]
 		public bool AutoFillDamageResistanceList = true;
-		/// If this is true, disabled resistances will be ignored by the auto fill 
-		[Tooltip("If this is true, disabled resistances will be ignored by the auto fill")]
+		/// If this is true, disabled resistances will be ignored by the auto fill
+		[Tooltip("無効な耐性を無視")]
+		[Header("無効な耐性を無視")]
 		public bool IgnoreDisabledResistances = true;
 		/// If this is true, damage from damage types that this processor has no resistance for will be ignored
-		[Tooltip("If this is true, damage from damage types that this processor has no resistance for will be ignored")]
+		[Tooltip("未知のダメージタイプを無視")]
+		[Header("未知のダメージタイプを無視")]
 		public bool IgnoreUnknownDamageTypes = false;
-		
+
 		/// the list of damage resistances this processor will handle. Auto filled if AutoFillDamageResistanceList is true
-		[Tooltip("the list of damage resistances this processor will handle. Auto filled if AutoFillDamageResistanceList is true")]
+		[Tooltip("ダメージ耐性リスト")]
+		[Header("ダメージ耐性リスト")]
 		public List<DamageResistance> DamageResistanceList;
 
 		/// <summary>

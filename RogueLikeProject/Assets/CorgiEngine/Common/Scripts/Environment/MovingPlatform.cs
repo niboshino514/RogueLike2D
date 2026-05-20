@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
@@ -12,23 +12,28 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Environment/Moving Platform")]
 	public class MovingPlatform : MMPathMovement, Respawnable, MMEventListener<CorgiEngineEvent>
 	{
-		[Header("Activation")]
+		[Header("起動設定")]
 		[MMInformation("Check the <b>Only Moves When Player Is Colliding</b> checkbox to have the object wait for a collision with your player to start moving.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// If true, the object will only move when colliding with the player
-		[Tooltip("If true, the object will only move when colliding with the player")]
+		[Tooltip("プレイヤー接触時のみ移動")]
+		[Header("プレイヤー接触時のみ移動")]
 		public bool OnlyMovesWhenPlayerIsColliding = false;
 		/// if true, the object will only move if a character is colliding
-		[Tooltip("if true, the object will only move if a character is colliding")]
+		[Tooltip("キャラクター接触時のみ移動")]
+		[Header("キャラクター接触時のみ移動")]
 		public bool OnlyMovesWhenCharacterIsColliding = false;
 		/// If true, this moving platform will reset position and behaviour when the player respawns
-		[Tooltip("If true, this moving platform will reset position and behaviour when the player respawns")]
+		[Tooltip("リスポーン時に位置をリセット")]
+		[Header("リスポーン時に位置をリセット")]
 		public bool ResetPositionWhenPlayerRespawns = false;
 		/// If true, this platform will only moved when commanded to by another script
-		[Tooltip("If true, this platform will only moved when commanded to by another script")]
+		[Tooltip("スクリプト制御")]
+		[Header("スクリプト制御")]
 		public bool ScriptActivated = false;
 		/// If true, the object will start moving when a player collides with it. This requires that ScriptActivated be set to true (and it will set it to true on init otherwise)
-		[Tooltip("If true, the object will start moving when a player collides with it. This requires that ScriptActivated be set to true (and it will set it to true on init otherwise)")]
+		[Tooltip("プレイヤー接触で移動開始")]
+		[Header("プレイヤー接触で移動開始")]
 		public bool StartMovingWhenPlayerIsColliding = false;
 
 		[MMInspectorButton("ToggleMovementAuthorization")]

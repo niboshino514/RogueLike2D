@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,14 +12,16 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterDangling : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Add this component to a character and it'll adopt a dangling stance if facing a hole in the ground. The detection is done using a raycast, whose origin and length can be setup here."; }
+		public override string HelpBoxText() { return "地面の穴に向かうとぶら下がり姿勢になります。検出はレイキャストで行い、原点と長さをここで設定します。"; }
 
-		[Header("Dangling")]
+		[Header("ぶら下がり")]
 		/// the origin of the raycast used to detect pits. This is relative to the transform.position of our character
-		[Tooltip("the origin of the raycast used to detect pits. This is relative to the transform.position of our character")]
+		[Tooltip("レイキャスト原点")]
+		[Header("レイキャスト原点")]
 		public Vector3 DanglingRaycastOrigin = new Vector3(0.7f,-0.25f,0f);
 		/// the length of the raycast used to detect pits
-		[Tooltip("the length of the raycast used to detect pits")]
+		[Tooltip("レイキャスト長")]
+		[Header("レイキャスト長")]
 		public float DanglingRaycastLength=2f;
 
 		protected Vector3 _leftOne = new Vector3(-1,1,1);

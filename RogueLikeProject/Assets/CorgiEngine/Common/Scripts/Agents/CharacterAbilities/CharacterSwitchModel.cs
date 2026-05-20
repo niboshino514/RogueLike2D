@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -18,21 +18,25 @@ namespace MoreMountains.CorgiEngine
 		/// the possible orders the next character can be selected from
 		public enum NextModelChoices { Sequential, Random }
 
-		[Header("Models")]
+		[Header("モデル")]
 		[MMInformation("Add this component to a character and it'll be able to switch its model when pressing the SwitchCharacter button (P by default).", MMInformationAttribute.InformationType.Info, false)]
 
 		/// the list of possible characters models to switch to
-		[Tooltip("the list of possible characters models to switch to")]
+		[Tooltip("キャラクターモデル一覧")]
+		[Header("キャラクターモデル一覧")]
 		public GameObject[] CharacterModels;
 		/// the order in which to pick the next character
-		[Tooltip("the order in which to pick the next character")]
+		[Tooltip("次のモデル選択方法")]
+		[Header("次のモデル選択方法")]
 		public NextModelChoices NextCharacterChoice = NextModelChoices.Sequential;
 		/// the initial (and at runtime, current) index of the character prefab
-		[Tooltip("the initial (and at runtime, current) index of the character prefab")]
+		[Tooltip("現在のモデルインデックス")]
+		[Header("現在のモデルインデックス")]
 		public int CurrentIndex = 0;
 		/// if you set this to true, when switching model, the Character's animator will also be bound. This requires your model's animator is at the top level of the model in the hierarchy.
 		/// you can look at the MinimalModelSwitch scene for examples of that
-		[Tooltip("if you set this to true, when switching model, the Character's animator will also be bound. This requires your model's animator is at the top level of the model in the hierarchy. you can look at the MinimalModelSwitch scene for examples of that")]
+		[Tooltip("アニメーターを自動バインドする")]
+		[Header("アニメーターを自動バインドする")]
 		public bool AutoBindAnimator = true;
 
 		protected string _bindAnimatorMessage = "BindAnimator";

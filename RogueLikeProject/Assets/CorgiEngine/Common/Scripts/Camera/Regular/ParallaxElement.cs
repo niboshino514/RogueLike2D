@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -17,20 +17,24 @@ namespace MoreMountains.CorgiEngine
 		/// the possible ticks at which this parallax element can update at
 		public enum UpdateModes { Update, LateUpdate, FixedUpdate }
 
-		[Header("Behaviour")]
+		[Header("動作設定")]
 		[MMInformation("This component will make this GameObject move in parallax (when the camera moves) if the camera's CameraController component has been set to move parallax elements. Here you can determine the relative horizontal and vertical speed, and in which direction the element should move.", MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
 
 		/// the selected update mode that will determine at which tick this parallax element will run
-		[Tooltip("the selected update mode that will determine at which tick this parallax element will run")]
+		[Tooltip("更新モード")]
+		[Header("更新モード")]
 		public UpdateModes UpdateMode = UpdateModes.LateUpdate;
 		/// horizontal speed of the layer
-		[Tooltip("horizontal speed of the layer")]
+		[Tooltip("水平速度")]
+		[Header("水平速度")]
 		public float HorizontalSpeed;
 		/// vertical speed of the layer
-		[Tooltip("vertical speed of the layer")]
+		[Tooltip("垂直速度")]
+		[Header("垂直速度")]
 		public float VerticalSpeed;
 		/// defines if the layer moves in the same direction as the camera or not
-		[Tooltip("defines if the layer moves in the same direction as the camera or not")]
+		[Tooltip("逆方向に移動")]
+		[Header("逆方向に移動")]
 		public bool MoveInOppositeDirection = true;
 
 		// private stuff

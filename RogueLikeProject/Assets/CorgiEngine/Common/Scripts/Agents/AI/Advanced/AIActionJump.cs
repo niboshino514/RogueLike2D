@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
@@ -13,7 +13,8 @@ namespace MoreMountains.CorgiEngine
 	public class AIActionJump : AIAction
 	{
 		/// the number of jumps to perform while in this state
-		[Tooltip("the number of jumps to perform while in this state")]
+		[Tooltip("ジャンプ回数")]
+		[Header("ジャンプ回数")]
 		public int NumberOfJumps = 1;
 
 		protected CharacterJump _characterJump;

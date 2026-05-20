@@ -21,17 +21,20 @@ namespace MoreMountains.CorgiEngine
 		/// the possible knockback directions when taking damage
 		public enum TakenKnockbackDirections { BasedOnDamagerPosition, BasedOnSpeed, BasedOnDamageOnTouchPosition }
 
-		[Header("Targets")]
+		[Header("ターゲット")]
 		[MMInformation("This component will make your object cause damage to objects that collide with it. Here you can define what layers will be affected by the damage (for a standard enemy, choose Player), how much damage to give, and how much force should be applied to the object that gets the damage on hit. Note that this component will MARK ITS ASSOCIATED COLLIDER AS TRIGGER.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the layers that will be damaged by this object
-		[Tooltip("the layers that will be damaged by this object")]
+		[Tooltip("ターゲットレイヤーマスク")]
+		[Header("ターゲットレイヤーマスク")]
 		public LayerMask TargetLayerMask;
 		/// if this is true, the damage will apply on trigger enter
-		[Tooltip("if this is true, the damage will apply on trigger enter")]
+		[Tooltip("トリガー進入時にダメージ適用")]
+		[Header("トリガー進入時にダメージ適用")]
 		public bool ApplyDamageOnTriggerEnter = true;
 		/// if this is true, the damage will apply on trigger stay
-		[Tooltip("if this is true, the damage will apply on trigger stay")]
+		[Tooltip("トリガー滞在時にダメージ適用")]
+		[Header("トリガー滞在時にダメージ適用")]
 		public bool ApplyDamageOnTriggerStay = true;
 
 		[Header("Damage Caused")]

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
@@ -13,7 +13,8 @@ namespace MoreMountains.CorgiEngine
 	public class AIActionDash : AIAction
 	{
 		/// if this is true, the agent will try to dash towards the AI Brain's Target if there's one
-		[Tooltip("if this is true, the agent will try to dash towards the AI Brain's Target if there's one")]
+		[Tooltip("ターゲット方向へダッシュ")]
+		[Header("ターゲット方向へダッシュ")]
 		public bool DashTowardsTarget = false;
 		
 		protected CharacterDash _characterDash;

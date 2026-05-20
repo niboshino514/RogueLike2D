@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
@@ -11,25 +11,30 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Weapons/BouncyProjectile")]
 	public class BouncyProjectile : Projectile
 	{
-		[Header("Bounciness Tech")]
+		[Header("バウンシー技術")]
 		/// the length of the raycast used to detect bounces, should be proportionate to the size and speed of your projectile
-		[Tooltip("the length of the raycast used to detect bounces, should be proportionate to the size and speed of your projectile")]
+		[Tooltip("バウンスレイキャスト長")]
+		[Header("バウンスレイキャスト長")]
 		public float BounceRaycastLength = 1f;
 		/// the layers you want this projectile to bounce on
-		[Tooltip("the layers you want this projectile to bounce on")]
+		[Tooltip("バウンスレイヤー")]
+		[Header("バウンスレイヤー")]
 		public LayerMask BounceLayers;
 		/// a feedback to trigger at every bounce
-		[Tooltip("a feedback to trigger at every bounce")]
+		[Tooltip("バウンスフィードバック")]
+		[Header("バウンスフィードバック")]
 		public MMFeedbacks BounceFeedback;
 
-		[Header("Bounciness")]
+		[Header("バウンシー")]
 		/// the min and max amount of bounces (a value will be picked at random between both bounds)
-		[Tooltip("the min and max amount of bounces (a value will be picked at random between both bounds)")]
+		[Tooltip("バウンス回数")]
 		[MMVector("Min", "Max")]
+		[Header("バウンス回数")]
 		public Vector2Int AmountOfBounces = new Vector2Int(10, 10);
 		/// the min and max speed multiplier to apply at every bounce (a value will be picked at random between both bounds)
-		[Tooltip("the min and max speed multiplier to apply at every bounce (a value will be picked at random between both bounds)")]
+		[Tooltip("速度修正値")]
 		[MMVector("Min", "Max")]
+		[Header("速度修正値")]
 		public Vector2 SpeedModifier = Vector2.one;
 
 		protected Vector3 _positionLastFrame;

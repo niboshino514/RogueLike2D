@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
@@ -13,7 +13,8 @@ namespace MoreMountains.CorgiEngine
 	public class AIActionFlyTowardsTarget : AIAction
 	{
 		/// the minimum distance from the target this Character can reach.
-		[Tooltip("the minimum distance from the target this Character can reach.")]
+		[Tooltip("ターゲットへの最小距離")]
+		[Header("ターゲットへの最小距離")]
 		public float MinimumDistance = 1f;
 
 		protected CharacterFly _characterFly;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using UnityEngine.Events;
@@ -13,28 +13,34 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterPause : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Allows this character (and the player controlling it) to press the pause button to pause the game."; }
+		public override string HelpBoxText() { return "ポーズボタンでゲームを一時停止できます（このキャラクターと操作プレイヤー）。"; }
 
-		[Header("Pause audio tracks")]
-		/// whether or not to mute the sfx track when the game pauses, and to unmute it when it unpauses 
-		[Tooltip("whether or not to mute the sfx track when the game pauses, and to unmute it when it unpauses")]
+		[Header("ポーズ中のオーディオトラック")]
+		/// whether or not to mute the sfx track when the game pauses, and to unmute it when it unpauses
+		[Tooltip("SFXトラックをミュート")]
+		[Header("SFXトラックをミュート")]
 		public bool MuteSfxTrackSounds = true;
-		/// whether or not to mute the UI track when the game pauses, and to unmute it when it unpauses 
-		[Tooltip("whether or not to mute the UI track when the game pauses, and to unmute it when it unpauses")]
+		/// whether or not to mute the UI track when the game pauses, and to unmute it when it unpauses
+		[Tooltip("UIトラックをミュート")]
+		[Header("UIトラックをミュート")]
 		public bool MuteUITrackSounds = false;
-		/// whether or not to mute the music track when the game pauses, and to unmute it when it unpauses 
-		[Tooltip("whether or not to mute the music track when the game pauses, and to unmute it when it unpauses")]
+		/// whether or not to mute the music track when the game pauses, and to unmute it when it unpauses
+		[Tooltip("ミュージックトラックをミュート")]
+		[Header("ミュージックトラックをミュート")]
 		public bool MuteMusicTrackSounds = false;
-		/// whether or not to mute the master track when the game pauses, and to unmute it when it unpauses 
-		[Tooltip("whether or not to mute the master track when the game pauses, and to unmute it when it unpauses")]
+		/// whether or not to mute the master track when the game pauses, and to unmute it when it unpauses
+		[Tooltip("マスタートラックをミュート")]
+		[Header("マスタートラックをミュート")]
 		public bool MuteMasterTrackSounds = false;
 
-		[Header("Hooks")] 
-		/// a UnityEvent that will trigger when the game pauses 
-		[Tooltip("a UnityEvent that will trigger when the game pauses")]
+		[Header("フック")]
+		/// a UnityEvent that will trigger when the game pauses
+		[Tooltip("ポーズ時")]
+		[Header("ポーズ時")]
 		public UnityEvent OnPause;
 		/// a UnityEvent that will trigger when the game unpauses
-		[Tooltip("a UnityEvent that will trigger when the game unpauses")]
+		[Tooltip("ポーズ解除時")]
+		[Header("ポーズ解除時")]
 		public UnityEvent OnUnpause;
 
 		/// <summary>

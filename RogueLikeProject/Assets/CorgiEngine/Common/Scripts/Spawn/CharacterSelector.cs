@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
@@ -12,10 +12,12 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterSelector : CorgiMonoBehaviour 
 	{
 		/// The name of the scene to go to when calling LoadNextScene()
-		[Tooltip("The name of the scene to go to when calling LoadNextScene()")]
+		[Tooltip("遷移先シーン名")]
+		[Header("遷移先シーン名")]
 		public string DestinationSceneName;
 		/// The character prefab to store in the GameManager
-		[Tooltip("The character prefab to store in the GameManager")]
+		[Tooltip("キャラクタープレファブ")]
+		[Header("キャラクタープレファブ")]
 		public Character CharacterPrefab;
 
 		/// <summary>

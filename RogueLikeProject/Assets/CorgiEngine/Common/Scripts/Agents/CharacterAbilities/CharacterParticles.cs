@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,55 +12,71 @@ namespace MoreMountains.CorgiEngine
 	/// </summary>
 	public class CharacterParticles : CharacterAbility 
 	{
-		[Header("Character Particles")]
+		[Header("キャラクターパーティクル")]
 
 		/// the particle system to use when the character is idle
-		[Tooltip("the particle system to use when the character is idle")]
+		[Tooltip("待機パーティクル")]
+		[Header("待機パーティクル")]
 		public ParticleSystem IdleParticles;
 		/// the particle system to use when the character is walking
-		[Tooltip("the particle system to use when the character is walking")]
+		[Tooltip("歩行パーティクル")]
+		[Header("歩行パーティクル")]
 		public ParticleSystem WalkingParticles;
 		/// the particle system to use when the character is crouching
-		[Tooltip("the particle system to use when the character is crouching")]
+		[Tooltip("しゃがみパーティクル")]
+		[Header("しゃがみパーティクル")]
 		public ParticleSystem CrouchingParticles;
 		/// the particle system to use when the character is crawling
-		[Tooltip("the particle system to use when the character is crawling")]
+		[Tooltip("這いパーティクル")]
+		[Header("這いパーティクル")]
 		public ParticleSystem CrawlingParticles;
 		/// the particle system to use when the character is dangling
-		[Tooltip("the particle system to use when the character is dangling")]
+		[Tooltip("ぶら下がりパーティクル")]
+		[Header("ぶら下がりパーティクル")]
 		public ParticleSystem DanglingParticles;
 		/// the particle system to use when the character is dashing
-		[Tooltip("the particle system to use when the character is dashing")]
+		[Tooltip("ダッシュパーティクル")]
+		[Header("ダッシュパーティクル")]
 		public ParticleSystem DashingParticles;
 		/// the particle system to use when the character is diving
-		[Tooltip("the particle system to use when the character is diving")]
+		[Tooltip("急降下パーティクル")]
+		[Header("急降下パーティクル")]
 		public ParticleSystem DivingParticles;
 		/// the particle system to use when the character is gripping
-		[Tooltip("the particle system to use when the character is gripping")]
+		[Tooltip("しがみつきパーティクル")]
+		[Header("しがみつきパーティクル")]
 		public ParticleSystem GrippingParticles;
 		/// the particle system to use when the character is jetpacking
-		[Tooltip("the particle system to use when the character is jetpacking")]
+		[Tooltip("ジェットパックパーティクル")]
+		[Header("ジェットパックパーティクル")]
 		public ParticleSystem JetpackingParticles;
 		/// the particle system to use when the character is jumping
-		[Tooltip("the particle system to use when the character is jumping")]
+		[Tooltip("ジャンプパーティクル")]
+		[Header("ジャンプパーティクル")]
 		public ParticleSystem JumpingParticles;
 		/// the particle system to use when the character is on a ladder
-		[Tooltip("the particle system to use when the character is on a ladder")]
+		[Tooltip("梯子パーティクル")]
+		[Header("梯子パーティクル")]
 		public ParticleSystem LadderParticles;
 		/// the particle system to use when the character is looking up
-		[Tooltip("the particle system to use when the character is looking up")]
+		[Tooltip("見上げパーティクル")]
+		[Header("見上げパーティクル")]
 		public ParticleSystem LookupParticles;
 		/// the particle system to use when the character is pushing
-		[Tooltip("the particle system to use when the character is pushing")]
+		[Tooltip("押しパーティクル")]
+		[Header("押しパーティクル")]
 		public ParticleSystem PushParticles;
 		/// the particle system to use when the character is running
-		[Tooltip("the particle system to use when the character is running")]
+		[Tooltip("走行パーティクル")]
+		[Header("走行パーティクル")]
 		public ParticleSystem RunParticles;
 		/// the particle system to use when the character is wallclinging
-		[Tooltip("the particle system to use when the character is wallclinging")]
+		[Tooltip("壁張り付きパーティクル")]
+		[Header("壁張り付きパーティクル")]
 		public ParticleSystem WallclingingParticles;
 		/// the particle system to use when the character is walljumping
-		[Tooltip("the particle system to use when the character is walljumping")]
+		[Tooltip("壁ジャンプパーティクル")]
+		[Header("壁ジャンプパーティクル")]
 		public ParticleSystem WalljumpParticles;
 
 		protected ParticleSystem.EmissionModule _emissionModule;

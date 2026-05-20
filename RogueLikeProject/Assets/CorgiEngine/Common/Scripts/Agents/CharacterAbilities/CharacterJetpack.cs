@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,46 +12,56 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterJetpack : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Add this component to a character and it'll be able to activate a jetpack and fly through the level. Here you can define the force to apply when jetpacking, the particle system to use, various fuel info, and optionnally what sound to play when the jetpack gets fully refueled"; }
+		public override string HelpBoxText() { return "ジェットパックでレベル内を飛行できます。ジェットパック時の力、パーティクル、燃料関連、燃料が満タンになったときの SE などを設定できます。"; }
 
-		[Header("Jetpack")]
+		[Header("ジェットパック")]
 
 		/// the duration (in seconds) during which we'll disable the collider when taking off jetpacking from a moving platform
-		[Tooltip("the duration (in seconds) during which we'll disable the collider when taking off jetpacking from a moving platform")]
+		[Tooltip("移動プラットフォーム離陸時コライダー無効時間")]
+		[Header("移動プラットフォーム離陸時コライダー無効時間")]
 		public float MovingPlatformsJumpCollisionOffDuration=0.05f;
 		/// the jetpack associated to the character
-		[Tooltip("the jetpack associated to the character")]
+		[Tooltip("パーティクルエミッター")]
+		[Header("パーティクルエミッター")]
 		public ParticleSystem ParticleEmitter;
 		/// the force applied by the jetpack
-		[Tooltip("the force applied by the jetpack")]
-		public float JetpackForce = 2.5f;	
+		[Tooltip("ジェットパックの力")]
+		[Header("ジェットパックの力")]
+		public float JetpackForce = 2.5f;
 
-		[Header("Fuel")]
+		[Header("燃料")]
 
 		/// true if the character has unlimited fuel for its jetpack
-		[Tooltip("true if the character has unlimited fuel for its jetpack")]
+		[Tooltip("燃料無制限")]
+		[Header("燃料無制限")]
 		public bool JetpackUnlimited = false;
 		/// the maximum duration (in seconds) of the jetpack
-		[Tooltip("the maximum duration (in seconds) of the jetpack")]
+		[Tooltip("燃料持続時間")]
+		[Header("燃料持続時間")]
 		public float JetpackFuelDuration = 5f;
 		/// the jetpack refuel cooldown, in seconds
-		[Tooltip("the jetpack refuel cooldown, in seconds")]
+		[Tooltip("燃料補充クールダウン")]
+		[Header("燃料補充クールダウン")]
 		public float JetpackRefuelCooldown=1f;
 		/// the speed at which the jetpack refuels
-		[Tooltip("the speed at which the jetpack refuels")]
+		[Tooltip("燃料補充速度")]
+		[Header("燃料補充速度")]
 		public float RefuelSpeed = 0.5f;
 		/// the minimum amount of fuel required in the tank to be able to jetpack again
-		[Tooltip("the minimum amount of fuel required in the tank to be able to jetpack again")]
+		[Tooltip("最小燃料要件")]
+		[Header("最小燃料要件")]
 		public float MinimumFuelRequirement = 0.2f;
 
-		[Header("Jetpack Sounds")]
+		[Header("ジェットパックサウンド")]
 		/// The sound to play when the jetpack is refueled again
-		[Tooltip("The sound to play when the jetpack is refueled again")]
+		[Tooltip("燃料補充完了サウンド")]
+		[Header("燃料補充完了サウンド")]
 		public AudioClip JetpackRefueledSfx;
 
-		[Header("Debug")]
+		[Header("デバッグ")]
 		/// the remaining jetpack fuel duration (in seconds)
 		[MMReadOnly]
+		[Header("残燃料時間")]
 		public float JetpackFuelDurationLeft = 0f;
 		
 		/// returns true if this jetpack still has fuel left, false otherwise

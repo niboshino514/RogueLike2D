@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -10,13 +10,15 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterDive : CharacterAbility
 	{	
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component allows your character to dive (by pressing the dash button + the down direction while in the air). Here you can define how much the camera should shake on impact, and how fast the dive should be."; }
+		public override string HelpBoxText() { return "空中でダッシュ＋下入力でダイブできます。着地時のカメラシェイク量とダイブ速度を設定できます。"; }
 
 		/// Shake parameters : intensity, duration (in seconds) and decay
-		[Tooltip("Shake parameters : intensity, duration (in seconds) and decay")]
+		[Tooltip("シェイクパラメータ（強度・持続時間・減衰）")]
+		[Header("シェイクパラメータ（強度・持続時間・減衰）")]
 		public Vector3 ShakeParameters = new Vector3(1.5f,0.5f,1f);
 		/// the vertical acceleration applied when diving
-		[Tooltip("the vertical acceleration applied when diving")]
+		[Tooltip("急降下加速度")]
+		[Header("急降下加速度")]
 		public float DiveAcceleration = 2f;
 
 		// animation parameters

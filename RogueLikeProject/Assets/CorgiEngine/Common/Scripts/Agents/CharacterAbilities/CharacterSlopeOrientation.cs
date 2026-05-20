@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -13,7 +13,7 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterSlopeOrientation : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component will orient the character's model so it is perpendicular to the slope it's walking on. Note that this only works if your model is not on the top level of your character, but instead nested under it."; }
+		public override string HelpBoxText() { return "歩いている坂に合わせてモデルを垂直に向けます。トップレベルではなく子オブジェクトにモデルがある場合のみ動作します。"; }
 		/// The object to rotate when walking on slopes. A good hierarchy is like so :
 		/// - top level : Corgi Controller, collider, character, abilities, etc
 		/// - - slope object to rotate
@@ -22,28 +22,35 @@ namespace MoreMountains.CorgiEngine
 		         "- top level : Corgi Controller, collider, character, abilities, etc\n" +
 		         "- - slope object to rotate\n" +
 		         "- - - model ")]
+		[Header("回転対象オブジェクト")]
 		public GameObject ObjectToRotate;
 
-		[Header("Rotation")]
+		[Header("向き調整")]
 		[MMInformation("Here you can define the speed at which the character should rotate to be perpendicular to the slope. 0 means instant rotation, low value is slow, high value is fast, 10 is the default. You can also specify minimum and maximum angles at which your character's rotation will be clamped.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the rotation at which to rotate the object
-		[Tooltip("the rotation at which to rotate the object")]
+		[Tooltip("キャラクター回転速度")]
+		[Header("キャラクター回転速度")]
 		public float CharacterRotationSpeed = 10f;
 		/// the minimum angle the rotation will be clamped at
-		[Tooltip("the minimum angle the rotation will be clamped at")]
+		[Tooltip("最小許容角度")]
+		[Header("最小許容角度")]
 		public float MinimumAllowedAngle = -90f;
 		/// the maximum angle the rotation will be clamped at
-		[Tooltip("the maximum angle the rotation will be clamped at")]
+		[Tooltip("最大許容角度")]
+		[Header("最大許容角度")]
 		public float MaximumAllowedAngle = 90f;
 		/// should the rotation be reset when the character jumps
-		[Tooltip("should the rotation be reset when the character jumps")]
+		[Tooltip("空中で角度をリセットする")]
+		[Header("空中で角度をリセットする")]
 		public bool ResetAngleInTheAir = true;
 		/// should the weapon rotate as well
-		[Tooltip("should the weapon rotate as well")]
+		[Tooltip("武器も回転させる")]
+		[Header("武器も回転させる")]
 		public bool RotateWeapon = true;
 		/// the slope detection raycast length
-		[Tooltip("the slope detection raycast length")]
+		[Tooltip("レイキャスト長")]
+		[Header("レイキャスト長")]
 		public float RaycastLength = 1f;
 
 		protected GameObject _model;

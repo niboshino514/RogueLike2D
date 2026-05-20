@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
@@ -13,27 +13,33 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Ladder")] 
 	public class CharacterLadder : CharacterAbility 
 	{
-		[Header("Ladder Climbing")]
+		[Header("ハシゴ登り")]
 		/// the speed of the character when climbing a ladder
-		[Tooltip("the speed of the character when climbing a ladder")]
+		[Tooltip("ハシゴ登り速度")]
+		[Header("ハシゴ登り速度")]
 		public float LadderClimbingSpeed = 2f;
 		/// force face right when on a ladder (useful for 3D characters)
-		[Tooltip("force face right when on a ladder (useful for 3D characters)")]
+		[Tooltip("右向きを強制")]
+		[Header("右向きを強制")]
 		public bool ForceRightFacing = false;
 		/// forces the character to teleport to the ladder platform when reaching the ladder's top
-		[Tooltip("forces the chaForceTeleportOnExitracter to teleport to the ladder platform when reaching the ladder's top")]
+		[Tooltip("退出時に地面へ固定")]
+		[Header("退出時に地面へ固定")]
 		public bool ForceAnchorToGroundOnExit = false;
 		/// the time (in seconds) between jumping from a ladder and being able to climb another one (or the same one)
-		[Tooltip("the time (in seconds) between jumping from a ladder and being able to climb another one (or the same one)")]
+		[Tooltip("ハシゴジャンプ後の最小時間")]
+		[Header("ハシゴジャンプ後の最小時間")]
 		public float MinimumTimeAfterLadderJump = 0.5f;
-		
-		[Header("Input")]
+
+		[Header("入力")]
 		/// if this is true, the Player won't have to press up to climb a ladder, simply colliding with one will cause the climb
-		[Tooltip("if this is true, the Player won't have to press up to climb a ladder, simply colliding with one will cause the climb")]
+		[Tooltip("入力なしで登る")]
+		[Header("入力なしで登る")]
 		public bool NoInputClimb = false;
 		/// if this is true, the character will have to be in the air for NoInputClimb to activate
-		[Tooltip("if this is true, the character will have to be in the air for NoInputClimb to activate")]
+		[Tooltip("空中のみで入力なし登り")]
 		[MMCondition("NoInputClimb", true)]
+		[Header("空中のみで入力なし登り")]
 		public bool NoInputClimbAirOnly = false;
 		
 		/// the current ladder climbing speed of the character

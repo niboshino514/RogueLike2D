@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -15,58 +15,71 @@ namespace MoreMountains.CorgiEngine
 		/// the possible directions the character can start moving in
 		public enum InitialDirections { Left, Right, None }
 
-		[Header("Initialization")]
+		[Header("初期化")]
 
 		/// if this is true, will set other abilities in the appropriate configuration on initialization automatically
-		[Tooltip("if this is true, will set other abilities in the appropriate configuration on initialization automatically")]
+		[Tooltip("自動セットアップ")]
+		[Header("自動セットアップ")]
 		public bool AutoSetup = true;
 		/// the initial direction the character should start moving towards
-		[Tooltip("the initial direction the character should start moving towards")]
+		[Tooltip("初期方向")]
+		[Header("初期方向")]
 		public InitialDirections InitialDirection = InitialDirections.Right;
-		/// if this is true, the character 
-		[Tooltip("if this is true, the character ")]
+		/// if this is true, the character
+		[Tooltip("開始時に走る")]
+		[Header("開始時に走る")]
 		public bool RunningOnStart = false;
-        
-		[Header("Input")]
+
+		[Header("入力")]
 
 		/// if this is true, input won't be read
-		[Tooltip("if this is true, input won't be read")]
+		[Tooltip("水平入力なし")]
+		[Header("水平入力なし")]
 		public bool NoHorizontalInput = false;
 		/// if NoHorizontalInput is true, the initial value to apply to input
-		[Tooltip("if NoHorizontalInput is true, the initial value to apply to input")]
+		[Tooltip("初期入力値")]
 		[MMCondition("NoHorizontalInput", true)]
 		[Range(-1f,1f)]
+		[Header("初期入力値")]
 		public float InitialInput = 1f;
 
-		[Header("Automatic Direction Changes")]
+		[Header("自動方向転換")]
 
 		/// if this is true, doing a walljump will also cause a direction change
-		[Tooltip("if this is true, doing a walljump will also cause a direction change")]
+		[Tooltip("壁ジャンプ時に方向転換")]
+		[Header("壁ジャンプ時に方向転換")]
 		public bool ChangeDirectionOnWalljump = true;
 		/// if this is true, the character will change direction when colliding with a wall
-		[Tooltip("if this is true, the character will change direction when colliding with a wall")]
+		[Tooltip("壁衝突時に方向転換")]
+		[Header("壁衝突時に方向転換")]
 		public bool ChangeDirectionOnWallCollision = false;
-		/// if this is true, the character will change direction when colliding with a wall, but only if grounded - requires ChangeDirectionOnWallCollision to be true 
-		[Tooltip("if this is true, the character will change direction when colliding with a wall, but only if grounded - requires ChangeDirectionOnWallCollision to be true")]
+		/// if this is true, the character will change direction when colliding with a wall, but only if grounded - requires ChangeDirectionOnWallCollision to be true
+		[Tooltip("接地時のみ壁衝突で方向転換")]
 		[MMCondition("ChangeDirectionOnWallCollision", true)]
+		[Header("接地時のみ壁衝突で方向転換")]
 		public bool ChangeDirectionOnWallCollisionOnlyIfGrounded = false;
 		/// if this is true, the character will change direction when falling down, at the start of the fall
-		[Tooltip("if this is true, the character will change direction when falling down, at the start of the fall")]
+		[Tooltip("落下開始時に方向転換")]
+		[Header("落下開始時に方向転換")]
 		public bool ChangeDirectionOnFallingDown = false;
 
-		[Header("Tests")]
+		[Header("テスト")]
 
 		/// Test button for ToggleRun
 		[MMInspectorButton("ToggleRun")]
+		[Header("走りトグルボタン")]
 		public bool ToggleRunButton;
 		/// Test button for ChangeDirection
 		[MMInspectorButton("ChangeDirection")]
+		[Header("方向転換ボタン")]
 		public bool ChangeDirectionButton;
 		/// Test button for ChangeDirection
 		[MMInspectorButton("PauseMovement")]
+		[Header("移動一時停止ボタン")]
 		public bool PauseMovementButton;
 		/// Test button for ChangeDirection
 		[MMInspectorButton("ResumeMovement")]
+		[Header("移動再開ボタン")]
 		public bool ResumeMovementButton;
 
 		protected CharacterRun _characterRun;

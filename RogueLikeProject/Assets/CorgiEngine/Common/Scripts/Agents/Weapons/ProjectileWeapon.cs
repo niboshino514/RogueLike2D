@@ -12,32 +12,40 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Weapons/Projectile Weapon")]
 	public class ProjectileWeapon : Weapon
 	{
-		[MMInspectorGroup("Projectile Spawn", true, 65)]
+		[MMInspectorGroup("弾丸スポーン", true, 65)]
 
 		/// the transform to use as the center reference point of the spawn
-		[Tooltip("the transform to use as the center reference point of the spawn")]
+		[Tooltip("スポーンの中心参照 Transform")]
+		[Header("スポーンの中心参照 Transform")]
 		public Transform ProjectileSpawnTransform;
 		/// the offset position at which the projectile will spawn
-		[Tooltip("the offset position at which the projectile will spawn")]
+		[Tooltip("弾丸スポーン位置オフセット")]
+		[Header("弾丸スポーン位置オフセット")]
 		public Vector3 ProjectileSpawnOffset = Vector3.zero;
 		/// the number of projectiles to spawn per shot
-		[Tooltip("the number of projectiles to spawn per shot")]
+		[Tooltip("1 ショットあたりの弾数")]
+		[Header("1 ショットあたりの弾数")]
 		public int ProjectilesPerShot = 1;
 		/// the spread (in degrees) to apply randomly (or not) on each angle when spawning a projectile
-		[Tooltip("the spread (in degrees) to apply randomly (or not) on each angle when spawning a projectile")]
+		[Tooltip("弾丸ごとの拡散角度（度）")]
+		[Header("弾丸ごとの拡散角度（度）")]
 		public Vector3 Spread = Vector3.zero;
 		/// whether or not the weapon should rotate to align with the spread angle
-		[Tooltip("whether or not the weapon should rotate to align with the spread angle")]
+		[Tooltip("拡散角に合わせて武器を回転するか")]
+		[Header("拡散角に合わせて武器を回転するか")]
 		public bool RotateWeaponOnSpread = false;
 		/// whether or not the spread should be random (if not it'll be equally distributed)
-		[Tooltip("whether or not the spread should be random (if not it'll be equally distributed)")]
+		[Tooltip("拡散をランダムにするか（オフで均等配分）")]
+		[Header("拡散をランダムにするか（オフで均等配分）")]
 		public bool RandomSpread = true;
 		/// the object pooler used to spawn projectiles, if left empty, this component will try to find one on its game object
-		[Tooltip("the object pooler used to spawn projectiles, if left empty, this component will try to find one on its game object")]
+		[Tooltip("弾丸スポーン用オブジェクトプーラー（空なら同一 GameObject から検索）")]
+		[Header("弾丸スポーン用オブジェクトプーラー")]
 		public MMObjectPooler ObjectPooler;
 		/// the local position at which this projectile weapon should spawn projectiles
 		[MMReadOnly]
-		[Tooltip("the local position at which this projectile weapon should spawn projectiles")]
+		[Tooltip("弾丸スポーンのローカル位置")]
+		[Header("弾丸スポーンのローカル位置")]
 		public Vector3 SpawnPosition = Vector3.zero;
 		
 		public bool WallClinging { get; set; }

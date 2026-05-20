@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
@@ -14,37 +14,44 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterHorizontalMovement : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component handles basic left/right movement, friction, and ground hit detection. Here you can define standard movement speed, walk speed, and what effects to use when the character hits the ground after a jump/fall."; }
+		public override string HelpBoxText() { return "左右移動、摩擦、接地判定を扱う基本コンポーネントです。通常移動速度、歩行速度、ジャンプ／落下後に地面に着地したときのエフェクトなどを設定できます。"; }
 
 		/// the current reference movement speed
 		public float MovementSpeed { get; set; }
 
-		[Header("Speed")]
+		[Header("速度")]
 
 		/// the speed of the character when it's walking
-		[Tooltip("the speed of the character when it's walking")]
+		[Tooltip("歩行速度")]
+		[Header("歩行速度")]
 		public float WalkSpeed = 6f;
 		/// press this debug button if you decide to change the WalkSpeed at runtime, to reset its cache and have it impact your character in real time
 		[MMInspectorButton("ResetHorizontalSpeed")]
+		[Header("水平速度リセットボタン")]
 		public bool ResetHorizontalSpeedBtn;
 		/// the multiplier to apply to the horizontal movement
 		[MMReadOnly]
-		[Tooltip("the multiplier to apply to the horizontal movement")]
+		[Tooltip("移動速度乗数")]
+		[Header("移動速度乗数")]
 		public float MovementSpeedMultiplier = 1f;
 		/// the multiplier to apply to the horizontal movement, dedicated to abilities
 		[MMReadOnly]
-		[Tooltip("the multiplier to apply to the horizontal movement, dedicated to abilities")]
+		[Tooltip("アビリティ移動速度乗数")]
+		[Header("アビリティ移動速度乗数")]
 		public float AbilityMovementSpeedMultiplier = 1f;
 		/// the multiplier to apply when pushing
 		[MMReadOnly]
-		[Tooltip("the multiplier to apply when pushing")]
+		[Tooltip("押し込み速度乗数")]
+		[Header("押し込み速度乗数")]
 		public float PushSpeedMultiplier = 1f;
 		/// the multiplier that gets set and applied by CharacterSpeed
 		[MMReadOnly]
-		[Tooltip("the multiplier that gets set and applied by CharacterSpeed")]
+		[Tooltip("状態速度乗数")]
+		[Header("状態速度乗数")]
 		public float StateSpeedMultiplier = 1f;
 		/// if this is true, the character will automatically flip to face its movement direction
-		[Tooltip("if this is true, the character will automatically flip to face its movement direction")]
+		[Tooltip("移動方向に自動反転")]
+		[Header("移動方向に自動反転")]
 		public bool FlipCharacterToFaceDirection = true;
 
 
@@ -53,39 +60,48 @@ namespace MoreMountains.CorgiEngine
 		/// if this is true, movement will be forbidden (as well as flip)
 		public virtual bool MovementForbidden { get; set; }
 
-		[Header("Input")]
+		[Header("入力")]
 
 		/// if this is true, will get input from an input source, otherwise you'll have to set it via SetHorizontalMove()
-		[Tooltip("if this is true, will get input from an input source, otherwise you'll have to set it via SetHorizontalMove()")]
+		[Tooltip("入力を読み込む")]
+		[Header("入力を読み込む")]
 		public bool ReadInput = true;
 		/// if this is true, no acceleration will be applied to the movement, which will instantly be full speed (think Megaman movement). Attention : a character with instant acceleration won't be able to get knockbacked on the x axis as a regular character would, it's a tradeoff
-		[Tooltip("if this is true, no acceleration will be applied to the movement, which will instantly be full speed (think Megaman movement). Attention : a character with instant acceleration won't be able to get knockbacked on the x axis as a regular character would, it's a tradeoff")]
+		[Tooltip("即時加速")]
+		[Header("即時加速")]
 		public bool InstantAcceleration = false;
 		/// the threshold after which input is considered (usually 0.1f to eliminate small joystick noise)
-		[Tooltip("the threshold after which input is considered (usually 0.1f to eliminate small joystick noise)")]
+		[Tooltip("入力しきい値")]
+		[Header("入力しきい値")]
 		public float InputThreshold = 0.1f;
 		/// how much air control the player has
 		[Range(0f, 1f)]
-		[Tooltip("how much air control the player has")]
+		[Tooltip("空中制御")]
+		[Header("空中制御")]
 		public float AirControl = 1f;
 		/// whether or not the player can flip in the air
-		[Tooltip("whether or not the player can flip in the air")]
+		[Tooltip("空中で反転可能")]
+		[Header("空中で反転可能")]
 		public bool AllowFlipInTheAir = true;
 		/// whether or not this ability should keep taking care of horizontal movement after death
-		[Tooltip("whether or not this ability should keep taking care of horizontal movement after death")]
+		[Tooltip("死亡後も有効")]
+		[Header("死亡後も有効")]
 		public bool ActiveAfterDeath = false;
 
-		[Header("Touching the Ground")]
+		[Header("着地")]
 		/// the MMFeedbacks to play when the character hits the ground
-		[Tooltip("the MMFeedbacks to play when the character hits the ground")]
+		[Tooltip("着地フィードバック")]
+		[Header("着地フィードバック")]
 		public MMFeedbacks TouchTheGroundFeedback;
 		/// the duration (in seconds) during which the character has to be airborne before a feedback can be played when touching the ground
-		[Tooltip("the duration (in seconds) during which the character has to be airborne before a feedback can be played when touching the ground")]
+		[Tooltip("フィードバック前の最小空中時間")]
+		[Header("フィードバック前の最小空中時間")]
 		public float MinimumAirTimeBeforeFeedback = 0.2f;
 
-		[Header("Walls")]
+		[Header("壁")]
 		/// Whether or not the state should be reset to Idle when colliding laterally with a wall
-		[Tooltip("Whether or not the state should be reset to Idle when colliding laterally with a wall")]
+		[Tooltip("壁衝突時に歩行停止")]
+		[Header("壁衝突時に歩行停止")]
 		public bool StopWalkingWhenCollidingWithAWall = false;
 		
 		public Stack<float> ContextSpeedStack = new Stack<float>();

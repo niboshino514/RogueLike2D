@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
@@ -16,42 +16,48 @@ namespace MoreMountains.CorgiEngine
 		/// the possible modes this analysis can run on
 		public enum Modes { Framecount, Time }
         
-		public override string HelpBoxText() { return "This component computes and exposes various speeds at runtime. It doesn't serve any purpose on its own, " +
-		                                              "and is provided more as an example of how you can create abilities to analyze and extract data from gameplay, at runtime." +
-		                                              " These exposed values could then be used by other abilities, for example"; }
+		public override string HelpBoxText() { return "実行時に各種速度を計算・公開します。単体では用途はなく、ゲームプレイデータを実行時に分析するアビリティのサンプルとして提供されています。他アビリティから参照する例として使えます。"; }
 
-		[Header("General Settings")] 
+		[Header("全般設定")]
 		/// whether rolling average should be computed over the past X frames, or over time spans
-		[Tooltip("whether rolling average should be computed over the past X frames, or over time spans")]
+		[Tooltip("移動平均モード")]
+		[Header("移動平均モード")]
 		public Modes RollingAverageMode = Modes.Framecount;
 		/// the amount of samples to consider
-		[Tooltip("the amount of samples to consider")]
+		[Tooltip("移動平均サンプル数")]
+		[Header("移動平均サンプル数")]
 		public int RollingAverageSamplesCount = 10;
 		/// the amount of frames to ignore between two recordings for the rolling average
-		[Tooltip("the amount of frames to ignore between two recordings for the rolling average")]
+		[Tooltip("移動平均フレームインターバル")]
 		[MMEnumCondition("RollingAverageMode", (int)Modes.Framecount)]
+		[Header("移動平均フレームインターバル")]
 		public int RollingAverageFrameInterval = 10;
 		/// the duration (in seconds) to wait for between two recordings
-		[Tooltip("the duration (in seconds) to wait for between two recordings")]
+		[Tooltip("移動平均タイムインターバル")]
 		[MMEnumCondition("RollingAverageMode", (int)Modes.Time)]
+		[Header("移動平均タイムインターバル")]
 		public float RollingAverageTimeInterval = 0.5f;
 		/// the current frame counter
-		[Tooltip("the current frame counter")]
+		[Tooltip("フレームカウンター")]
 		[MMReadOnly]
+		[Header("フレームカウンター")]
 		public int FrameCounter;
         
-		[Header("Controller Speed")] 
+		[Header("コントローラー速度")]
 		/// the current speed of the controller, this frame
-		[Tooltip("the current speed of the controller, this frame")]
+		[Tooltip("コントローラー速度（現在フレーム）")]
 		[MMFReadOnly]
+		[Header("コントローラー速度（現在フレーム）")]
 		public Vector2 ControllerSpeed;
 		/// the speed of the controller last frame
-		[Tooltip("the speed of the controller last frame")]
+		[Tooltip("コントローラー速度（前フレーム）")]
 		[MMFReadOnly]
+		[Header("コントローラー速度（前フレーム）")]
 		public Vector2 ControllerSpeedLastFrame;
 		/// the rolling average speed of the controller, over the selected samples / duration / frame count
-		[Tooltip("the rolling average speed of the controller, over the selected samples / duration / frame count")]
+		[Tooltip("コントローラー速度（移動平均）")]
 		[MMFReadOnly]
+		[Header("コントローラー速度（移動平均）")]
 		public Vector2 ControllerSpeedRollingAverage;
         
 		[Header("Transform Speed")]

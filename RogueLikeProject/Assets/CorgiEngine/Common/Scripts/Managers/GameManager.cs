@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
@@ -168,38 +168,47 @@ namespace MoreMountains.CorgiEngine
 		MMEventListener<CorgiEngineEvent>, 
 		MMEventListener<CorgiEnginePointsEvent>
 	{
-        [Header("Settings")]
+        [Header("設定")]
         /// ゲームのターゲットフレームレート
         [Tooltip("ゲームのターゲットフレームレート")]
+        [Header("ターゲットフレームレート")]
         public int TargetFrameRate = 300;
 
-        [Header("Lives")]
+        [Header("残機")]
         /// キャラクターが持てる最大ライフ数
         [Tooltip("キャラクターが持てる最大ライフ数")]
+        [Header("最大残機数")]
         public int MaximumLives = 0;
         /// 現在のライフ数
         [Tooltip("現在のライフ数")]
+        [Header("現在の残機数")]
         public int CurrentLives = 0;
 
 
-        [Header("Game Over")]
+        [Header("ゲームオーバー")]
         /// ゲームオーバー時にライフをリセットするか
         [Tooltip("ゲームオーバー時にライフをリセットするか")]
+        [Header("ゲームオーバー時に残機をリセット")]
         public bool ResetLivesOnGameOver = true;
         /// ゲームオーバー時に永続キャラを消すか
         [Tooltip("ゲームオーバー時に永続キャラを消すか")]
+        [Header("ゲームオーバー時に永続キャラをリセット")]
         public bool ResetPersistentCharacterOnGameOver = true;
         /// ゲームオーバー時に保存されたキャラを消すか
         [Tooltip("ゲームオーバー時に保存されたキャラを消すか")]
+        [Header("ゲームオーバー時に保存キャラをリセット")]
         public bool ResetStoredCharacterOnGameOver = true;
         /// 全ライフを失ったときに遷移するシーン名
         [Tooltip("全ライフを失ったときに遷移するシーン名")]
+        [Header("ゲームオーバーシーン名")]
         public string GameOverScene;
         /// ゲームオーバーシーンに遷移するまでの遅延時間（秒）
         [Tooltip("ゲームオーバーシーンに遷移するまでの遅延時間（秒）")]
+        [Header("ゲームオーバーシーン遷移遅延時間")]
         public float DelayBeforeGameOverSceneLoad = 0f;
         /// インベントリを開いたときにゲームをポーズするか
         [Tooltip("インベントリを開いたときにゲームをポーズするか")]
+        [Header("インベントリ表示時にポーズ")]
         public bool PauseGameWhenInventoryOpens = true;
 
         /// the current number of game points

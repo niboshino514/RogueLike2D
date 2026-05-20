@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,13 +12,15 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Glide")]
 	public class CharacterGlide : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This component allows a Character to glide through the air, slowing its fall when pressing the Glide button (by default the same binding as the Jump button, but separated for convenience). Here you can define the force to apply to slow down the fall, and whether or not the Glide should wait for the Character to have exhausted all its jumps (otherwise it'll take priority over any jump after the first)."; }
+		public override string HelpBoxText() { return "グライドボタン（既定ではジャンプと同じキー、別設定可）で落下を遅らせて滑空できます。減速する力、全ジャンプを使い切るまでグライドを待つか（オフの場合は最初のジャンプ後に優先）を設定できます。"; }
 
 		/// the force to apply when gliding
-		[Tooltip("the force to apply when gliding")]
+		[Tooltip("垂直力")]
+		[Header("垂直力")]
 		public float VerticalForce = 0.1f;
 		/// whether or not the glide will wait for jumps to be exhausted
-		[Tooltip("whether or not the glide will wait for jumps to be exhausted")]
+		[Tooltip("ジャンプ残数ゼロ時のみ滑空")]
+		[Header("ジャンプ残数ゼロ時のみ滑空")]
 		public bool GlideOnlyIfNoJumpsLeft = true;
 
 		protected bool _gliding;

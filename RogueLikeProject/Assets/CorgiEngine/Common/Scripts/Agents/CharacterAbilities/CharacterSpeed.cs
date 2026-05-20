@@ -1,4 +1,4 @@
-﻿using MoreMountains.Tools;
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +12,12 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterSpeedState
 	{
 		/// the selected movement state
-		[Tooltip("the selected movement state")]
+		[Tooltip("移動状態")]
+		[Header("移動状態")]
 		public CharacterStates.MovementStates State;
 		/// the speed modifier to apply when in that state
-		[Tooltip("the speed modifier to apply when in that state")]
+		[Tooltip("速度修正値")]
+		[Header("速度修正値")]
 		public float SpeedModifier;
 	}
 
@@ -30,13 +32,16 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterSpeed : CharacterAbility
 	{
 		/// a list of states and their corresponding speed modifiers
-		[Tooltip("a list of states and their corresponding speed modifiers")]
+		[Tooltip("速度状態リスト")]
+		[Header("速度状態リスト")]
 		public List<CharacterSpeedState> States;
 		/// whether or not to apply the DefaultSpeedMultiplier when none of the above states is found
-		[Tooltip("whether or not to apply the DefaultSpeedMultiplier when none of the above states is found")]
+		[Tooltip("デフォルト速度乗数を適用する")]
+		[Header("デフォルト速度乗数を適用する")]
 		public bool ApplyDefaultSpeedMultiplier = true;
 		/// the default speed multiplier to apply when no other state is found
-		[Tooltip("the default speed multiplier to apply when no other state is found")]
+		[Tooltip("デフォルト速度乗数")]
+		[Header("デフォルト速度乗数")]
 		public float DefaultSpeedMultiplier = 1f;
                 
 		/// <summary>

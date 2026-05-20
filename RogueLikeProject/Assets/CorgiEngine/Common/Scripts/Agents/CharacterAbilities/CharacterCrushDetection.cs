@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
@@ -15,49 +15,56 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Crush Detection")]
 	public class CharacterCrushDetection : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This ability will apply damage or cause the death of the character when crushed." +
-		                                              "Getting crushed happens when your character is colliding on one direction, and being crushed by anything on the CrusherLayers" +
-		                                              "from the opposite direction. So a character that is standing on a platform and gets a falling platform on its head is getting crushed."; }
+		public override string HelpBoxText() { return "押しつぶされるとダメージまたは即死します。一方の方向に接触し、CrusherLayers から反対方向に押されると発生します。例：足場の上に立っているときに上から落ちるプラットフォームで押しつぶされます。"; }
 
 		/// the possible ways to detect crushes
 		public enum DetectionDirections { Vertical, Horizontal, Both }
 
-		[Header("Crush Detection")]
+		[Header("押しつぶし検出")]
 
 		/// the layermask to look for crushing objects on
-		[Tooltip("the layermask to look for crushing objects on")]
+		[Tooltip("押しつぶしオブジェクトのレイヤーマスク")]
+		[Header("押しつぶしオブジェクトのレイヤーマスク")]
 		public LayerMask CrusherLayers = LayerManager.MovingObjectsLayerMask;
 		/// the direction to look for crushing objects
-		[Tooltip("the direction to look for crushing objects")]
+		[Tooltip("検出方向")]
+		[Header("検出方向")]
 		public DetectionDirections DetectionDirection = DetectionDirections.Vertical;
 		/// raycasts will be cast from the center of your character, towards the edges. This skin width is usually a small value, that will
 		/// shorten the rays to avoid them detecting simply colliding walls/ceilings/grounds. If you're not sure, leave it at 0.02f
 		[Tooltip("raycasts will be cast from the center of your character, towards the edges. This skin width is usually a small value, that will" +
 		         "shorten the rays to avoid them detecting simply colliding walls/ceilings/grounds. If you're not sure, leave it at 0.02f")]
+		[Header("押しつぶし検出スキン幅")]
 		public float CrushDetectionSkinWidth = 0.02f;
 
-		[Header("On Crush")]
+		[Header("押しつぶし時")]
 
 		/// whether the character should insta die when crushed or not
-		[Tooltip("whether the character should insta die when crushed or not")]
+		[Tooltip("押しつぶし時に即死")]
+		[Header("押しつぶし時に即死")]
 		public bool DieWhenCrushed = true;
 		/// whether damage should be applied to the character when crushed or not
-		[Tooltip("whether damage should be applied to the character when crushed or not")]
+		[Tooltip("押しつぶし時にダメージを与える")]
+		[Header("押しつぶし時にダメージを与える")]
 		public bool ApplyDamageWhenCrushed = false;
 		/// the amount of damage to take per crush
 		[MMCondition("ApplyDamageWhenCrushed", true)]
-		[Tooltip("the amount of damage to take per crush")]
+		[Tooltip("押しつぶし時のダメージ量")]
+		[Header("押しつぶし時のダメージ量")]
 		public float DamageTakenWhenCrushed = 10;
 		/// how long the character should flicker when crushed
 		[MMCondition("ApplyDamageWhenCrushed", true)]
-		[Tooltip("how long the character should flicker when crushed")]
+		[Tooltip("ダメージ時の点滅持続時間")]
+		[Header("ダメージ時の点滅持続時間")]
 		public float DamageTakenFlickerDuration = 0.2f;
 		/// how long (in seconds) the character should remain invincible after a crush
 		[MMCondition("ApplyDamageWhenCrushed", true)]
-		[Tooltip("how long (in seconds) the character should remain invincible after a crush")]
+		[Tooltip("ダメージ後の無敵持続時間")]
+		[Header("ダメージ後の無敵持続時間")]
 		public float DamageTakenInvincibilityDuration = 0.6f;
-		/// an optional list of damage types to apply when crush damage kicks in  
-		[Tooltip("an optional list of damage types to apply when crush damage kicks in")]
+		/// an optional list of damage types to apply when crush damage kicks in
+		[Tooltip("押しつぶしダメージタイプ一覧")]
+		[Header("押しつぶしダメージタイプ一覧")]
 		public List<TypedDamage> CrushDamageTypes;
 
 		protected bool _crushedThisFrame = false;

@@ -15,25 +15,25 @@ namespace MoreMountains.CorgiEngine
 	public class WeaponRecoilProperties
 	{
 		/// The force to apply to the Weapon owner if it's grounded when this recoil is triggered
-		[Tooltip("The force to apply to the Weapon owner if it's grounded when this recoil is triggered")]
+		[Tooltip("接地中にこの反動が発生したとき、武器所有者に加える力")]
 		public float RecoilForceGrounded = 10f;
 		/// The force to apply to the Weapon owner if it's airborne when this recoil is triggered
-		[Tooltip("The force to apply to the Weapon owner if it's airborne when this recoil is triggered")]
+		[Tooltip("空中でこの反動が発生したとき、武器所有者に加える力")]
 		public float RecoilForceAirborne = 10f;
 		/// The rotation (in degrees) to apply to the recoil force
-		[Tooltip("The rotation (in degrees) to apply to the recoil force")]
+		[Tooltip("反動の力に適用する回転（度）")]
 		public float RecoilAngleModifier = 0f;
 		/// Multipliers to apply to the x and y components of the recoil force
-		[Tooltip("Multipliers to apply to the x and y components of the recoil force")]
+		[Tooltip("反動力の X/Y 成分に適用する倍率")]
 		public Vector2 DirectionMultiplier = Vector2.one;
 		/// the chosen way to apply this recoil to the controller 
-		[Tooltip("the chosen way to apply this recoil to the controller")]
+		[Tooltip("コントローラーへ反動を適用する方法")]
 		public DamageOnTouch.KnockbackStyles RecoilStyle = DamageOnTouch.KnockbackStyles.AddForce;
 		/// the delay (in seconds) to apply before triggering the recoil
-		[Tooltip("the delay (in seconds) to apply before triggering the recoil")]
+		[Tooltip("反動を発動するまでの遅延（秒）")]
 		public float Delay = 0f;
 		/// a feedback to play when this recoil triggers
-		[Tooltip("a feedback to play when this recoil triggers")]
+		[Tooltip("この反動発動時に再生するフィードバック")]
 		public MMFeedbacks RecoilFeedback;
 	}
     
@@ -49,263 +49,265 @@ namespace MoreMountains.CorgiEngine
 		/// the possible states the weapon can be in
 		public enum WeaponStates { WeaponIdle, WeaponStart, WeaponDelayBeforeUse, WeaponUse, WeaponDelayBetweenUses, WeaponStop, WeaponReloadNeeded, WeaponReloadStart, WeaponReload, WeaponReloadStop, WeaponInterrupted, WeaponInCooldown }
 
-		[MMInspectorGroup("General Settings", true, 12)]
+		[MMInspectorGroup("一般設定", true, 12)]
 		/// is this weapon on semi or full auto ?
-		[Tooltip("is this weapon on semi or full auto ?")]
+		[Tooltip("セミオート／フルオート")]
 		public TriggerModes TriggerMode = TriggerModes.Auto;
 		/// whether or not this weapon can be interrupted 
-		[Tooltip("whether or not this weapon can be interrupted ")]
+		[Tooltip("中断可能か")]
 		public bool Interruptable = false;
 		/// If this is true, the weapon will initialize itself on start, otherwise it'll have to be init manually, usually by the CharacterHandleWeapon class
-		[Tooltip("If this is true, the weapon will initialize itself on start, otherwise it'll have to be init manually, usually by the CharacterHandleWeapon class")]
+		[Tooltip("開始時に自動初期化（オフの場合は CharacterHandleWeapon などで手動初期化）")]
 		public bool InitializeOnStart = false;
 		
-		[Header("Delays")]
+		[Header("遅延")]
 		/// the delay before use, that will be applied for every shot
-		[Tooltip("the delay before use, that will be applied for every shot")]
+		[Tooltip("各ショット前の使用遅延")]
 		public float DelayBeforeUse = 0f;
 		/// whether or not the delay before used can be interrupted by releasing the shoot button (if true, releasing the button will cancel the delayed shot)
-		[Tooltip("whether or not the delay before used can be interrupted by releasing the shoot button (if true, releasing the button will cancel the delayed shot)")]
+		[Tooltip("射撃ボタンを離すと使用前遅延を中断できるか")]
 		public bool DelayBeforeUseReleaseInterruption = true;
 		/// the time (in seconds) between two shots		
-		[Tooltip("the time (in seconds) between two shots		")]
+		[Tooltip("ショット間隔（秒）")]
 		public float TimeBetweenUses = 1f;
 		/// whether or not the time between uses can be interrupted by releasing the shoot button (if true, releasing the button will cancel the time between uses)
-		[Tooltip("whether or not the time between uses can be interrupted by releasing the shoot button (if true, releasing the button will cancel the time between uses)")]
+		[Tooltip("射撃ボタンを離すとショット間隔を中断できるか")]
 		public bool TimeBetweenUsesReleaseInterruption = true;
 		/// a duration, in seconds, at the end of the weapon's life cycle and before going back to Idle
-		[Tooltip("a duration, in seconds, at the end of the weapon's life cycle and before going back to Idle")]
+		[Tooltip("武器サイクル終了から Idle に戻るまでのクールダウン（秒）")]
 		public float CooldownDuration = 0f;
 		
-		[MMInspectorGroup("Burst Mode", true, 18)]
+		[MMInspectorGroup("バーストモード", true, 18)]
 		/// if this is true, the weapon will activate repeatedly for every shoot request
-		[Tooltip("if this is true, the weapon will activate repeatedly for every shoot request")]
+		[Tooltip("射撃要求ごとに連続発動（バースト）")]
 		public bool UseBurstMode = false;
 		/// the amount of 'shots' in a burst sequence
-		[Tooltip("the amount of 'shots' in a burst sequence")]
+		[Tooltip("バースト内のショット数")]
 		public int BurstLength = 3;
 		/// the time between shots in a burst sequence (in seconds)
-		[Tooltip("the time between shots in a burst sequence (in seconds)")]
+		[Tooltip("バースト内ショット間隔（秒）")]
 		public float BurstTimeBetweenShots = 0.1f;
 
-		[MMInspectorGroup("Magazine", true, 24)]
+		[MMInspectorGroup("マガジン", true, 24)]
 
 		/// whether or not the weapon is magazine based. If it's not, it'll just take its ammo inside a global pool
-		[Tooltip("whether or not the weapon is magazine based. If it's not, it'll just take its ammo inside a global pool")]
+		[Tooltip("マガジン式か（オフの場合はグローバル弾薬プール）")]
 		public bool MagazineBased = false;
 		/// the size of the magazine
 		[MMCondition("MagazineBased", true)]
-		[Tooltip("the size of the magazine")]
+		[Tooltip("マガジンサイズ")]
 		public int MagazineSize = 30;
 		/// if this is true, pressing the fire button when a reload is needed will reload the weapon. Otherwise you'll need to press the reload button
 		[MMCondition("MagazineBased", true)]
-		[Tooltip("if this is true, pressing the fire button when a reload is needed will reload the weapon. Otherwise you'll need to press the reload button")]
+		[Tooltip("リロード必要時に射撃ボタンでリロードするか")]
 		public bool AutoReload;
 		/// the time it takes to reload the weapon
 		[MMCondition("MagazineBased", true)]
-		[Tooltip("the time it takes to reload the weapon")]
+		[Tooltip("リロード時間")]
 		public float ReloadTime = 2f;
 		/// the amount of ammo consumed everytime the weapon fires
 		[MMCondition("MagazineBased", true)]
-		[Tooltip("the amount of ammo consumed everytime the weapon fires")]
+		[Tooltip("1 ショットあたりの消費弾数")]
 		public int AmmoConsumedPerShot = 1;
 		/// if this is set to true, the weapon will auto destroy when there's no ammo left
 		[MMCondition("MagazineBased", true)]
-		[Tooltip("if this is set to true, the weapon will auto destroy when there's no ammo left")]
+		[Tooltip("弾切れ時に武器を自動破棄するか")]
 		public bool AutoDestroyWhenEmpty;
 		/// the delay (in seconds) before weapon destruction if empty
 		[MMCondition("MagazineBased", true)]
-		[Tooltip("the delay (in seconds) before weapon destruction if empty")]
+		[Tooltip("弾切れ時の破棄までの遅延（秒）")]
 		public float AutoDestroyWhenEmptyDelay = 1f;
 		/// the current amount of ammo loaded inside the weapon
 		[MMCondition("MagazineBased", true)]
 		[MMReadOnly]
-		[Tooltip("the current amount of ammo loaded inside the weapon")]
+		[Tooltip("武器内の現在装填弾数")]
 		public int CurrentAmmoLoaded = 0;
 
-		[MMInspectorGroup("Position", true, 32)]
+		[MMInspectorGroup("位置", true, 32)]
 
 		/// an offset that will be applied to the weapon once attached to the center of the WeaponAttachment transform.
-		[Tooltip("an offset that will be applied to the weapon once attached to the center of the WeaponAttachment transform.")]
+		[Tooltip("WeaponAttachment 中央に付けたときのオフセット")]
 		public Vector3 WeaponAttachmentOffset = Vector3.zero;
 		/// should that weapon be flipped when the character flips ?
-		[Tooltip("should that weapon be flipped when the character flips ?")]
+		[Tooltip("キャラクター反転時に武器も反転するか")]
 		public bool FlipWeaponOnCharacterFlip = true;
 		/// the FlipValue will be used to multiply the model's transform's localscale on flip. Usually it's -1,1,1, but feel free to change it to suit your model's specs
-		[Tooltip("the FlipValue will be used to multiply the model's transform's localscale on flip. Usually it's -1,1,1, but feel free to change it to suit your model's specs")]
+		[Tooltip("反転時にモデルの localScale に掛ける値（通常 -1,1,1）")]
 		public Vector3 FlipValue = new Vector3(-1,1,1);
 		
-		[MMInspectorGroup("Hands Positions", true, 60)]
+		[MMInspectorGroup("手の位置", true, 60)]
 
 		/// the transform to which the character's left hand should be attached to
-		[Tooltip("the transform to which the character's left hand should be attached to")]
+		[Tooltip("左手を付ける Transform")]
 		public Transform LeftHandHandle;
 		/// the transform to which the character's right hand should be attached to
-		[Tooltip("the transform to which the character's right hand should be attached to")]
+		[Tooltip("右手を付ける Transform")]
 		public Transform RightHandHandle;
 
-		[MMInspectorGroup("Movement", true, 28)]
+		[MMInspectorGroup("移動", true, 28)]
 
 		/// if this is true, a multiplier will be applied to movement while the weapon is equipped
-		[Tooltip("if this is true, a multiplier will be applied to movement while the weapon is equipped")]
+		[Tooltip("装備中に移動倍率を適用するか")]
 		public bool ModifyMovementWhileEquipped = false;
 		/// the multiplier to apply to movement while equipped
-		[Tooltip("the multiplier to apply to movement while equipped")]
+		[Tooltip("装備中の移動倍率")]
+		[Header("装備中の移動倍率")]
 		[MMCondition("ModifyMovementWhileEquipped", true)]
 		public float PermanentMovementMultiplier = 0f;
 		/// if this is true, a multiplier will be applied to movement while the weapon is active
-		[Tooltip("if this is true, a multiplier will be applied to movement while the weapon is active")]
+		[Tooltip("使用中に移動倍率を適用するか")]
 		public bool ModifyMovementWhileAttacking = false;
 		/// the multiplier to apply to movement while attacking
-		[Tooltip("the multiplier to apply to movement while attacking")]
+		[Tooltip("使用中の移動倍率")]
+		[Header("使用中の移動倍率")]
 		[MMCondition("ModifyMovementWhileAttacking", true)]
 		public float MovementMultiplier = 0f;
 		/// if this is true, movement will always be reset to initial speed after a multiplier stops being applied
-		[Tooltip("if this is true, movement will always be reset to initial speed after a multiplier stops being applied")]
+		[Tooltip("倍率終了後に常に初期速度へリセットするか")]
 		public bool AlwaysResetMultiplierToInitial = true;
 		/// if this is true all movement will be prevented (even flip) while the weapon is active
 		[FormerlySerializedAs("PreventHorizontalMovementWhileInUse")] 
-		[Tooltip("if this is true all movement will be prevented (even flip) while the weapon is active")]
+		[Tooltip("使用中は移動を禁止（反転含む）")]
 		public bool PreventHorizontalGroundMovementWhileInUse = false;
 		/// if this is true all horizontal air movement will be prevented (even flip) while the weapon is active
-		[Tooltip("if this is true all horizontal air movement will be prevented (even flip) while the weapon is active")]
+		[Tooltip("使用中は空中の水平移動を禁止（反転含む）")]
 		public bool PreventHorizontalAirMovementWhileInUse = false;
 		/// whether or not to apply a force when the weapon is in use
-		[Tooltip("whether or not to set a force when the weapon is in use")]
+		[Tooltip("使用中に力を設定するか")]
 		public bool SetForceWhileInUse = false;
 		/// the force to apply when the weapon is in use, if SetForceWhileInUse is true
 		[MMCondition("SetForceWhileInUse", true)]
-		[Tooltip("the force to apply when the weapon is in use, if SetForceWhileInUse is true")]
+		[Tooltip("使用中に加える力（SetForceWhileInUse が true のとき）")]
 		public Vector2 ForceWhileInUse =  Vector2.zero;
 		/// whether or not to disable gravity while the weapon is in use
-		[Tooltip("whether or not to disable gravity while the weapon is in use")]
+		[Tooltip("使用中に重力を無効にするか")]
 		public bool DisableGravityWhileInUse = false;
 		/// whether or not to disable flip while the weapon is in use
-		[Tooltip("whether or not to disable flip while the weapon is in use")]
+		[Tooltip("使用中に反転を無効にするか")]
 		public bool PreventFlipWhileInUse = false;
 
 
-		[MMInspectorGroup("Animation", true, 20)]
+		[MMInspectorGroup("アニメーション", true, 20)]
 
 		/// the other animators (other than the Character's) that you want to update every time this weapon gets used
-		[Tooltip("the other animators (other than the Character's) that you want to update every time this weapon gets used")]
+		[Tooltip("使用時に更新する Animator（キャラ以外）")]
 		public List<Animator> Animators;
 		/// if this is true, the weapon's animator(s) will mirror the animation parameter of the owner character (that way your weapon's animator will be able to "know" if the character is walking, jumping, etc)
-		[Tooltip("if this is true, the weapon's animator(s) will mirror the animation parameter of the owner character (that way your weapon's animator will be able to 'know' if the character is walking, jumping, etc)")]
+		[Tooltip("武器 Animator がキャラのパラメータをミラーするか")]
 		public bool MirrorCharacterAnimatorParameters = false;
 
-		[MMInspectorGroup("Animation Parameters Names", true, 40)]
+		[MMInspectorGroup("アニメーションパラメータ名", true, 40)]
 
 		/// the name of the parameter to send to true as long as this weapon is equipped, used or not. While all the other parameters defined here are updated by the Weapon class itself, and
 		/// passed to the weapon and character, this one will be updated by CharacterHandleWeapon only.
-		[Tooltip("the name of the parameter to send to true as long as this weapon is equipped, used or not. While all the other parameters defined here are updated by the Weapon class itself, and passed to the weapon and character, this one will be updated by CharacterHandleWeapon only.")]
+		[Tooltip("装備中常に true にするパラメータ名（CharacterHandleWeapon のみ更新）")]
 		public string EquippedAnimationParameter;
 		/// the name of the weapon's idle animation parameter : this will be true all the time except when the weapon is being used
-		[Tooltip("the name of the weapon's idle animation parameter : this will be true all the time except when the weapon is being used")]
+		[Tooltip("Idle パラメータ名（使用中以外 true）")]
 		public string IdleAnimationParameter;
 		/// the name of the weapon's start animation parameter : true at the frame where the weapon starts being used
-		[Tooltip("the name of the weapon's start animation parameter : true at the frame where the weapon starts being used")]
+		[Tooltip("開始パラメータ名（使用開始フレームで true）")]
 		public string StartAnimationParameter;
 		/// the name of the weapon's delay before use animation parameter : true when the weapon has been activated but hasn't been used yet
-		[Tooltip("the name of the weapon's delay before use animation parameter : true when the weapon has been activated but hasn't been used yet")]
+		[Tooltip("使用前遅延パラメータ名")]
 		public string DelayBeforeUseAnimationParameter;
 		/// the name of the weapon's single use animation parameter : true at each frame the weapon activates (shoots)
-		[Tooltip("the name of the weapon's single use animation parameter : true at each frame the weapon activates (shoots)")]
+		[Tooltip("単発使用パラメータ名（発動フレームごとに true）")]
 		public string SingleUseAnimationParameter;
 		/// the name of the weapon's in use animation parameter : true at each frame the weapon has started firing but hasn't stopped yet
-		[Tooltip("the name of the weapon's in use animation parameter : true at each frame the weapon has started firing but hasn't stopped yet")]
+		[Tooltip("使用中パラメータ名（発射開始〜停止前）")]
 		public string UseAnimationParameter;
 		/// the name of the weapon's delay between each use animation parameter : true when the weapon is in use
-		[Tooltip("the name of the weapon's delay between each use animation parameter : true when the weapon is in use")]
+		[Tooltip("ショット間隔パラメータ名")]
 		public string DelayBetweenUsesAnimationParameter;
 		/// the name of the weapon's in cooldown animation parameter : true when the weapon is in cooldown
-		[Tooltip("the name of the weapon's in cooldown animation parameter : true when the weapon is in cooldown")]
+		[Tooltip("クールダウンパラメータ名")]
 		public string InCooldownAnimationParameter;
 		/// the name of the weapon stop animation parameter : true after a shot and before the next one or the weapon's stop 
-		[Tooltip("the name of the weapon stop animation parameter : true after a shot and before the next one or the weapon's stop ")]
+		[Tooltip("停止パラメータ名")]
 		public string StopAnimationParameter;
 		/// the name of the weapon reload start animation parameter
-		[Tooltip("the name of the weapon reload start animation parameter")]
+		[Tooltip("リロード開始パラメータ名")]
 		public string ReloadStartAnimationParameter;
 		/// the name of the weapon reload animation parameter
-		[Tooltip("the name of the weapon reload animation parameter")]
+		[Tooltip("リロードパラメータ名")]
 		public string ReloadAnimationParameter;
 		/// the name of the weapon reload end animation parameter
-		[Tooltip("the name of the weapon reload end animation parameter")]
+		[Tooltip("リロード終了パラメータ名")]
 		public string ReloadStopAnimationParameter;
 		/// the name of the weapon's angle animation parameter
-		[Tooltip("the name of the weapon's angle animation parameter")]
+		[Tooltip("武器角度パラメータ名")]
 		public string WeaponAngleAnimationParameter;
 		/// the name of the weapon's angle animation parameter, adjusted so it's always relative to the direction the character is currently facing
-		[Tooltip("the name of the weapon's angle animation parameter, adjusted so it's always relative to the direction the character is currently facing")]
+		[Tooltip("相対武器角度パラメータ名")]
 		public string WeaponAngleRelativeAnimationParameter;
         
-		[MMInspectorGroup("Feedbacks", true, 33)]
+		[MMInspectorGroup("フィードバック", true, 33)]
 
 		/// the feedback to play when the weapon starts being used
-		[Tooltip("the feedback to play when the weapon starts being used")]
+		[Tooltip("使用開始フィードバック")]
 		public MMFeedbacks WeaponStartMMFeedback;
 		/// the feedback to play while the weapon is in use
-		[Tooltip("the feedback to play while the weapon is in use")]
+		[Tooltip("使用中フィードバック")]
 		public MMFeedbacks WeaponUsedMMFeedback;
 		/// the feedback to play when the weapon stops being used
-		[Tooltip("the feedback to play when the weapon stops being used")]
+		[Tooltip("使用停止フィードバック")]
 		public MMFeedbacks WeaponStopMMFeedback;
 		/// the feedback to play when the weapon gets reloaded
-		[Tooltip("the feedback to play when the weapon gets reloaded")]
+		[Tooltip("リロードフィードバック")]
 		public MMFeedbacks WeaponReloadMMFeedback;
 		/// the feedback to play when the weapon gets reloaded
-		[Tooltip("the feedback to play when the weapon gets reloaded")]
+		[Tooltip("リロードが必要なときのフィードバック")]
 		public MMFeedbacks WeaponReloadNeededMMFeedback;
 
 		/// A MMFeedback to play when the weapon hits anything (damageable or not) 
-		[Tooltip("A MMFeedback to play when the weapon hits anything (damageable or not)")]
+		[Tooltip("何かに命中したときのフィードバック")]
 		public MMFeedbacks WeaponOnHitFeedback;
 		/// A MMFeedback to play when the weapon misses (what constitutes a miss is defined per Weapon subclass)
-		[Tooltip("A MMFeedback to play when the weapon misses (what constitutes a miss is defined per Weapon subclass)")]
+		[Tooltip("ミス時のフィードバック")]
 		public MMFeedbacks WeaponOnMissFeedback;
 		/// A MMFeedback to play when the weapon hits a damageable
-		[Tooltip("A MMFeedback to play when the weapon hits a damageable")]
+		[Tooltip("ダメージ可能対象に命中したときのフィードバック")]
 		public MMFeedbacks WeaponOnHitDamageableFeedback;
 		/// A MMFeedback to play when the weapon hits a non damageable object
-		[Tooltip("A MMFeedback to play when the weapon hits a non damageable object")]
+		[Tooltip("非ダメージ対象に命中したときのフィードバック")]
 		public MMFeedbacks WeaponOnHitNonDamageableFeedback;
 		/// A MMFeedback to play when the weapon kills something
-		[Tooltip("A MMFeedback to play when the weapon kills something")]
+		[Tooltip("撃破時のフィードバック")]
 		public MMFeedbacks WeaponOnKillFeedback;
 
-		[MMInspectorGroup("Recoil", true, 33)]
+		[MMInspectorGroup("反動", true, 33)]
         
 		/// Whether or not to apply recoil to the Weapon owner every time this weapon gets used, regardless of the outcome
-		[Tooltip("Whether or not to apply recoil to the Weapon owner every time this weapon gets used, regardless of the outcome")]
+		[Tooltip("使用のたびに反動を適用するか（結果問わず）")]
 		public bool ApplyRecoilOnUse = false;
 		/// The recoil to apply every time this weapon gets used
 		[MMCondition("ApplyRecoilOnUse", true)]
 		public WeaponRecoilProperties RecoilOnUseProperties;
 
 		/// Whether or not to apply recoil to the Weapon owner every time this weapon hits a damageable object (an object with a Health component, basically)
-		[Tooltip("Whether or not to apply recoil to the Weapon owner every time this weapon hits a damageable object (an object with a Health component, basically)")]
+		[Tooltip("ダメージ可能対象命中時に反動を適用するか")]
 		public bool ApplyRecoilOnHitDamageable = false;
 		/// the recoil to apply when this weapon hits a damageable 
 		[MMCondition("ApplyRecoilOnHitDamageable", true)]
 		public WeaponRecoilProperties RecoilOnHitDamageableProperties;
 
 		/// Whether or not to apply recoil to the Weapon owner every time this weapon hits a non damageable object (a platform, prop, etc)
-		[Tooltip("Whether or not to apply recoil to the Weapon owner every time this weapon hits a non damageable object (a platform, prop, etc)")]
+		[Tooltip("非ダメージ対象命中時に反動を適用するか")]
 		public bool ApplyRecoilOnHitNonDamageable = false;
 		/// the recoil to apply when this weapon hits a non damageable
 		[MMCondition("ApplyRecoilOnHitNonDamageable", true)]
 		public WeaponRecoilProperties RecoilOnHitNonDamageableProperties;
 
 		/// Whether or not to apply recoil to the Weapon owner every time the weapon misses its hit
-		[Tooltip("Whether or not to apply recoil to the Weapon owner every time the weapon misses its hit")]
+		[Tooltip("ミス時に反動を適用するか")]
 		public bool ApplyRecoilOnMiss = false; 
 		/// the recoil to apply when this weapon hits nothing
 		[MMCondition("ApplyRecoilOnMiss", true)]
 		public WeaponRecoilProperties RecoilOnMissProperties;
 
 		/// Whether or not to apply recoil to the Weapon owner every time the weapon kills its target
-		[Tooltip("Whether or not to apply recoil to the Weapon owner every time the weapon kills its target")]
+		[Tooltip("撃破時に反動を適用するか")]
 		public bool ApplyRecoilOnKill = false;
 		/// The recoil to apply on kill
 		[MMCondition("ApplyRecoilOnKill", true)]

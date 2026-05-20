@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +10,9 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Damage Dash")]
 	public class CharacterDamageDash : CharacterDash
 	{
-		[Header("Damage Dash")]
+		[Header("ダメージダッシュ")]
 		/// the DamageOnTouch object to activate when dashing (usually placed under the Character's model, will require a Collider2D of some form, set to trigger
+		[Header("接触ダメージオブジェクト")]
 		[Tooltip("the DamageOnTouch object to activate when dashing (usually placed under the Character's model, will require a Collider2D of some form, set to trigger")]
 		public DamageOnTouch TargetDamageOnTouch;
         

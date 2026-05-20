@@ -13,34 +13,41 @@ namespace MoreMountains.CorgiEngine
 	{
 		[MMInspectorGroup("Finish Level", true, 22)]
 
-		/// the (exact) name of the level to go to 
-		[Tooltip("the (exact) name of the level to go to ")]
+		/// the (exact) name of the level to go to
+		[Tooltip("レベル名")]
+		[Header("レベル名")]
 		public string LevelName;
 		/// the delay (in seconds) before actually redirecting to a new scene
-		[Tooltip("the delay (in seconds) before actually redirecting to a new scene")]
+		[Tooltip("遷移前遅延（秒）")]
+		[Header("遷移前遅延（秒）")]
 		public float DelayBeforeTransition = 0f;
 
-		[MMInspectorGroup("MMFader Transition", true, 25)]
+		[MMInspectorGroup("MMFader トランジション", true, 25)]
 
 		/// if this is true, a fade to black will occur when teleporting
-		[Tooltip("if this is true, a fade to black will occur when teleporting")]
+		[Tooltip("フェードを発動")]
+		[Header("フェードを発動")]
 		public bool TriggerFade = false;
 		/// the ID of the fader to target
 		[MMCondition("TriggerFade", true)]
-		[Tooltip("the ID of the fader to target")]
+		[Tooltip("フェーダーID")]
+		[Header("フェーダーID")]
 		public int FaderID = 0;
 		/// the curve to use to fade to black
 		[MMCondition("TriggerFade", true)]
-		[Tooltip("the curve to use to fade to black")]
+		[Tooltip("フェードトゥイーン")]
+		[Header("フェードトゥイーン")]
 		public MMTweenType FadeTween = new MMTweenType(MMTween.MMTweenCurve.EaseInCubic);
 
-		[MMInspectorGroup("Freeze", true, 27)]
+		[MMInspectorGroup("フリーズ", true, 27)]
 
 		/// whether or not time should be frozen during the transition
-		[Tooltip("whether or not time should be frozen during the transition")]
+		[Tooltip("時間をフリーズ")]
+		[Header("時間をフリーズ")]
 		public bool FreezeTime = false;
 		/// whether or not the character should be frozen (input blocked) for the duration of the transition
-		[Tooltip("whether or not the character should be frozen (input blocked) for the duration of the transition")]
+		[Tooltip("キャラクターをフリーズ")]
+		[Header("キャラクターをフリーズ")]
 		public bool FreezeCharacter = true;
 
 		protected WaitForSeconds _delayWaitForSeconds;

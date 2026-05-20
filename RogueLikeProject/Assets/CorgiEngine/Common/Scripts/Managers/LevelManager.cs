@@ -54,82 +54,98 @@ namespace MoreMountains.CorgiEngine
 		public enum BoundsModes { TwoD, ThreeD }
 
 		/// the prefab you want for your player
-		[Header("Instantiate Characters")]
+		[Header("キャラクターのインスタンス化")]
 		[MMInformation("The LevelManager is responsible for handling spawn/respawn, checkpoints management and level bounds. Here you can define one or more playable characters for your level..",MMInformationAttribute.InformationType.Info,false)]
 
 		/// the list of player prefabs to instantiate
-		[Tooltip("the list of player prefabs to instantiate")]
+		[Tooltip("プレイヤープレハブ一覧")]
+		[Header("プレイヤープレハブ一覧")]
 		public Character[] PlayerPrefabs ;
 		/// should the player IDs be auto attributed (usually yes)
-		[Tooltip("should the player IDs be auto attributed (usually yes)")]
+		[Tooltip("プレイヤーIDを自動割り当て")]
+		[Header("プレイヤーIDを自動割り当て")]
 		public bool AutoAttributePlayerIDs = true;
 
-		[Header("Characters already in the scene")]
+		[Header("シーンに既に配置されているキャラクター")]
 		[MMInformation("It's recommended to have the LevelManager instantiate your characters, but if instead you'd prefer to have them already present in the scene, just bind them in the list below.", MMInformationAttribute.InformationType.Info, false)]
 
 		/// a list of Characters already present in the scene before runtime. If this list is filled, PlayerPrefabs will be ignored
-		[Tooltip("a list of Characters already present in the scene before runtime. If this list is filled, PlayerPrefabs will be ignored")]
+		[Tooltip("シーンキャラクター一覧")]
+		[Header("シーンキャラクター一覧")]
 		public List<Character> SceneCharacters;
 
-		[Header("Checkpoints")]
+		[Header("チェックポイント")]
 		[MMInformation("Here you can select a checkpoint attribution axis (if your level is horizontal go for X, Y if it's vertical), and a debug spawn where your player character will spawn from while in editor mode.",MMInformationAttribute.InformationType.Info,false)]
 
 		/// A checkpoint to use to force the character to spawn at
-		[Tooltip("A checkpoint to use to force the character to spawn at")]
+		[Tooltip("デバッグスポーン地点")]
+		[Header("デバッグスポーン地点")]
 		public CheckPoint DebugSpawn;
 		/// the axis on which objects should be compared
-		[Tooltip("the axis on which objects should be compared")]
+		[Tooltip("チェックポイント割り当て軸")]
+		[Header("チェックポイント割り当て軸")]
 		public CheckpointsAxis CheckpointAttributionAxis = CheckpointsAxis.x;
 		/// the direction in which checkpoint order should be determined
-		[Tooltip("the direction in which checkpoint order should be determined")]
+		[Tooltip("チェックポイント割り当て方向")]
+		[Header("チェックポイント割り当て方向")]
 		public CheckpointDirections CheckpointAttributionDirection = CheckpointDirections.Ascending;
 
 		/// the current checkpoint
-		[Tooltip("the current checkpoint")]
+		[Tooltip("現在のチェックポイント")]
 		[MMReadOnly]
+		[Header("現在のチェックポイント")]
 		public CheckPoint CurrentCheckPoint;
 
 		[Space(10)]
-		[Header("Points of Entry")]
+		[Header("入場地点")]
 
 		/// a list of all the points of entry for this level
-		[Tooltip("a list of all the points of entry for this level.")]
+		[Tooltip("入場地点一覧")]
+		[Header("入場地点一覧")]
 		public List<PointOfEntry> PointsOfEntry;
 
 		[Space(10)]
-		[Header("Intro and Outro durations")]
+		[Header("イントロ・アウトロ持続時間")]
 		[MMInformation("Here you can specify the length of the fade in and fade out at the start and end of your level. You can also determine the delay before a respawn.",MMInformationAttribute.InformationType.Info,false)]
 
 		/// duration of the initial fade in (in seconds)
-		[Tooltip("duration of the initial fade in (in seconds)")]
+		[Tooltip("イントロフェード持続時間")]
+		[Header("イントロフェード持続時間")]
 		public float IntroFadeDuration=1f;
 		/// duration of the fade to black at the end of the level (in seconds)
-		[Tooltip("duration of the fade to black at the end of the level (in seconds)")]
+		[Tooltip("アウトロフェード持続時間")]
+		[Header("アウトロフェード持続時間")]
 		public float OutroFadeDuration=1f;
 		/// the ID to use when triggering the event (should match the ID on the fader you want to use)
-		[Tooltip("the ID to use when triggering the event (should match the ID on the fader you want to use)")]
+		[Tooltip("フェーダーID")]
+		[Header("フェーダーID")]
 		public int FaderID = 0;
 		/// the curve to use for in and out fades
-		[Tooltip("the curve to use for in and out fades")]
+		[Tooltip("フェードカーブ")]
+		[Header("フェードカーブ")]
 		public MMTweenType FadeTween = new MMTweenType(MMTween.MMTweenCurve.EaseInOutCubic);
 		/// duration between a death of the main character and its respawn
-		[Tooltip("duration between a death of the main character and its respawn")]
+		[Tooltip("リスポーン遅延")]
+		[Header("リスポーン遅延")]
 		public float RespawnDelay = 2f;
 		/// if this is true, points will be reset when this level restarts - usually after a player's death
-		[Tooltip("if this is true, points will be reset when this level restarts - usually after a player's death")]
+		[Tooltip("リスタート時にポイントをリセット")]
+		[Header("リスタート時にポイントをリセット")]
 		public bool ResetPointsOnRestart = true;
 
 		[Space(10)]
-		[Header("Level Bounds")]
+		[Header("レベル境界")]
 		[MMInformation("The level bounds are used to constrain the camera's movement, as well as the player character's. You can see it in real time in the scene view as you adjust its size (it's the yellow box).",MMInformationAttribute.InformationType.Info,false)]
 
 
 		/// whether to use a 3D or 2D collider as level bounds, this will be used by Cinemachine confiners
-		[Tooltip("whether to use a 3D or 2D collider as level bounds")]
+		[Tooltip("境界モード")]
+		[Header("境界モード")]
 		public BoundsModes BoundsMode = BoundsModes.TwoD;
-		
+
 		/// the level limits, camera and player won't go beyond this point.
-		[Tooltip("the level limits, camera and player won't go beyond this point.")]
+		[Tooltip("レベル境界")]
+		[Header("レベル境界")]
 		public Bounds LevelBounds = new Bounds(Vector3.zero,Vector3.one*10);
 
 		[MMInspectorButton("GenerateColliderBounds")]
@@ -137,22 +153,26 @@ namespace MoreMountains.CorgiEngine
 		public Collider BoundsCollider { get; protected set; }
 		public Collider2D BoundsCollider2D { get; protected set; }
 		
-		[Header("Scene Loading")]
+		[Header("シーン読み込み")]
 		/// the method to use to load the destination level
-		[Tooltip("the method to use to load the destination level")]
+		[Tooltip("シーン読み込みモード")]
+		[Header("シーン読み込みモード")]
 		public MMLoadScene.LoadingSceneModes LoadingSceneMode = MMLoadScene.LoadingSceneModes.MMSceneLoadingManager;
 		/// the name of the MMSceneLoadingManager scene you want to use
-		[Tooltip("the name of the MMSceneLoadingManager scene you want to use")]
+		[Tooltip("ローディングシーン名")]
 		[MMEnumCondition("LoadingSceneMode", (int) MMLoadScene.LoadingSceneModes.MMSceneLoadingManager)]
+		[Header("ローディングシーン名")]
 		public string LoadingSceneName = "LoadingScreen";
 		/// the settings to use when loading the scene in additive mode
-		[Tooltip("the settings to use when loading the scene in additive mode")]
+		[Tooltip("追加読み込み設定")]
 		[MMEnumCondition("LoadingSceneMode", (int)MMLoadScene.LoadingSceneModes.MMAdditiveSceneLoadingManager)]
+		[Header("追加読み込み設定")]
 		public MMAdditiveSceneLoadingManagerSettings AdditiveLoadingSettings;
 
-		[Header("Feedbacks")] 
+		[Header("フィードバック")]
 		/// if this is true, an event will be triggered on player instantiation to set the range target of all feedbacks to it
-		[Tooltip("if this is true, an event will be triggered on player instantiation to set the range target of all feedbacks to it")]
+		[Tooltip("プレイヤーをフィードバック範囲の中心に設定")]
+		[Header("プレイヤーをフィードバック範囲の中心に設定")]
 		public bool SetPlayerAsFeedbackRangeCenter = false;
         
 		/// the elapsed time since the start of the level

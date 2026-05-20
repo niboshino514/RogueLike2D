@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
@@ -18,51 +18,64 @@ namespace MoreMountains.CorgiEngine
 		/// the possible orders the next character can be selected from
 		public enum NextCharacterChoices { Sequential, Random }
 
-		[Header("Character Switch")]
+		[Header("キャラクター切り替え")]
 		[MMInformation("Add this component to an empty object in your scene, and when you'll press the SwitchCharacter button (P by default, change that in Unity's InputManager settings), your main character will be replaced by one of the prefabs in the list set on this component. You can decide the order (sequential or random), and have as many as you want.", MMInformationAttribute.InformationType.Info, false)]
 		/// the ID of the Player we want this CharacterSwitchManager to control
-		[Tooltip("the ID of the Player we want this CharacterSwitchManager to control")]
+		[Tooltip("プレイヤーID")]
+		[Header("プレイヤーID")]
 		public string PlayerID = "Player1";
 		/// the index of the Player in the LevelManager we want to target
-		[Tooltip("the index of the Player in the LevelManager we want to target")]
+		[Tooltip("プレイヤーインデックス")]
+		[Header("プレイヤーインデックス")]
 		public int PlayerIndex = 0;
 		/// the list of possible characters prefabs to switch to
-		[Tooltip("the list of possible characters prefabs to switch to")]
+		[Tooltip("キャラクタープレハブ一覧")]
+		[Header("キャラクタープレハブ一覧")]
 		public Character[] CharacterPrefabs;
 		/// the order in which to pick the next character
-		[Tooltip("the order in which to pick the next character")]
+		[Tooltip("次キャラクター選択順")]
+		[Header("次キャラクター選択順")]
 		public NextCharacterChoices NextCharacterChoice = NextCharacterChoices.Sequential;
 		/// the initial (and at runtime, current) index of the character prefab
-		[Tooltip("the initial (and at runtime, current) index of the character prefab")]
+		[Tooltip("現在のインデックス")]
+		[Header("現在のインデックス")]
 		public int CurrentIndex = 0;
 		/// if this is true, current health value will be passed from character to character
-		[Tooltip("if this is true, current health value will be passed from character to character")]
+		[Tooltip("体力を共有する")]
+		[Header("体力を共有する")]
 		public bool CommonHealth;
 		/// if this is true, newly switched to characters will flip (if needed) to face the direction the previous character was facing
-		[Tooltip("if this is true, newly switched to characters will flip (if needed) to face the direction the previous character was facing")]
+		[Tooltip("向きを引き継ぐ")]
+		[Header("向きを引き継ぐ")]
 		public bool MaintainPreviousCharacterFacingDirection = false;
 		/// if this is true, the ResetHealthOnEnable flag will be set to false for all characters managed by this, and the characters will keep their health value once you switch back to them
-		[Tooltip("if this is true, the ResetHealthOnEnable flag will be set to false for all characters managed by this, and the characters will keep their health value once you switch back to them")]
+		[Tooltip("切り替え後も体力を維持")]
+		[Header("切り替え後も体力を維持")]
 		public bool PersistHealthOverSwitches = false;
 
-		[Header("Visual Effects")]
+		[Header("ビジュアルエフェクト")]
 
 		/// a particle system to play when a character gets changed
-		[Tooltip("a particle system to play when a character gets changed")]
+		[Tooltip("切り替えVFX")]
+		[Header("切り替えVFX")]
 		public ParticleSystem CharacterSwitchVFX;
 
-		[Header("Debug")]
+		[Header("デバッグ")]
 		/// a test button that forces a character switch
 		[MMInspectorButton("ForceCharacterSwitch")]
+		[Header("強制切り替えボタン")]
 		public bool ForceCharacterSwitchButton;
 		/// the index that will be used when pressing the DebugCharacterSwitchToTargetIndex button below
-		[Tooltip("the index that will be used when pressing the DebugCharacterSwitchToTargetIndex button below")]
+		[Tooltip("デバッグ対象インデックス")]
+		[Header("デバッグ対象インデックス")]
 		public int DebugTargetIndex = 1;
 		/// a test button that forces a character switch to the specified index in DebugTargetIndex
 		[MMInspectorButton("DebugCharacterSwitchToTargetIndex")]
+		[Header("インデックス指定切り替えボタン")]
 		public bool DebugCharacterSwitchToTargetIndexButton;
 		/// the input manager we'll read input on
 		[MMReadOnly]
+		[Header("連携InputManager")]
 		public InputManager LinkedInputManager;
 
 		protected Character[] _instantiatedCharacters;

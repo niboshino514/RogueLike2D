@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -10,21 +10,25 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Fly")]
 	public class CharacterFly : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This component allows your character to fly by moving gravity-free on both x and y axis. Here you can define the flight speed, as well as whether or not the character is always flying (in which case you don't have to press a button to fly). Important note : slope ceilings are not supported for now."; }
+		public override string HelpBoxText() { return "重力の影響を受けず X/Y 方向に飛行できます。飛行速度、常時飛行（ボタン不要）かどうかを設定できます。重要：傾斜天井には現在未対応です。"; }
 
 		/// the speed at which the character should fly
-		[Tooltip("the speed at which the character should fly")]
+		[Tooltip("飛行速度")]
+		[Header("飛行速度")]
 		public float FlySpeed = 6f;
 		/// a multiplier you can target to increase/reduce the flight speed
 		public float MovementSpeedMultiplier { get; set; }
-		/// whether or not the Character is always flying, in which case it'll start immune to gravity 
-		[Tooltip("whether or not the Character is always flying, in which case it'll start immune to gravity ")]
+		/// whether or not the Character is always flying, in which case it'll start immune to gravity
+		[Tooltip("常に飛行状態")]
+		[Header("常に飛行状態")]
 		public bool AlwaysFlying = false;
 		/// whether or not the Character should stop flying on death
-		[Tooltip("whether or not the Character should stop flying on death")]
+		[Tooltip("死亡時に飛行を停止")]
+		[Header("死亡時に飛行を停止")]
 		public bool StopFlyingOnDeath = true;
 		/// if this is true, acceleration in flight will be instant. Note that this will prevent knockback from working.
-		[Tooltip("if this is true, acceleration in flight will be instant. Note that this will prevent knockback from working.")]
+		[Tooltip("飛行中の加速を即時にする")]
+		[Header("飛行中の加速を即時にする")]
 		public bool InstantAcceleration = false;
 		/// whether or not the Character is currently flying		
 		public bool IsFlying => _flying;

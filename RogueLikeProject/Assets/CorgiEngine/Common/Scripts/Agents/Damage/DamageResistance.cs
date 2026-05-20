@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using UnityEngine;
@@ -14,86 +14,107 @@ namespace MoreMountains.CorgiEngine
 		public enum DamageModifierModes { Multiplier, Flat }
 		public enum KnockbackModifierModes { Multiplier, Flat }
 
-		[Header("General")]
+		[Header("全般")]
 		/// The priority of this damage resistance. This will be used to determine in what order damage resistances should be evaluated. Lowest priority means evaluated first.
-		[Tooltip("The priority of this damage resistance. This will be used to determine in what order damage resistances should be evaluated. Lowest priority means evaluated first.")]
+		[Tooltip("優先度")]
+		[Header("優先度")]
 		public float Priority = 0;
 		/// The label of this damage resistance. Used for organization, and to activate/disactivate a resistance by its label.
-		[Tooltip("The label of this damage resistance. Used for organization, and to activate/disactivate a resistance by its label.")]
+		[Tooltip("ラベル")]
+		[Header("ラベル")]
 		public string Label = "";
 		
-		[Header("Damage Resistance Settings")]
+		[Header("ダメージ耐性設定")]
 		/// Whether this resistance impacts base damage or typed damage
-		[Tooltip("Whether this resistance impacts base damage or typed damage")]
+		[Tooltip("ダメージタイプモード")]
+		[Header("ダメージタイプモード")]
 		public DamageTypeModes DamageTypeMode = DamageTypeModes.BaseDamage;
 		/// In TypedDamage mode, the type of damage this resistance will interact with
-		[Tooltip("In TypedDamage mode, the type of damage this resistance will interact with")]
+		[Tooltip("タイプ耐性")]
 		[MMEnumCondition("DamageTypeMode", (int)DamageTypeModes.TypedDamage)]
+		[Header("タイプ耐性")]
 		public DamageType TypeResistance;
-		/// the way to reduce (or increase) received damage. Multiplier will multiply incoming damage by a multiplier, flat will subtract a constant value from incoming damage. 
-		[Tooltip("the way to reduce (or increase) received damage. Multiplier will multiply incoming damage by a multiplier, flat will subtract a constant value from incoming damage.")]
+		/// the way to reduce (or increase) received damage. Multiplier will multiply incoming damage by a multiplier, flat will subtract a constant value from incoming damage.
+		[Tooltip("ダメージ修正モード")]
+		[Header("ダメージ修正モード")]
 		public DamageModifierModes DamageModifierMode = DamageModifierModes.Multiplier;
 
-		[Header("Damage Modifiers")]
+		[Header("ダメージ修正値")]
 		/// In multiplier mode, the multiplier to apply to incoming damage. 0.5 will reduce it in half, while a value of 2 will create a weakness to the specified damage type, and damages will double.
-		[Tooltip("In multiplier mode, the multiplier to apply to incoming damage. 0.5 will reduce it in half, while a value of 2 will create a weakness to the specified damage type, and damages will double.")]
+		[Tooltip("ダメージ乗数")]
 		[MMEnumCondition("DamageModifierMode", (int)DamageModifierModes.Multiplier)]
+		[Header("ダメージ乗数")]
 		public float DamageMultiplier = 0.25f;
 		/// In flat mode, the amount of damage to subtract every time that type of damage is received
-		[Tooltip("In flat mode, the amount of damage to subtract every time that type of damage is received")]
+		[Tooltip("固定ダメージ軽減量")]
 		[MMEnumCondition("DamageModifierMode", (int)DamageModifierModes.Flat)]
+		[Header("固定ダメージ軽減量")]
 		public float FlatDamageReduction = 10f;
 		/// whether or not incoming damage of the specified type should be clamped between a min and a max
-		[Tooltip("whether or not incoming damage of the specified type should be clamped between a min and a max")] 
+		[Tooltip("ダメージをクランプ")]
+		[Header("ダメージをクランプ")]
 		public bool ClampDamage = false;
 		/// the values between which to clamp incoming damage
-		[Tooltip("the values between which to clamp incoming damage")]
+		[Tooltip("ダメージクランプ範囲")]
 		[MMVector("Min","Max")]
+		[Header("ダメージクランプ範囲")]
 		public Vector2 DamageModifierClamps = new Vector2(0f,10f);
 
-		[Header("Condition Change")]
+		[Header("状態変化")]
 		/// whether or not condition change for that type of damage is allowed or not
-		[Tooltip("whether or not condition change for that type of damage is allowed or not")]
+		[Tooltip("キャラクター状態変化を防ぐ")]
+		[Header("キャラクター状態変化を防ぐ")]
 		public bool PreventCharacterConditionChange = false;
 		/// whether or not movement modifiers are allowed for that type of damage or not
-		[Tooltip("whether or not movement modifiers are allowed for that type of damage or not")]
+		[Tooltip("移動修正を防ぐ")]
+		[Header("移動修正を防ぐ")]
 		public bool PreventMovementModifier = false;
 
-		[Header("Knockback")] 
+		[Header("ノックバック")]
 		/// if this is true, knockback force will be ignored and not applied
-		[Tooltip("if this is true, knockback force will be ignored and not applied")]
+		[Tooltip("ノックバック免疫")]
+		[Header("ノックバック免疫")]
 		public bool ImmuneToKnockback = false;
-		/// the way to reduce (or increase) received knockback. Multiplier will multiply incoming knockback intensity by a multiplier, flat will subtract a constant value from incoming knockback intensity. 
-		[Tooltip("the way to reduce (or increase) received knockback. Multiplier will multiply incoming knockback intensity by a multiplier, flat will subtract a constant value from incoming knockback intensity.")]
+		/// the way to reduce (or increase) received knockback. Multiplier will multiply incoming knockback intensity by a multiplier, flat will subtract a constant value from incoming knockback intensity.
+		[Tooltip("ノックバック修正モード")]
+		[Header("ノックバック修正モード")]
 		public KnockbackModifierModes KnockbackModifierMode = KnockbackModifierModes.Multiplier;
 		/// In multiplier mode, the multiplier to apply to incoming knockback. 0.5 will reduce it in half, while a value of 2 will create a weakness to the specified damage type, and knockback intensity will double.
-		[Tooltip("In multiplier mode, the multiplier to apply to incoming knockback. 0.5 will reduce it in half, while a value of 2 will create a weakness to the specified damage type, and knockback intensity will double.")]
+		[Tooltip("ノックバック乗数")]
 		[MMEnumCondition("KnockbackModifierMode", (int)DamageModifierModes.Multiplier)]
+		[Header("ノックバック乗数")]
 		public float KnockbackMultiplier = 1f;
 		/// In flat mode, the amount of knockback to subtract every time that type of damage is received
-		[Tooltip("In flat mode, the amount of knockback to subtract every time that type of damage is received")]
+		[Tooltip("固定ノックバック軽減量")]
 		[MMEnumCondition("KnockbackModifierMode", (int)DamageModifierModes.Flat)]
+		[Header("固定ノックバック軽減量")]
 		public float FlatKnockbackMagnitudeReduction = 10f;
 		/// whether or not incoming knockback of the specified type should be clamped between a min and a max
-		[Tooltip("whether or not incoming knockback of the specified type should be clamped between a min and a max")] 
+		[Tooltip("ノックバックをクランプ")]
+		[Header("ノックバックをクランプ")]
 		public bool ClampKnockback = false;
 		/// the values between which to clamp incoming knockback magnitude
-		[Tooltip("the values between which to clamp incoming knockback magnitude")]
+		[Tooltip("ノックバック最大強度")]
 		[MMCondition("ClampKnockback", true)]
+		[Header("ノックバック最大強度")]
 		public float KnockbackMaxMagnitude = 10f;
 		
-		[Header("Feedbacks")]
+		[Header("フィードバック")]
 		/// This feedback will only be triggered if damage of the matching type is received
-		[Tooltip("This feedback will only be triggered if damage of the matching type is received")]
+		[Tooltip("ダメージ受信時フィードバック")]
+		[Header("ダメージ受信時フィードバック")]
 		public MMFeedbacks OnDamageReceived;
 		/// whether or not this feedback can be interrupted (stopped) when that type of damage is interrupted
-		[Tooltip("whether or not this feedback can be interrupted (stopped) when that type of damage is interrupted")]
+		[Tooltip("フィードバックを中断可能")]
+		[Header("フィードバックを中断可能")]
 		public bool InterruptibleFeedback = false;
 		/// if this is true, the feedback will always be preventively stopped before playing
-		[Tooltip("if this is true, the feedback will always be preventively stopped before playing")]
+		[Tooltip("再生前に常に中断")]
+		[Header("再生前に常に中断")]
 		public bool AlwaysInterruptFeedbackBeforePlay = false;
 		/// whether this feedback should play if damage received is zero
-		[Tooltip("whether this feedback should play if damage received is zero")]
+		[Tooltip("ダメージゼロでもフィードバック再生")]
+		[Header("ダメージゼロでもフィードバック再生")]
 		public bool TriggerFeedbackIfDamageIsZero = false;
 
 		/// <summary>

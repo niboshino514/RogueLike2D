@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -13,26 +13,31 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterWallClinging : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Add this component to your character and it'll be able to cling to walls, slowing down its fall. Here you can define the slow factor (close to 0 : super slow, 1 : normal fall) and the tolerance (to account for tiny holes in the wall."; }
+		public override string HelpBoxText() { return "壁にしがみつき、落下を遅くできます。減速係数（0に近いほど遅い、1で通常落下）と、壁の小さな隙間を許容するトレランスを設定できます。"; }
 
-		[Header("Wall Clinging")]
+		[Header("壁しがみつき")]
 		/// the slow factor when wall clinging
-		[Tooltip("the slow factor when wall clinging")]
+		[Tooltip("落下速度の低下係数")]
 		[Range(0.01f, 1)]
+		[Header("落下速度の低下係数")]
 		public float WallClingingSlowFactor = 0.2f;
 		/// the vertical offset to apply to raycasts for wall clinging
-		[Tooltip("the vertical offset to apply to raycasts for wall clinging")]
+		[Tooltip("レイキャスト垂直オフセット")]
+		[Header("レイキャスト垂直オフセット")]
 		public float RaycastVerticalOffset = 0f;
 		/// the tolerance applied to compensate for tiny irregularities in the wall (slightly misplaced tiles for example)
-		[Tooltip("the tolerance applied to compensate for tiny irregularities in the wall (slightly misplaced tiles for example)")]
+		[Tooltip("壁の許容誤差")]
+		[Header("壁の許容誤差")]
 		public float WallClingingTolerance = 0.3f;
 		/// if this is true, vertical forces will be reset on entry
-		[Tooltip("if this is true, vertical forces will be reset on entry")]
+		[Tooltip("開始時に垂直力をリセット")]
+		[Header("開始時に垂直力をリセット")]
 		public bool ResetVerticalForceOnEntry = true;
 
-		[Header("Automation")]
+		[Header("自動化")]
 		/// if this is set to true, you won't need to press the opposite direction to wall cling, it'll be automatic anytime the character faces a wall
-		[Tooltip("if this is set to true, you won't need to press the opposite direction to wall cling, it'll be automatic anytime the character faces a wall")]
+		[Tooltip("入力なしで自動しがみつき")]
+		[Header("入力なしで自動しがみつき")]
 		public bool InputIndependent = false;
 
 		public bool IsFacingRightWhileWallClinging { get; set; }

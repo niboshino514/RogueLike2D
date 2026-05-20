@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,48 +12,58 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterCrouch : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component handles crouch and crawl behaviours. Here you can determine the crouch speed, and whether or not the collider should resize when crouched (to crawl into tunnels for example). If it should, please setup its new size here."; }
+		public override string HelpBoxText() { return "しゃがみとクロールを扱うコンポーネントです。しゃがみ速度、しゃがみ時にコライダーをリサイズするか（トンネルなどに入る場合）を設定できます。リサイズする場合は新しいサイズも設定してください。"; }
 
-		[Header("Crawl")]
+		[Header("ほふく移動")]
 
 		/// if this is set to false, the character won't be able to crawl, just to crouch
-		[Tooltip("if this is set to false, the character won't be able to crawl, just to crouch")]
+		[Tooltip("ほふく移動を許可")]
+		[Header("ほふく移動を許可")]
 		public bool CrawlAuthorized = true;
 		/// the speed of the character when it's crouching
-		[Tooltip("the speed of the character when it's crouching")]
+		[Tooltip("ほふく移動速度")]
+		[Header("ほふく移動速度")]
 		public float CrawlSpeed = 4f;
 		/// if this is true, this ability will be input driven. set this to false to use it on an AI, or any other script driven agent
-		[Tooltip("if this is true, this ability will be input driven. set this to false to use it on an AI, or any other script driven agent")]
+		[Tooltip("入力で操作")]
+		[Header("入力で操作")]
 		public bool InputDriven = true;
 				
 		[Space(10)]
-		[Header("Crouching")]
+		[Header("しゃがみ")]
 		/// if this is true, the collider will be resized when crouched
-		[Tooltip("if this is true, the collider will be resized when crouched")]
+		[Tooltip("しゃがみ時にコライダーをリサイズ")]
+		[Header("しゃがみ時にコライダーをリサイズ")]
 		public bool ResizeColliderWhenCrouched = false;
 		/// the size to apply to the collider when crouched (if ResizeColliderWhenCrouched is true, otherwise this will be ignored)
 		/// note that changing the width of your collider when crouching will likely result in glitches when initiating a crouch on a slope, it's best not to change it
 		[Tooltip("the size to apply to the collider when crouched (if ResizeColliderWhenCrouched is true, otherwise this will be ignored)" +
 		         "note that changing the width of your collider when crouching will likely result in glitches when initiating a crouch on a slope, it's best not to change it")]
+		[Header("しゃがみ時コライダーサイズ")]
 		public Vector2 CrouchedBoxColliderSize = new Vector2(1,1);
 		/// if this is false, the character will have to stop moving to start crouching
-		[Tooltip("if this is false, the character will have to stop moving to start crouching")]
+		[Tooltip("移動中にしゃがめる")]
+		[Header("移動中にしゃがめる")]
 		public bool CanCrouchWhileMoving = true;
 		/// if this is false, the character won't be able to move while crouching
-		[Tooltip("if this is false, the character won't be able to move while crouching")]
+		[Tooltip("しゃがみ中に移動できる")]
+		[Header("しゃがみ中に移動できる")]
 		public bool CanMoveWhileCrouching = true;
 		/// if this is true, the character is crouched and has an obstacle over its head that prevents it from getting back up again
 		[MMReadOnly]
-		[Tooltip("if this is true, the character is crouched and has an obstacle over its head that prevents it from getting back up again")]
+		[Tooltip("トンネル内にいる")]
+		[Header("トンネル内にいる")]
 		public bool InATunnel;
 
-		[Header("Cinemachine")]
+		[Header("シネマシン")]
 
 		/// Whether or not to move the camera target, that will be used as the focus point for the Cinemachine virtual camera
-		[Tooltip("Whether or not to move the camera target, that will be used as the focus point for the Cinemachine virtual camera")]
+		[Tooltip("カメラターゲットを移動する")]
+		[Header("カメラターゲットを移動する")]
 		public bool MoveCameraTarget = true;
 		/// the offset to apply to the camera target
-		[Tooltip("the offset to apply to the camera target")]
+		[Tooltip("カメラターゲットオフセット")]
+		[Header("カメラターゲットオフセット")]
 		public Vector3 CameraTargetOffset = new Vector3(0f, -3f, 0f);
 
 		// animation parameters

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
@@ -17,45 +17,54 @@ namespace MoreMountains.CorgiEngine
 		public enum ForceModes { AddForce, SetForce }
 
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component allows your character to perform an extra jump while wall clinging only. Here you can determine the force to apply to that jump."; }
+		public override string HelpBoxText() { return "壁しがみつき中のみ追加ジャンプできるコンポーネントです。ジャンプに加える力を設定できます。"; }
 
-		[Header("Walljump")]
+		[Header("壁ジャンプ")]
 		/// the force of a walljump
-		[Tooltip("the force of a walljump")]
+		[Tooltip("壁ジャンプの力")]
+		[Header("壁ジャンプの力")]
 		public Vector2 WallJumpForce = new Vector2(10,4);
 		/// returns true if a walljump happened this frame
 		public bool WallJumpHappenedThisFrame { get; set; }
-		/// the selected force mode 
-		[Tooltip("the selected force mode ")]
+		/// the selected force mode
+		[Tooltip("力のモード")]
+		[Header("力のモード")]
 		public ForceModes ForceMode = ForceModes.AddForce;
-		/// if this is true, the character will be forced to flip towards the jump direction on the jump frame 
-		[Tooltip("if this is true, the character will be forced to flip towards the jump direction on the jump frame")]
+		/// if this is true, the character will be forced to flip towards the jump direction on the jump frame
+		[Tooltip("ジャンプ方向に強制反転")]
+		[Header("ジャンプ方向に強制反転")]
 		public bool ForceFlipTowardsDirection = false;
-		
-		[Header("Limit")] 
+
+		[Header("制限")]
 		/// if this is true, walljumps count as regular (non wall) jump to decrease the number of jumps left
-		[Tooltip("if this is true, walljumps count as regular (non wall) jump to decrease the number of jumps left")]
+		[Tooltip("残りジャンプ数を減らす")]
+		[Header("残りジャンプ数を減らす")]
 		public bool ShouldReduceNumberOfJumpsLeft = true;
-		/// if this is true, number of consecutive walljumps will be limited to MaximumNumberOfWalljumps 
-		[Tooltip("if this is true, number of consecutive walljumps will be limited to MaximumNumberOfWalljumps")]
+		/// if this is true, number of consecutive walljumps will be limited to MaximumNumberOfWalljumps
+		[Tooltip("壁ジャンプ回数を制限する")]
+		[Header("壁ジャンプ回数を制限する")]
 		public bool LimitNumberOfWalljumps = false;
 		/// the maximum number of walljumps allowed
-		[Tooltip("the maximum number of walljumps allowed")]
+		[Tooltip("壁ジャンプ最大回数")]
 		[MMCondition("LimitNumberOfWalljumps", true)]
+		[Header("壁ジャンプ最大回数")]
 		public int MaximumNumberOfWalljumps = 3;
-		/// the amount of walljumps left at this time 
-		[Tooltip("the amount of walljumps left at this time")]
+		/// the amount of walljumps left at this time
+		[Tooltip("残り壁ジャンプ回数")]
 		[MMCondition("LimitNumberOfWalljumps", true)]
 		[MMReadOnly]
+		[Header("残り壁ジャンプ回数")]
 		public int NumberOfWalljumpsLeft;
 
-		[Header("Coyote Time")] 
-		/// whether or not to autorize wall jumps in a buffer duration after the character has exited the wall clinging state 
-		[Tooltip("whether or not to autorize wall jumps in a buffer duration after the character has exited the wall clinging state")]
-		public bool AllowCoyoteTime = false; 
+		[Header("コヨーテ時間")]
+		/// whether or not to autorize wall jumps in a buffer duration after the character has exited the wall clinging state
+		[Tooltip("コヨーテ時間を許可する")]
+		[Header("コヨーテ時間を許可する")]
+		public bool AllowCoyoteTime = false;
 		/// the duration (in seconds) during which a wall jump should still be allowed after having left the wall clinging state
-		[Tooltip("the duration (in seconds) during which a wall jump should still be allowed after having left the wall clinging state")]
+		[Tooltip("コヨーテ時間の持続時間")]
 		[MMCondition("AllowCoyoteTime", true)]
+		[Header("コヨーテ時間の持続時間")]
 		public float CoyoteTimeDuration = 0.2f;
 
 		/// a delegate you can listen to to do something when a walljump happens

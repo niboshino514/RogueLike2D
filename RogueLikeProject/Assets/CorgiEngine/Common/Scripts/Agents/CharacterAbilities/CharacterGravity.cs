@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
@@ -16,60 +16,71 @@ namespace MoreMountains.CorgiEngine
 		/// the various ways you can modify the existing character forces when entering or exiting a gravity zone. Reset will set them at 0, Nothing will do nothing (use at your own risk), and Adapt will rotate the force to match the new gravity
 		public enum TransitionForcesModes { Reset, Adapt, Nothing }
 
-		public override string HelpBoxText() { return "This component allows your character to have a different gravity than the default, vertical one. It will also allow it to be affected by gravity zones and points, that will override its default gravity settings."; }
+		public override string HelpBoxText() { return "既定の垂直重力と異なる重力を設定でき、重力ゾーン／ポイントの影響も受けます。"; }
 
-		[Header("Influence")]
+		[Header("影響範囲")]
 
 		[MMInformation("Here you can decide whether or not this character is subject to Gravity Points and Gravity Zones, or if it should ignore them.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 		/// If this is true, this Character's gravity will be overridden when close to Gravity Points
-		[Tooltip("If this is true, this Character's gravity will be overridden when close to Gravity Points")]
+		[Tooltip("重力ポイントの影響を受ける")]
+		[Header("重力ポイントの影響を受ける")]
 		public bool SubjectToGravityPoints = true;
 		/// If this is true, this Character will have its gravity affected when crossing Gravity Zones
-		[Tooltip("If this is true, this Character will have its gravity affected when crossing Gravity Zones")]
+		[Tooltip("重力ゾーンの影響を受ける")]
+		[Header("重力ゾーンの影響を受ける")]
 		public bool SubjectToGravityZones = true;
 
-		[Header("Gravity")]
+		[Header("重力")]
 
 		[MMInformation("Here you can define the initial gravity angle, and whether or not horizontal and/or vertical input should be reversed when upside down.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 		/// if this is true, horizontal movement input will be reversed when upside down
-		[Tooltip("if this is true, horizontal movement input will be reversed when upside down")]
+		[Tooltip("逆さ時に水平入力を反転")]
+		[Header("逆さ時に水平入力を反転")]
 		public bool ReverseHorizontalInputWhenUpsideDown = false;
 		/// if this is true, vertical movement input will be reversed when upside down
-		[Tooltip("if this is true, vertical movement input will be reversed when upside down")]
+		[Tooltip("逆さ時に垂直入力を反転")]
+		[Header("逆さ時に垂直入力を反転")]
 		public bool ReverseVerticalInputWhenUpsideDown = false;
 		/// if this is false, input won't be reversed while on a gravity point (you'll usually want to keep it false so you can run around the point
-		[Tooltip("if this is false, input won't be reversed while on a gravity point (you'll usually want to keep it false so you can run around the point")]
+		[Tooltip("重力ポイント上で入力を反転")]
+		[Header("重力ポイント上で入力を反転")]
 		public bool ReverseInputOnGravityPoints = false;
 		/// the initial gravity angle, that's the gravity angle your character will start at
 		[Range(-180, 180)]
-		[Tooltip("the initial gravity angle, that's the gravity angle your character will start at")]
+		[Tooltip("初期重力角度")]
+		[Header("初期重力角度")]
 		public float InitialGravityAngle = 0f;
 
-		[Header("[Experimental] Rotation")]
+		[Header("[実験的] 回転")]
 
 		[MMInformation("Here you can set a rotation speed that will be applied to your character when changing zones. A speed of 0 means instant rotation. Be careful with that setting, as it'll gradually change the gravity direction of your character, which may not be what you want. You can also specify the Inactive Buffer Duration, which is the time during which a zone is disabled on entry/exit to accomodate for the rotation's duration. As a general rule, slow speeds will require higher inactive buffer duration, so the lower the speed, the higher the inactive buffer duration should be. A rotation speed of 1.6 and a buffer duration of 0.3 usually works well, but feel free to play with these settings.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 		/// the speed at which the Character rotates to match its new gravity's rotation. 0 means instant.
-		[Tooltip("the speed at which the Character rotates to match its new gravity's rotation. 0 means instant.")]
+		[Tooltip("回転速度")]
+		[Header("回転速度")]
 		public float RotationSpeed = 0f;
 		/// the duration (in seconds) during which a zone is ignored when entered/exited, right after the enter/exit, to accomodate for rotation times. If you have a slow rotation speed, increase this.
-		[Tooltip("the duration (in seconds) during which a zone is ignored when entered/exited, right after the enter/exit, to accomodate for rotation times. If you have a slow rotation speed, increase this.")]
-		public float InactiveBufferDuration = 0.1f; 
+		[Tooltip("非アクティブバッファ持続時間")]
+		[Header("非アクティブバッファ持続時間")]
+		public float InactiveBufferDuration = 0.1f;
 
-		[Header("Transition")]
+		[Header("遷移")]
 
 		[MMInformation("Here you can define a transition mode that will impact the way your character enters or exits gravity altered zones. Reset will kill all current movement and state, which is the safest option. Adapt will keep your force going and rotate it, and Nothing will not affect existing forces, which may have weird consequences depending on the context.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 		/// if this is set to true, forces will be reset when entering/exiting gravity zones.
-		[Tooltip("if this is set to true, forces will be reset when entering/exiting gravity zones.")]
+		[Tooltip("遷移時の力のモード")]
+		[Header("遷移時の力のモード")]
 		public TransitionForcesModes TransitionForcesMode = TransitionForcesModes.Reset;
 		/// if this is true, the character state will be reset to idle when entering the zone
-		[Tooltip("if this is true, the character state will be reset to idle when entering the zone")]
+		[Tooltip("重力変化時にキャラクター状態をリセット")]
+		[Header("重力変化時にキャラクター状態をリセット")]
 		public bool ResetCharacterStateOnGravityChange = true;
 
-		[Header("Debug")]
+		[Header("デバッグ")]
 
 		[MMInformation("Here you can chose to have the Ability draw the current gravity target angle.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 		/// If this is true, will draw an arrow showing the current target gravity direction
-		[Tooltip("If this is true, will draw an arrow showing the current target gravity direction")]
+		[Tooltip("重力方向の矢印を描画")]
+		[Header("重力方向の矢印を描画")]
 		public bool DrawDebugGravityArrow = true;
 
 		/// the current target gravity angle

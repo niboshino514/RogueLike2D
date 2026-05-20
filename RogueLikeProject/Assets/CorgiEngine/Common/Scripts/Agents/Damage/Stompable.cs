@@ -19,37 +19,47 @@ namespace MoreMountains.CorgiEngine
 		[MMInformation("Add this component to an object (an enemy for example) you want the player to be able to stomp by jumping on it. You can define how many rays will be used to detect the collision (you can see them in debug mode), try and have a space between each ray smaller than your player's width), the force that will be applied to the stomper on impact, the mask used to detect the player, and how much damage each stomp should cause.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// The force the hit will apply to the stomper
-		[Tooltip("The force the hit will apply to the stomper")]
+		[Tooltip("ノックバック力")]
+		[Header("ノックバック力")]
 		public Vector2 KnockbackForce = new Vector2(0f,15f);
 		/// the type of knockback to apply when causing damage
-		[Tooltip("the type of knockback to apply when causing damage")]
+		[Tooltip("ダメージ時ノックバックタイプ")]
+		[Header("ダメージ時ノックバックタイプ")]
 		public KnockbackStyles DamageCausedKnockbackType = KnockbackStyles.SetForce;
 		/// The amount of damage each stomp causes to the stomped enemy
-		[Tooltip("The amount of damage each stomp causes to the stomped enemy")]
+		[Tooltip("踏みつけダメージ")]
+		[Header("踏みつけダメージ")]
 		public int DamagePerStomp;
 		/// if this is true, the character's number of jump will be reset when Stomping
-		[Tooltip("if this is true, the character's number of jump will be reset when Stomping")]
+		[Tooltip("踏みつけ時ジャンプ回数リセット")]
+		[Header("踏みつけ時ジャンプ回数リセット")]
 		public bool ResetNumberOfJumpsOnStomp = false;
 		/// the duration of the invincibility after a stomp
-		[Tooltip("the duration of the invincibility after a stomp")]
+		[Tooltip("無敵持続時間")]
+		[Header("無敵持続時間")]
 		public float InvincibilityDuration = 0.5f;
 
-		[Header("Stomp detection raycasts")]
+		[Header("踏みつけ検出レイキャスト")]
 
 		/// The layer the player is on
-		[Tooltip("The layer the player is on")]
+		[Tooltip("プレイヤーマスク")]
+		[Header("プレイヤーマスク")]
 		public LayerMask PlayerMask = LayerManager.PlayerLayerMask;
 		/// The number of vertical rays cast to detect stomping
-		[Tooltip("The number of vertical rays cast to detect stomping")]
+		[Tooltip("レイ数")]
+		[Header("レイ数")]
 		public int NumberOfRays = 5;
 		/// the length of the rays
-		[Tooltip("the length of the rays")]
+		[Tooltip("レイキャスト長さ")]
+		[Header("レイキャスト長さ")]
 		public float RaycastLength = 0.5f;
 		/// the offset to apply to the ray's origin point vertically (0.01f should work in most situations but you might want to adapt that based on your objects' scale).
-		[Tooltip("the offset to apply to the ray's origin point vertically (0.01f should work in most situations but you might want to adapt that based on your objects' scale).")]
+		[Tooltip("レイキャスト垂直オフセット")]
+		[Header("レイキャスト垂直オフセット")]
 		public float RaycastVerticalOffset = 0.01f;
 		/// whether or not the stomper has to be alive to be able to stomp this character (set this to false and dead players can still cause damage to this Stompable by falling on it)
-		[Tooltip("whether or not the stomper has to be alive to be able to stomp this character (set this to false and dead players can still cause damage to this Stompable by falling on it)")]
+		[Tooltip("踏みつけには生存が必要")]
+		[Header("踏みつけには生存が必要")]
 		public bool StomperMustBeAlive = true;
 
 		// private stuff

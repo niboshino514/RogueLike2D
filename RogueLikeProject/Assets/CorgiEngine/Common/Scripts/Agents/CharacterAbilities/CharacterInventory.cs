@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using MoreMountains.InventoryEngine;
@@ -22,44 +22,57 @@ namespace MoreMountains.CorgiEngine
 		[System.Serializable]
 		public struct InventoryItemsToAdd
 		{
+			[Header("アイテム")]
 			public InventoryItem Item;
+			[Header("数量")]
 			public int Quantity;
 		}
 
 		public enum WeaponRotationModes { Normal, AddEmptySlot, AddInitialWeapon }
 
-		[Header("Inventories")]
+		[Header("インベントリ")]
 		/// the unique ID of this player as far as the InventoryEngine is concerned. This has to match all its Inventory and InventoryEngine UI components' PlayerID for that player. If you're not going for multiplayer here, just leave Player1.
-		[Tooltip("the unique ID of this player as far as the InventoryEngine is concerned. This has to match all its Inventory and InventoryEngine UI components' PlayerID for that player. If you're not going for multiplayer here, just leave Player1.")]
+		[Tooltip("プレイヤーID")]
+		[Header("プレイヤーID")]
 		public string PlayerID = "Player1";
 		/// the name of the main inventory
-		[Tooltip("the name of the main inventory")]
+		[Tooltip("メインインベントリ名")]
+		[Header("メインインベントリ名")]
 		public string MainInventoryName;
 		/// the name of the weapon inventory
-		[Tooltip("the name of the weapon inventory")]
+		[Tooltip("武器インベントリ名")]
+		[Header("武器インベントリ名")]
 		public string WeaponInventoryName;
 		/// the name of the hotbar inventory
-		[Tooltip("the name of the hotbar inventory")]
+		[Tooltip("ホットバーインベントリ名")]
+		[Header("ホットバーインベントリ名")]
 		public string HotbarInventoryName;
 		/// if this is true, when switching to this character, if there's a main weapon equipped, it'll be equipped
-		[Tooltip("if this is true, when switching to this character, if there's a main weapon equipped, it'll be equipped")]
+		[Tooltip("キャラ切替時に武器を自動装備")]
+		[Header("キャラ切替時に武器を自動装備")]
 		public bool AutoEquipWeaponOnCharacterSwitch;
 		/// the rotation mode for weapons : Normal will cycle through all weapons, AddEmptySlot will return to empty hands, AddOriginalWeapon will cycle back to the original weapon
-		[Tooltip("the rotation mode for weapons : Normal will cycle through all weapons, AddEmptySlot will return to empty hands, AddOriginalWeapon will cycle back to the original weapon")]
+		[Tooltip("武器ローテーションモード")]
+		[Header("武器ローテーションモード")]
 		public WeaponRotationModes WeaponRotationMode = WeaponRotationModes.Normal;
 		/// the target handle weapon ability - if left empty, will pick the first one it finds
-		[Tooltip("the target handle weapon ability - if left empty, will pick the first one it finds")]
+		[Tooltip("武器操作アビリティ")]
+		[Header("武器操作アビリティ")]
 		public CharacterHandleWeapon CharacterHandleWeapon;
 		/// a transform to pass to the inventories, will be passed to the inventories and used as reference for drops. If left empty, this.transform will be used.
-		[Tooltip("a transform to pass to the inventories, will be passed to the inventories and used as reference for drops. If left empty, this.transform will be used.")]
+		[Tooltip("インベントリ基準Transform")]
+		[Header("インベントリ基準Transform")]
 		public Transform InventoryTransform;
 
-		[Header("Start")]
+		[Header("開始時設定")]
 		/// a list of items and associated quantities to add to the main inventory
+		[Header("メインインベントリ自動追加アイテム")]
 		public List<InventoryItemsToAdd> AutoAddItemsMainInventory;
 		/// a list of items to add to the hotbar
+		[Header("ホットバー自動追加アイテム")]
 		public List<InventoryItemsToAdd> AutoAddItemsHotbar;
 		/// a weapon to automatically add to the inventory and equip on init
+		[Header("自動装備武器")]
 		public InventoryEngineWeapon AutoEquipWeapon;
 		
 		public List<string> AvailableWeaponsIDs => _availableWeaponsIDs;

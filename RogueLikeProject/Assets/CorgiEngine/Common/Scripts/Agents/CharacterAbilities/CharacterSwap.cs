@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,15 +12,17 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Swap")]
 	public class CharacterSwap : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This ability lets a Character be part of a pool of characters in a scene to swap from. You'll need a CharacterSwapManager in your scene for this to work."; }
+		public override string HelpBoxText() { return "シーン内のキャラクタープールから入れ替え可能にします。CharacterSwapManager がシーンに必要です。"; }
 
-		[Header("Swap")]
+		[Header("入れ替え")]
 
-		/// the order in which this character should be picked 
-		[Tooltip("the order in which this character should be picked ")]
+		/// the order in which this character should be picked
+		[Tooltip("選択順序")]
+		[Header("選択順序")]
 		public int Order = 0;
 		/// the playerID to put back in the Character class once this character gets swapped
-		[Tooltip("the playerID to put back in the Character class once this character gets swapped")]
+		[Tooltip("プレイヤーID")]
+		[Header("プレイヤーID")]
 		public string PlayerID = "Player1";
 
 		protected string _savedPlayerID;

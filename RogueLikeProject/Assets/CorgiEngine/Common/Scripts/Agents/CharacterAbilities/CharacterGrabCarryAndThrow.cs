@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -16,61 +16,70 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Grab, Carry and Throw")]
 	public class CharacterGrabCarryAndThrow : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This class lets you grab, carry and throw objects with a GrabCarryAndThrowObject component." +
-		                                              " In the Grab section you can define how you want the raycast that detects grabbable objects to work, " +
-		                                              "in the Carry section you can set an optional child transform to attach carried objects to, and in the Throw section you can define how strong you want " +
-		                                              "this Character's throw to be, and how much recoil it should get."; }
+		public override string HelpBoxText() { return "GrabCarryAndThrowObject 付きオブジェクトを掴み、運び、投げられます。掴みセクションで検出レイキャスト、運搬セクションで子 Transform への付け先、投げセクションで投げの強さと反動を設定できます。"; }
 
-		[Header("Grab")]
+		[Header("掴む")]
 
-		/// the direction the raycast used to detect grabbable objects will be cast in (if the Character is facing right). Use Vector3.down for Mario2-like grabs from the top, or Vector3.right 
+		/// the direction the raycast used to detect grabbable objects will be cast in (if the Character is facing right). Use Vector3.down for Mario2-like grabs from the top, or Vector3.right
 		/// for side grabs for example.
-		[Tooltip("the direction the raycast used to detect grabbable objects will be cast in (if the Character is facing right). Use Vector3.down for Mario2-like grabs from the top, or Vector3.right for side grabs for example")]
+		[Tooltip("レイキャスト方向")]
+		[Header("レイキャスト方向")]
 		public Vector3 RaycastDirection = Vector3.down;
 		/// the distance the grab raycast should cover (you'll want it bigger than half your Character's dimensions
-		[Tooltip("the distance the grab raycast should cover (you'll want it bigger than half your Character's dimensions")]
+		[Tooltip("レイキャスト距離")]
+		[Header("レイキャスト距離")]
 		public float RaycastDistance = 1f;
 		/// the layer this grab raycast should look for objects on. This should match the layer you put your GrabCarryAndThrowObjects on
-		[Tooltip("the layer this grab raycast should look for objects on. This should match the layer you put your GrabCarryAndThrowObjects on")]
+		[Tooltip("検出レイヤーマスク")]
+		[Header("検出レイヤーマスク")]
 		public LayerMask DetectionLayerMask = LayerManager.PlatformsLayerMask | LayerManager.EnemiesLayerMask;
 		/// whether or not this Character is grabbing something right now
 		[MMReadOnly]
-		[Tooltip("whether or not this Character is grabbing something right now")]
+		[Tooltip("掴んでいる")]
+		[Header("掴んでいる")]
 		public bool Grabbing = false;
 
-		[Header("Carry")]
+		[Header("運ぶ")]
 
 		/// a Transform used to attach carried objects to
-		[Tooltip("a Transform used to attach carried objects to")]
+		[Tooltip("運搬親トランスフォーム")]
+		[Header("運搬親トランスフォーム")]
 		public Transform CarryParent;
 		/// whether or not this Character is carrying an object this frame
 		[MMReadOnly]
-		[Tooltip("whether or not this Character is carrying an object this frame")]
+		[Tooltip("運んでいる")]
+		[Header("運んでいる")]
 		public bool Carrying = false;
 		/// the ID of the object being carried
 		[MMReadOnly]
-		[Tooltip("the ID of the object being carried")]
+		[Tooltip("運搬オブジェクトID")]
+		[Header("運搬オブジェクトID")]
 		public int CarryingID = -1;
 		/// a reference to the object being carried
 		[MMReadOnly]
-		[Tooltip("a reference to the object being carried")]
+		[Tooltip("運搬オブジェクト")]
+		[Header("運搬オブジェクト")]
 		public GrabCarryAndThrowObject CarriedObject = null;
 
-		[Header("Throw")]
+		[Header("投げる")]
 
 		/// the force to apply when throwing
-		[Tooltip("the force to apply when throwing")]
+		[Tooltip("投げる力")]
+		[Header("投げる力")]
 		public float ThrowForce = 1f;
 		/// a modifier to apply to the recoil set on the object
-		[Tooltip("a modifier to apply to the recoil set on the object")]
+		[Tooltip("反動修正値")]
+		[Header("反動修正値")]
 		public float RecoilModifier = 1f;
 		/// whether or not this Character is throwing something this frame
 		[MMReadOnly]
-		[Tooltip("whether or not this Character is throwing something this frame")]
+		[Tooltip("投げている")]
+		[Header("投げている")]
 		public bool Throwing = false;
 		/// whether or not to allow the character to throw if next to a grabbable object
-		[Tooltip("whether or not to allow the character to throw if next to a grabbable object")]
-		public bool PreventThrowIfCarryingOnGrab = false; 
+		[Tooltip("掴み時の投げを防ぐ")]
+		[Header("掴み時の投げを防ぐ")]
+		public bool PreventThrowIfCarryingOnGrab = false;
 
 		protected Vector2 _raycastOrigin;
 		protected Vector2 _recoilVector;

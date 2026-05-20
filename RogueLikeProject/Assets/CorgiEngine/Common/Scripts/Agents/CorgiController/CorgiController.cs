@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,49 +26,59 @@ namespace MoreMountains.CorgiEngine
 		/// the various states of our character
 		public CorgiControllerState State { get; protected set; }
 
-		[Header("Default Parameters")]
+		[Header("デフォルトパラメーター")]
 
 		/// the initial parameters
-		[Tooltip("the initial parameters")]
+		[Tooltip("デフォルトパラメーター")]
+		[Header("デフォルトパラメーター")]
 		public CorgiControllerParameters DefaultParameters;
 		/// the current parameters
 		public CorgiControllerParameters Parameters{get{return _overrideParameters ?? DefaultParameters;}}
         
-		[Header("Collisions")]
+		[Header("衝突")]
 		[MMInformation("You need to define what layer(s) this character will consider a walkable platform/moving platform etc. By default, you want Platforms, MovingPlatforms, OneWayPlatforms, MovingOneWayPlatforms, in this order.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// The layer mask the platforms are on
-		[Tooltip("The layer mask the platforms are on")]
-		public LayerMask PlatformMask = LayerManager.PlatformsLayerMask | LayerManager.PushablesLayerMask; 
+		[Tooltip("プラットフォームマスク")]
+		[Header("プラットフォームマスク")]
+		public LayerMask PlatformMask = LayerManager.PlatformsLayerMask | LayerManager.PushablesLayerMask;
 		/// The layer mask the moving platforms are on
-		[Tooltip("The layer mask the moving platforms are on")]
-		public LayerMask MovingPlatformMask = LayerManager.MovingPlatformsLayerMask; 
+		[Tooltip("移動プラットフォームマスク")]
+		[Header("移動プラットフォームマスク")]
+		public LayerMask MovingPlatformMask = LayerManager.MovingPlatformsLayerMask;
 		/// The layer mask the one way platforms are on
-		[Tooltip("The layer mask the one way platforms are on")]
+		[Tooltip("一方通行プラットフォームマスク")]
+		[Header("一方通行プラットフォームマスク")]
 		public LayerMask OneWayPlatformMask = LayerManager.OneWayPlatformsLayerMask;
 		/// The layer mask the moving one way platforms are on
-		[Tooltip("The layer mask the moving one way platforms are on")]
+		[Tooltip("移動一方通行プラットフォームマスク")]
+		[Header("移動一方通行プラットフォームマスク")]
 		public LayerMask MovingOneWayPlatformMask = LayerManager.MovingOneWayPlatformsMask;
 		/// The layer mask the mid height one way paltforms are on
-		[Tooltip("The layer mask the mid height one way paltforms are on")]
+		[Tooltip("中間高さ一方通行プラットフォームマスク")]
+		[Header("中間高さ一方通行プラットフォームマスク")]
 		public LayerMask MidHeightOneWayPlatformMask = LayerManager.MidHeightOneWayPlatformsLayerMask;
 		/// The layer mask the stairs are on
-		[Tooltip("The layer mask the stairs are on")]
+		[Tooltip("階段マスク")]
+		[Header("階段マスク")]
 		public LayerMask StairsMask = LayerManager.StairsLayerMask;
 		/// the possible directions a ray can be cast
 		public enum RaycastDirections { up, down, left, right };
 		/// The possible ways a character can detach from a oneway or moving platform
 		public enum DetachmentMethods { Layer, Object, LayerChange }
 		/// When a character jumps from a oneway or moving platform, collisions are off for a short moment. You can decide if they should happen on a whole moving/1way platform layer basis or just with the object the character just left
-		[Tooltip("When a character jumps from a oneway or moving platform, collisions are off for a short moment. You can decide if they should happen on a whole moving/1way platform layer basis or just with the object the character just left")]
+		[Tooltip("切り離し方式")]
+		[Header("切り離し方式")]
 		public DetachmentMethods DetachmentMethod = DetachmentMethods.Layer;
 		/// When using the LayerChange detachment method, this is the layer one way and moving platforms will be moved to temporarily
-		[Tooltip("When using the LayerChange detachment method, this is the layer one way and moving platforms will be moved to temporarily")]
+		[Tooltip("切り離し先レイヤー")]
+		[Header("切り離し先レイヤー")]
 		public MMLayer DetachmentLayer;
 
 		/// gives you the object the character is standing on
-		[Tooltip("gives you the object the character is standing on")]
+		[Tooltip("着地オブジェクト")]
 		[MMReadOnly]
+		[Header("着地オブジェクト")]
 		public GameObject StandingOn;
 		/// the object the character was standing on last frame
 		public GameObject StandingOnLastFrame { get; protected set; }
@@ -85,106 +95,130 @@ namespace MoreMountains.CorgiEngine
 		/// the wall we're currently colliding with
 		public virtual GameObject CurrentWallCollider { get; protected set; }
 
-		[Header("Raycasting")]
+		[Header("レイキャスト")]
 		[MMInformation(
 			"Here you can define how many rays are cast horizontally and vertically. You'll want them as far as possible from each other, but close enough that no obstacle or enemy can fit between 2 rays.",
 			MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
 		/// whether this controller should run on Update or FixedUpdate
-		[Tooltip("whether this controller should run on Update or FixedUpdate")]
+		[Tooltip("更新モード")]
+		[Header("更新モード")]
 		public UpdateModes UpdateMode = UpdateModes.Update;
 		/// the number of rays cast horizontally
-		[Tooltip("the number of rays cast horizontally")]
+		[Tooltip("水平レイ数")]
+		[Header("水平レイ数")]
 		public int NumberOfHorizontalRays = 8;
 		/// the number of rays cast vertically
-		[Tooltip("the number of rays cast vertically")]
+		[Tooltip("垂直レイ数")]
+		[Header("垂直レイ数")]
 		public int NumberOfVerticalRays = 8;
-		/// a small value added to all raycasts to accomodate for edge cases	
+		/// a small value added to all raycasts to accomodate for edge cases
 		[FormerlySerializedAs("RayOffset")]
-		[Tooltip("a small value added to all horizontal raycasts to accomodate for edge cases")]
+		[Tooltip("水平レイオフセット")]
+		[Header("水平レイオフセット")]
 		public float RayOffsetHorizontal = 0.05f;
-		/// a small value added to all raycasts to accomodate for edge cases	
-		[Tooltip("a small value added to all vertical raycasts to accomodate for edge cases")]
+		/// a small value added to all raycasts to accomodate for edge cases
+		[Tooltip("垂直レイオフセット")]
+		[Header("垂直レイオフセット")]
 		public float RayOffsetVertical = 0.05f;
 		/// an extra length you an add when casting rays horizontally
-		[Tooltip("an extra length you an add when casting rays horizontally")]
+		[Tooltip("水平レイ追加長さ")]
+		[Header("水平レイ追加長さ")]
 		public float RayExtraLengthHorizontal = 0f;
 		/// an extra length you an add when casting rays vertically
-		[Tooltip("an extra length you an add when casting rays vertically")]
+		[Tooltip("垂直レイ追加長さ")]
+		[Header("垂直レイ追加長さ")]
 		public float RayExtraLengthVertical = 0f;
-		
+
 		/// by default, the length of the raycasts used to get back to normal size will be auto generated based on your character's normal/standing height, but here you can specify a different value
-		[Tooltip("by default, the length of the raycasts used to get back to normal size will be auto generated based on your character's normal/standing height, but here you can specify a different value")]
+		[Tooltip("しゃがみレイキャスト長さ乗数")]
+		[Header("しゃがみレイキャスト長さ乗数")]
 		public float CrouchedRaycastLengthMultiplier = 1f;
 		/// if this is true, rays will be cast on both sides, otherwise only in the current movement's direction.
-		[Tooltip("if this is true, rays will be cast on both sides, otherwise only in the current movement's direction.")]
+		[Tooltip("両側にレイをキャスト")]
+		[Header("両側にレイをキャスト")]
 		public bool CastRaysOnBothSides = false;
 		/// the maximum length of the ray used to detect the distance to the ground
-		[Tooltip("the maximum length of the ray used to detect the distance to the ground")]
+		[Tooltip("地面検出レイ最大長さ")]
+		[Header("地面検出レイ最大長さ")]
 		public float DistanceToTheGroundRayMaximumLength = 100f;
 		/// a multiplier to apply to vertical downward raycasts while on a moving platform (longer == more stable movement on platforms)
-		[Tooltip("a multiplier to apply to vertical downward raycasts while on a moving platform (longer == more stable movement on platforms)")]
+		[Tooltip("移動プラットフォーム上レイキャスト長さ乗数")]
+		[Header("移動プラットフォーム上レイキャスト長さ乗数")]
 		public float OnMovingPlatformRaycastLengthMultiplier = 2f;
 		/// an offset to apply vertically to the origin of the controller's raycasts that will have an impact on obstacle detection. Tweak this to adapt to your character's and obstacle's size.
-		[Tooltip("an offset to apply vertically to the origin of the controller's raycasts that will have an impact on obstacle detection. Tweak this to adapt to your character's and obstacle's size")]
+		[Tooltip("障害物高さ許容値")]
+		[Header("障害物高さ許容値")]
 		public float ObstacleHeightTolerance = 0.05f;
 		
-		[Header("Stickiness")]
+		[Header("坂道接着")]
 		[MMInformation("Here you can define whether or not you want your character stick to slopes when walking down them, and how long the raycast handling that should be (0 means automatic length).",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// If this is set to true, the character will stick to slopes when walking down them
-		[Tooltip("If this is set to true, the character will stick to slopes when walking down them")]
+		[Tooltip("坂道に接着する")]
+		[Header("坂道に接着する")]
 		public bool StickToSlopes = false;
 		/// The length of the raycasts used to stick to downward slopes
-		[Tooltip("The length of the raycasts used to stick to downward slopes")]
+		[Tooltip("坂道接着レイキャスト長さ")]
+		[Header("坂道接着レイキャスト長さ")]
 		public float StickyRaycastLength = 0f;
-		/// the movement's Y offset to evaluate for stickiness. 
-		[Tooltip("the movement's Y offset to evaluate for stickiness. ")]
+		/// the movement's Y offset to evaluate for stickiness.
+		[Tooltip("坂道接着Y軸オフセット")]
+		[Header("坂道接着Y軸オフセット")]
 		public float StickToSlopesOffsetY = 0.2f;
-		/// the time (in seconds) since the last time the character was grounded 
-		[Tooltip("the time (in seconds) since the last time the character was grounded")]
+		/// the time (in seconds) since the last time the character was grounded
+		[Tooltip("空中経過時間")]
 		[MMReadOnly]
+		[Header("空中経過時間")]
 		public float TimeAirborne = 0f;
 
 		
-		[Header("Safety")]
+		[Header("安全設定")]
 		[MMInformation("Here you can authorize your controller to start rotated. This will change its gravity direction. It's safer to leave this safety on and use a CharacterGravity ability instead.",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
-		/// whether or not to perform additional checks when setting the transform's position (typically done by abilities like CharacterGrip). Slightly more expensive in terms of performance, but also safer. 
-		[Tooltip("whether or not to perform additional checks when setting the transform's position (typically done by abilities like CharacterGrip). Slightly more expensive in terms of performance, but also safer. ")]
+		/// whether or not to perform additional checks when setting the transform's position (typically done by abilities like CharacterGrip). Slightly more expensive in terms of performance, but also safer.
+		[Tooltip("安全なTransform設定")]
+		[Header("安全なTransform設定")]
 		public bool SafeSetTransform = false;
 		/// if this is true, this controller will set a number of physics settings automatically on init, to ensure they're correct
-		[Tooltip("if this is true, this controller will set a number of physics settings automatically on init, to ensure they're correct")]
+		[Tooltip("物理設定を自動適用")]
+		[Header("物理設定を自動適用")]
 		public bool AutomaticallySetPhysicsSettings = true;
-		
+
 		/// if this is true, gravity ability settings will be automatically set. It's recommended to set that to true.
-		[Tooltip("if this is true, gravity ability settings will be automatically set. It's recommended to set that to true.")]
+		[Tooltip("重力設定を自動適用")]
+		[Header("重力設定を自動適用")]
 		public bool AutomaticGravitySettings = true;
-		
-		
+
+
 		/// if this is true, the controller will perform an extra boxcast before authorizing movement, from the previous place to the next.
 		/// If an obstacle is found between the two, movement will be prevented, and extraction will be attempted
-		/// In most contexts this can remain false, but if you experience characters going through platforms, turn it on 
+		/// In most contexts this can remain false, but if you experience characters going through platforms, turn it on
 		[Tooltip("if this is true, the controller will perform an extra boxcast before authorizing movement, from the previous place to the next. " +
 		         "If an obstacle is found between the two, movement will be prevented, and extraction will be attempted. " +
 		         "In most contexts this can remain false, but if you experience characters going through platforms, turn it on")]
+		[Header("安全ボックスキャストを実行")]
 		public bool PerformSafetyBoxcast = false;
 		/// whether or not to only perform the safety boxcast check in the air
-		[Tooltip("whether or not to only perform the safety boxcast check in the air")]
+		[Tooltip("空中のみ安全ボックスキャスト")]
 		[MMCondition("PerformSafetyBoxcast", true)]
+		[Header("空中のみ安全ボックスキャスト")]
 		public bool SafetyBoxcastInAirOnly = true;
 		/// the ratio to apply to the Character's size when boxcasting. You'll want it to be always smaller than the actual bounds. 0.8, or 0.5 are good default values in most contexts
-		[Tooltip("the ratio to apply to the Character's size when boxcasting. You'll want it to be always smaller than the actual bounds. 0.8, or 0.5 are good default values in most contexts")]
+		[Tooltip("安全ボックスキャストサイズ比率")]
 		[MMCondition("PerformSafetyBoxcast", true)]
+		[Header("安全ボックスキャストサイズ比率")]
 		public Vector2 SafetyBoxcastSizeRatio = new Vector2(0.8f, 0.8f);
 		/// if an obstacle is found, extraction will be attempted, and the controller will move back along its last movement line, trying to find a safe space to put the character.
 		/// This defines the distance of each of these moves. Keep it small, and consistent with your character's size and speed
 		[Tooltip("if an obstacle is found, extraction will be attempted, and the controller will move back along its last movement line, trying to find a safe space to put the character. " +
 		         "This defines the distance of each of these moves. Keep it small, and consistent with your character's size and speed")]
 		[MMCondition("PerformSafetyBoxcast", true)]
+		[Header("脱出移動量")]
 		public float ExtractionIncrement = 0.05f;
 		/// The amount of times the controller should try to extract from a potential non safe space
-		[Tooltip("The amount of times the controller should try to extract from a potential non safe space")]
+		[Tooltip("最大脱出試行回数")]
 		[MMCondition("PerformSafetyBoxcast", true)]
+		[Header("最大脱出試行回数")]
 		public int MaxExtractionsIterations = 10;
 
 		public Vector3 ColliderSize => Vector3.Scale(transform.localScale, _boxCollider.size);

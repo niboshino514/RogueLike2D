@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,58 +12,70 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterRoll : CharacterAbility
 	{		
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Add this class to a character and it'll be able to 'roll' along surfaces, with options to go through enemies, and keep controlling direction."; }
+		public override string HelpBoxText() { return "キャラクターに転がりを追加します。敵を通り抜けるオプションや、方向操作を維持する設定があります。"; }
 
-		[Header("Roll")]
+		[Header("ローリング")]
 
 		/// the duration of the roll, in seconds
-		[Tooltip("the duration of the roll, in seconds")]
+		[Header("ローリング持続時間")]
+		[Tooltip("ローリング速度")]
 		public float RollDuration = 0.5f;
 		/// the speed of the roll (a multiplier of the regular walk speed)
-		[Tooltip("the speed of the roll, a multiplier of the regular walk speed")]
+		[Header("ローリング速度")]
+		[Tooltip("水平入力をブロック")]
 		public float RollSpeed = 3f;
 		/// if this is true, horizontal input won't be read, and the character won't be able to change direction during a roll
-		[Tooltip("if this is true, horizontal input won't be read, and the character won't be able to change direction during a roll")]
+		[Header("水平入力をブロック")]
+		[Tooltip("ローリング中ダメージ衝突を無効")]
 		public bool BlockHorizontalInput = false;
 		/// if this is true, no damage will be applied during the roll, and the character will be able to go through enemies
-		[Tooltip("if this is true, no damage will be applied during the roll, and the character will be able to go through enemies")]
+		[Header("ローリング中ダメージ衝突を無効")]
+		[Tooltip("方向")]
 		public bool PreventDamageCollisionsDuringRoll = false;
 
-		[Header("Direction")]
+		[Header("方向")]
 
 		/// the roll's aim properties
-		[Tooltip("the roll's aim properties")]
+		[Header("狙い設定")]
+		[Tooltip("最小入力しきい値")]
 		public MMAim Aim;
 		/// the minimum amount of input required to apply a direction to the roll
-		[Tooltip("the minimum amount of input required to apply a direction to the roll")]
+		[Header("最小入力しきい値")]
+		[Tooltip("必要に応じてキャラクターを反転")]
 		public float MinimumInputThreshold = 0.1f;
 		/// if this is true, the character will flip when rolling and facing the roll's opposite direction
-		[Tooltip("if this is true, the character will flip when rolling and facing the roll's opposite direction")]
+		[Header("必要に応じてキャラクターを反転")]
+		[Tooltip("クールダウン")]
 		public bool FlipCharacterIfNeeded = true;
 
 		public enum SuccessiveRollsResetMethods { Grounded, Time }
 
-		[Header("Cooldown")]
+		[Header("クールダウン")]
 		/// the duration of the cooldown between 2 rolls (in seconds)
-		[Tooltip("the duration of the cooldown between 2 rolls (in seconds)")]
+		[Header("ローリングクールダウン")]
+		[Tooltip("使用回数")]
 		public float RollCooldown = 1f;
 
-		[Header("Uses")]
+		[Header("使用回数")]
 		/// whether or not rolls can be performed infinitely
-		[Tooltip("whether or not rolls can be performed infinitely")]
+		[Header("ローリング回数制限あり")]
+		[Tooltip("連続ローリング回数")]
 		public bool LimitedRolls = false;
 		/// the amount of successive rolls a character can perform, only if rolls are not infinite
-		[Tooltip("the amount of successive rolls a character can perform, only if rolls are not infinite")]
+		[Tooltip("連続ローリング回数")]
 		[MMCondition("LimitedRolls", true)]
+		[Header("連続ローリング回数")]
 		public int SuccessiveRollsAmount = 1;
 		/// the amount of rollss left (runtime value only), only if rolls are not infinite
-		[Tooltip("the amount of rolls left (runtime value only), only if rolls are not infinite")]
+		[Tooltip("残りローリング回数")]
 		[MMCondition("LimitedRolls", true)]
 		[MMReadOnly]
+		[Header("残りローリング回数")]
 		public int SuccessiveRollsLeft = 1;
 		/// when in time reset mode, the duration, in seconds, after which the amount of rolls left gets reset, only if rolls are not infinite
-		[Tooltip("when in time reset mode, the duration, in seconds, after which the amount of rolls left gets reset, only if rolls are not infinite")]
+		[Tooltip("連続ローリングリセット時間")]
 		[MMCondition("LimitedRolls", true)]
+		[Header("連続ローリングリセット時間")]
 		public float SuccessiveRollsResetDuration = 2f;
 
 		protected float _cooldownTimeStamp = 0;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,12 +12,14 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterGrip : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "Add this component to a character and it'll be able to grip level elements that have the Grip component."; }
+		public override string HelpBoxText() { return "Grip コンポーネント付きのレベル要素につかまれるコンポーネントです。"; }
 		/// The duration (in seconds) during which a character can't grip again after exiting a grip
-		[Tooltip("The duration (in seconds) during which a character can't grip again after exiting a grip")]
+		[Tooltip("グリップ後のバッファ持続時間")]
+		[Header("グリップ後のバッファ持続時間")]
 		public float BufferDurationAfterGrip = 0.3f;
 		/// whether or not grip input has to be pressed to enter grip
-		[Tooltip("whether or not grip input has to be pressed to enter grip")]
+		[Tooltip("入力ベースのグリップ")]
+		[Header("入力ベースのグリップ")]
 		public bool InputBasedGrip = false;
 		/// Returns true if the character can grip right now, false otherwise
 		public virtual bool CanGrip { get { return (Time.time - _lastGripTimestamp > BufferDurationAfterGrip); }}

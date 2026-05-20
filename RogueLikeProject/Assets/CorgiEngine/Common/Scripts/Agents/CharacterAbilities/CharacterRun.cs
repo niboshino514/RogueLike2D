@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
@@ -13,33 +13,39 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterRun : CharacterAbility
 	{	
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component allows your character to change speed (defined here) when pressing the run button."; }
+		public override string HelpBoxText() { return "走るボタンを押している間、ここで定義した速度に変更できるコンポーネントです。"; }
 
-		[Header("Speed")]
+		[Header("速度")]
 		/// the speed of the character when it's running
-		[Tooltip("the speed of the character when it's running")]
+		[Tooltip("ダッシュ走速度")]
+		[Header("ダッシュ走速度")]
 		public float RunSpeed = 16f;
 
 		/// whether or not to stop the character from running when at low speeds
-		[Tooltip("whether or not to stop the character from running when at low speeds")]
+		[Tooltip("低速時にダッシュ走を停止")]
+		[Header("低速時にダッシュ走を停止")]
 		public bool StopRunAtLowSpeed = false;
 		/// if StopRunAtLowSpeed is true, the absolute speed under which to stop running
-		[Tooltip("if StopRunAtLowSpeed is true, the absolute speed under which to stop running")]
+		[Tooltip("ダッシュ走停止速度しきい値")]
 		[MMCondition("StopRunAtLowSpeed", true)]
+		[Header("ダッシュ走停止速度しきい値")]
 		public float RunLowSpeedThreshold = 1f;
 
-		[Header("Input")]
+		[Header("入力")]
 		/// if this is set to false, will ignore input (use methods via script instead)
-		[Tooltip("if this is set to false, will ignore input (use methods via script instead)")]
+		[Tooltip("入力を読む")]
+		[Header("入力を読む")]
 		public bool ReadInput = true;
 		public bool ShouldRun { get; protected set; }
         
-		[Header("AutoRun")]
+		[Header("自動ダッシュ走")]
 		/// whether or not run should auto trigger if you move the joystick far enough
-		[Tooltip("whether or not run should auto trigger if you move the joystick far enough")]
+		[Tooltip("自動ダッシュ走")]
+		[Header("自動ダッシュ走")]
 		public bool AutoRun = false;
 		/// the input threshold on the joystick (normalized)
-		[Tooltip("the input threshold on the joystick (normalized)")]
+		[Tooltip("自動ダッシュ走しきい値")]
+		[Header("自動ダッシュ走しきい値")]
 		public float AutoRunThreshold = 0.6f;
 
 		// animation parameters

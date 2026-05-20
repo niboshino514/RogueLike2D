@@ -1,4 +1,4 @@
-﻿using MoreMountains.Feedbacks;
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,35 +14,43 @@ namespace MoreMountains.CorgiEngine
 		/// the possible movement modes for aim markers
 		public enum MovementModes { Instant, Interpolate }
 
-		[Header("Movement")]
+		[Header("移動")]
 		/// The selected movement mode for this aim marker. Instant will move the marker instantly to its target, Interpolate will animate its position over time
-		[Tooltip("The selected movement mode for this aim marker. Instant will move the marker instantly to its target, Interpolate will animate its position over time")]
+		[Tooltip("移動モード")]
+		[Header("移動モード")]
 		public MovementModes MovementMode;
 		/// an offset to apply to the position of the target (useful if you want, for example, the marker to appear above the target)
-		[Tooltip("an offset to apply to the position of the target (useful if you want, for example, the marker to appear above the target)")]
+		[Tooltip("オフセット")]
+		[Header("オフセット")]
 		public Vector3 Offset;
 		/// When in Interpolate mode, the duration of the movement animation
-		[Tooltip("When in Interpolate mode, the duration of the movement animation")]
+		[Tooltip("移動持続時間")]
 		[MMEnumCondition("MovementMode",(int)MovementModes.Interpolate)]
+		[Header("移動持続時間")]
 		public float MovementDuration = 0.2f;
 		/// When in Interpolate mode, the curve to animate the movement on
-		[Tooltip("When in Interpolate mode, the curve to animate the movement on")]
+		[Tooltip("移動カーブ")]
 		[MMEnumCondition("MovementMode", (int)MovementModes.Interpolate)]
+		[Header("移動カーブ")]
 		public MMTween.MMTweenCurve MovementCurve = MMTween.MMTweenCurve.EaseInCubic;
 		/// When in Interpolate mode, the delay before the marker moves when changing target
-		[Tooltip("When in Interpolate mode, the delay before the marker moves when changing target")]
+		[Tooltip("移動遅延")]
 		[MMEnumCondition("MovementMode", (int)MovementModes.Interpolate)]
+		[Header("移動遅延")]
 		public float MovementDelay = 0f;
-        
-		[Header("Feedbacks")]
+
+		[Header("フィードバック")]
 		/// A feedback to play when a target is found and we didn't have one already
-		[Tooltip("A feedback to play when a target is found and we didn't have one already")]
+		[Tooltip("初回ターゲットフィードバック")]
+		[Header("初回ターゲットフィードバック")]
 		public MMFeedbacks FirstTargetFeedback;
 		/// a feedback to play when we already had a target and just found a new one
-		[Tooltip("a feedback to play when we already had a target and just found a new one")]
+		[Tooltip("新ターゲットフィードバック")]
+		[Header("新ターゲットフィードバック")]
 		public MMFeedbacks NewTargetAssignedFeedback;
 		/// a feedback to play when no more targets are found, and we just lost our last target
-		[Tooltip("a feedback to play when no more targets are found, and we just lost our last target")]
+		[Tooltip("ターゲット消失フィードバック")]
+		[Header("ターゲット消失フィードバック")]
 		public MMFeedbacks NoMoreTargetFeedback;
 
 		protected Transform _target;

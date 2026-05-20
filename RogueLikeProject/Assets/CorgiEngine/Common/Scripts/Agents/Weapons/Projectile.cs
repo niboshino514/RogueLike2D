@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -10,47 +10,59 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Weapons/Projectile")]
 	public class Projectile : MMPoolableObject 
 	{
-		[Header("Movement")] 
+		[Header("移動")]
 
 		/// if true, the projectile will rotate at initialization towards its rotation
-		[Tooltip("if true, the projectile will rotate at initialization towards its rotation")]
+		[Tooltip("方向に向く")]
+		[Header("方向に向く")]
 		public bool FaceDirection = true;
 		/// if this is true, the projectile will update its rotation every frame to match its movement direction
-		[Tooltip("if this is true, the projectile will update its rotation every frame to match its movement direction")]
+		[Tooltip("移動方向に向く")]
+		[Header("移動方向に向く")]
 		public bool FaceMovementDirection = false;
 		/// the speed of the object (relative to the level's speed)
-		[Tooltip("the speed of the object (relative to the level's speed)")]
+		[Tooltip("速度")]
+		[Header("速度")]
 		public float Speed = 200;
 		/// the acceleration of the object over time. Starts accelerating on enable.
-		[Tooltip("the acceleration of the object over time. Starts accelerating on enable.")]
+		[Tooltip("加速度")]
+		[Header("加速度")]
 		public float Acceleration = 0;
 		/// the current direction of the object
-		[Tooltip("the current direction of the object")]
+		[Tooltip("方向")]
+		[Header("方向")]
 		public Vector3 Direction = Vector3.left;
 		/// if set to true, the spawner can change the direction of the object. If not the one set in its inspector will be used.
-		[Tooltip("if set to true, the spawner can change the direction of the object. If not the one set in its inspector will be used.")]
+		[Tooltip("スポーン元が方向変更可能")]
+		[Header("スポーン元が方向変更可能")]
 		public bool DirectionCanBeChangedBySpawner = true;
 		/// the flip factor to apply if and when the projectile is mirrored - this will only be taken into account if this projectile's game object doesn't have a SpriteRenderer component. If it does, the flipX property of the SpriteRenderer will be used instead.
-		[Tooltip("the flip factor to apply if and when the projectile is mirrored - this will only be taken into account if this projectile's game object doesn't have a SpriteRenderer component. If it does, the flipX property of the SpriteRenderer will be used instead.")]
+		[Tooltip("反転値")]
+		[Header("反転値")]
 		public Vector3 FlipValue = new Vector3(-1,1,1);
 		/// determines whether or not the projectile is facing right
-		[Tooltip("determines whether or not the projectile is facing right")]
+		[Tooltip("弾が右向き")]
+		[Header("弾が右向き")]
 		public bool ProjectileIsFacingRight = true;
 
-		[Header("Spawn")]
+		[Header("スポーン")]
 		[MMInformation("Here you can define an initial delay (in seconds) during which this object won't take or cause damage. This delay starts when the object gets enabled. You can also define whether the projectiles should damage their owner (think rockets and the likes) or not",MoreMountains.Tools.MMInformationAttribute.InformationType.Info,false)]
 
 		/// the initial delay during which the projectile can't be destroyed
-		[Tooltip("the initial delay during which the projectile can't be destroyed")]
+		[Tooltip("初期無敵時間")]
+		[Header("初期無敵時間")]
 		public float InitialInvulnerabilityDuration=0f;
 		/// should the projectile damage its owner ?
-		[Tooltip("should the projectile damage its owner ?")]
+		[Tooltip("オーナーにダメージを与える")]
+		[Header("オーナーにダメージを与える")]
 		public bool DamageOwner = false;
-		/// if this is true, the projectile will perform an extra check on initialization to make sure it's not within an obstacle. If it is, it'll disable itself. 
-		[Tooltip("if this is true, the projectile will perform an extra check on initialization to make sure it's not within an obstacle. If it is, it'll disable itself.")]
+		/// if this is true, the projectile will perform an extra check on initialization to make sure it's not within an obstacle. If it is, it'll disable itself.
+		[Tooltip("スポーン安全チェック")]
+		[Header("スポーン安全チェック")]
 		public bool SpawnSecurityCheck = false;
 		/// the layermask to use when performing the security check
-		[Tooltip("the layermask to use when performing the security check")]
+		[Tooltip("スポーン安全チェック レイヤーマスク")]
+		[Header("スポーン安全チェック レイヤーマスク")]
 		public LayerMask SpawnSecurityCheckLayerMask;
 
 		/// Returns the associated damage on touch zone

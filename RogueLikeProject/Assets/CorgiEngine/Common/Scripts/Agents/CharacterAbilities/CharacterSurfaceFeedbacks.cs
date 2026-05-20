@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
@@ -23,64 +23,75 @@ namespace MoreMountains.CorgiEngine
 		public class CharacterSurfaceFeedbacksItems
 		{
 			/// an ID to identify this surface in the list. Not used by anything but makes the list more readable
-			[Tooltip("an ID to identify this surface in the list. Not used by anything but makes the list more readable")]
+			[Tooltip("レイヤー")]
+			[Header("ID")]
 			public string ID;
 			/// the list of layers that identify this surface
-			[Tooltip("the list of layers that identify this surface")]
+			[Tooltip("レイヤー")]
+			[Header("レイヤー")]
 			public LayerMask Layers;
 			/// whether or not to use a tag to identify this surface or just rely only on the layer
-			[Tooltip("whether or not to use a tag to identify this surface or just rely only on the layer")]
+			[Tooltip("タグを使用")]
+			[Header("タグを使用")]
 			public bool UseTag;
 			/// if using tags, the Tag that should be on this surface to identify it (on top of the layer)
-			[Tooltip("if using tags, the Tag that should be on this surface to identify it (on top of the layer)")]
+			[Tooltip("タグ")]
 			[MMCondition("UseTag", true)]
+			[Header("タグ")]
 			public string Tag;
 			/// the feedback to bind to the Movement ability's AbilityStartFeedbacks slot
-			[Tooltip("the feedback to bind to the Movement ability's AbilityStartFeedbacks slot")]
+			[Tooltip("歩行開始フィードバック")]
+			[Header("歩行開始フィードバック")]
 			public MMFeedbacks WalkStartFeedback;
 			/// the feedback to bind to the Movement ability's AbilityStopFeedbacks slot
-			[Tooltip("the feedback to bind to the Movement ability's AbilityStopFeedbacks slot")]
+			[Tooltip("歩行停止フィードバック")]
+			[Header("歩行停止フィードバック")]
 			public MMFeedbacks WalkStopFeedback;
 			/// the feedback to bind to the Run ability's AbilityStartFeedbacks slot
-			[Tooltip("the feedback to bind to the Run ability's AbilityStartFeedbacks slot")]
+			[Tooltip("走行開始フィードバック")]
+			[Header("走行開始フィードバック")]
 			public MMFeedbacks RunStartFeedback;
 			/// the feedback to bind to the Run ability's AbilityStopFeedbacks slot
-			[Tooltip("the feedback to bind to the Run ability's AbilityStopFeedbacks slot")]
+			[Tooltip("走行停止フィードバック")]
+			[Header("走行停止フィードバック")]
 			public MMFeedbacks RunStopFeedback;
 			/// a UnityEvent that will trigger when entering this surface
-			[Tooltip("a UnityEvent that will trigger when entering this surface")]
+			[Tooltip("表面進入時イベント")]
+			[Header("表面進入時イベント")]
 			public UnityEvent OnEnterSurface;
 			/// a UnityEvent that will trigger when exiting this surface
-			[Tooltip("a UnityEvent that will trigger when exiting this surface")]
+			[Tooltip("表面退出時イベント")]
+			[Header("表面退出時イベント")]
 			public UnityEvent OnExitSurface;
 		}
 		
 		/// whether detection should rely on periodical controller checks or be driven by an external script (via the SetCurrentSurfaceIndex(int index) method)
 		public enum SurfaceDetectionModes { Controller, Script }
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component allows a character and it'll let you define a number of surfaces and associate walk and run feedbacks to them. " +
-		                                              "It will also let you trigger events when entering or exiting these surfaces." +
-		                                              "Important : Surfaces are evaluated from top to bottom. The first surface definition that matches the current detected ground will " +
-		                                              "be considered the current surface. So make sure your order them accordingly."; }
+		public override string HelpBoxText() { return "複数の表面を定義し、歩行／走行フィードバックを関連付けられます。表面の出入り時にイベントも発火できます。重要：表面は上から順に評価され、最初に一致した定義が現在の表面になります。順序に注意してください。"; }
 
-		[Header("List of Surfaces")] 
+		[Header("表面リスト")]
 		/// a list of surface definitions, defined by a layer, an optional tag, and a walk and run sound. These will be evaluated from top to bottom, first match found becomes the current surface.
-		[Tooltip("a list of surface definitions, defined by a layer, an optional tag, and a walk and run sound. These will be evaluated from top to bottom, first match found becomes the current surface.")]
+		[Tooltip("表面一覧")]
+		[Header("表面一覧")]
 		public List<CharacterSurfaceFeedbacksItems> Surfaces;
-		
-		[Header("Detection")]
+
+		[Header("検出")]
 		/// whether detection should rely on periodical controller checks or be driven by an external script (via the SetCurrentSurfaceIndex(int index) method)
-		[Tooltip("whether detection should rely on periodical controller checks or be driven by an external script (via the SetCurrentSurfaceIndex(int index) method)")]
+		[Tooltip("表面検出モード")]
+		[Header("表面検出モード")]
 		public SurfaceDetectionModes SurfaceDetectionMode = SurfaceDetectionModes.Controller;
 		/// the frequency (in seconds) at which to cast the raycast to detect surfaces, usually you'll want to space them a bit to save on performance
-		[Tooltip("the frequency (in seconds) at which to cast the raycast to detect surfaces, usually you'll want to space them a bit to save on performance")]
+		[Tooltip("コントローラーチェック頻度")]
 		[MMEnumCondition("SurfaceDetectionMode", (int)SurfaceDetectionModes.Controller)]
+		[Header("コントローラーチェック頻度")]
 		public float ControllerCheckFrequency = 0.3f;
-		
-		[Header("Debug")]
+
+		[Header("デバッグ")]
 		/// The current index of the surface we're on in the Surfaces list
-		[Tooltip("The current index of the surface we're on in the Surfaces list")]
+		[Tooltip("現在の表面インデックス")]
 		[MMReadOnly]
+		[Header("現在の表面インデックス")]
 		public int CurrentSurfaceIndex = -1;
 		
 		protected float _timeSinceLastCheck = -float.PositiveInfinity;

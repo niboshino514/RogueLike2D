@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -9,25 +9,31 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Push Corgi Controller")]
 	public class CharacterPushCorgiController : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This component allows your character to push blocks. This is not a mandatory component, it will just override CorgiController push settings, and allow you to have a dedicated push animation."; }
+		public override string HelpBoxText() { return "ブロックを押せます。必須ではなく、CorgiController の押し設定を上書きし、専用アニメを使えます。"; }
 
 		/// if this is true, the user will have to press the Push button to push or pull, otherwise it's automatic on contact
-		[Tooltip("if this is true, the user will have to press the Push button to push or pull, otherwise it's automatic on contact")]
+		[Tooltip("ボタン操作方式")]
+		[Header("ボタン操作方式")]
 		public bool ButtonBased = false;
 		/// If this is set to true, the Character will be able to push blocks
-		[Tooltip("If this is set to true, the Character will be able to push blocks")]
+		[Tooltip("押す動作を有効にする")]
+		[Header("押す動作を有効にする")]
 		public bool CanPush = true;
 		/// If this is set to true, the Character will be able to pull blocks. Note that this requires ButtonBased to be true.
-		[Tooltip("If this is set to true, the Character will be able to pull blocks. Note that this requires ButtonBased to be true.")]
+		[Tooltip("引く動作を有効にする")]
+		[Header("引く動作を有効にする")]
 		public bool CanPull = true;
 		/// if this is true, the Character will only be able to push objects while grounded
-		[Tooltip("if this is true, the Character will only be able to push objects while grounded")]
+		[Tooltip("接地中のみ押す")]
+		[Header("接地中のみ押す")]
 		public bool PushWhenGroundedOnly = true;
 		/// the length of the raycast used to detect if we're colliding with a pushable object. Increase this if your animation is flickering.
-		[Tooltip("the length of the raycast used to detect if we're colliding with a pushable object. Increase this if your animation is flickering.")]
+		[Tooltip("検出レイキャスト長")]
+		[Header("検出レイキャスト長")]
 		public float DetectionRaycastLength = 0.2f;
 		/// the minimum horizontal speed below which we don't consider the character pushing anymore
-		[Tooltip("the minimum horizontal speed below which we don't consider the character pushing anymore")]
+		[Tooltip("最小押し速度")]
+		[Header("最小押し速度")]
 		public float MinimumPushSpeed = 0.05f;
 
 		protected bool _collidingWithPushable = false;

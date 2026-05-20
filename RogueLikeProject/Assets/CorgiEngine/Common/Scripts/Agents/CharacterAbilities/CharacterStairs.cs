@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
@@ -14,63 +14,76 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Stairs")]
 	public class CharacterStairs : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This component allows your character to climb stairs, which are basically one way platforms that can intersect with the ground and will be ignored unless you press up while walking towards them."; }
+		public override string HelpBoxText() { return "階段（地面と交差し、上方向入力＋向かって歩くときだけ有効な一方通行プラットフォーム）を登れます。"; }
 
-		[Header("Status")]
+		[Header("ステータス")]
 
 		/// true if the character is on stairs this frame, false otherwise
 		[MMReadOnly]
-		[Tooltip("true if the character is on stairs this frame, false otherwise")]
+		[Tooltip("階段上にいる")]
+		[Header("階段上にいる")]
 		public bool OnStairs = false;
 		/// true if there are stairs below our character
 		[MMReadOnly]
-		[Tooltip("true if there are stairs below our character")]
+		[Tooltip("下方に階段あり")]
+		[Header("下方に階段あり")]
 		public bool StairsBelow = false;
 		/// true if there are stairs ahead of our character
 		[MMReadOnly]
-		[Tooltip("true if there are stairs ahead of our character")]
+		[Tooltip("前方に階段あり")]
+		[Header("前方に階段あり")]
 		public bool StairsAhead = false;
 		[MMReadOnly]
-		[Tooltip("true if climbing up stairs is currently prevented by a raycast")]
+		[Tooltip("登り阻止中")]
+		[Header("登り阻止中")]
 		public bool ClimbingUpPrevented = false;
 
-		[Header("Stairs detection : ahead")]
+		[Header("階段検出：前方")]
 		/// the offset to apply when raycasting for stairs
-		[Tooltip("the offset to apply when raycasting for stairs")]
+		[Tooltip("前方レイキャスト原点オフセット")]
+		[Header("前方レイキャスト原点オフセット")]
 		public Vector3 StairsAheadDetectionRaycastOrigin = new Vector3(-0.75f, 0f, 0f);
 		/// the length of the raycast looking for stairs
-		[Tooltip("the length of the raycast looking for stairs")]
+		[Tooltip("前方レイキャスト距離")]
+		[Header("前方レイキャスト距離")]
 		public float StairsAheadDetectionRaycastLength = 2f;
-        
-		[Header("Stairs detection : below")]
+
+		[Header("階段検出：下方")]
 		/// the offset to apply when raycasting for stairs
-		[Tooltip("the offset to apply when raycasting for stairs")]
+		[Tooltip("下方レイキャスト原点オフセット")]
+		[Header("下方レイキャスト原点オフセット")]
 		public Vector3 StairsBelowDetectionRaycastOrigin = new Vector3(-0.2f, 0f, 0f);
 		/// the length of the raycast looking for stairs
-		[Tooltip("the length of the raycast looking for stairs")]
+		[Tooltip("下方レイキャスト距離")]
+		[Header("下方レイキャスト距離")]
 		public float StairsBelowDetectionRaycastLength = 0.25f;
 		/// the duration, in seconds, during which collisions with one way platforms should be ignored when starting to get down a stair
-		[Tooltip("the duration, in seconds, during which collisions with one way platforms should be ignored when starting to get down a stair")]
+		[Tooltip("下り開始ロック時間")]
+		[Header("下り開始ロック時間")]
 		public float StairsBelowLockTime = 0.2f;
-        
-		[Header("Constraints")]
-		/// the minimum horizontal speed at which the character must be moving to be able to start climbing stairs 
-		[Tooltip("the minimum horizontal speed at which the character must be moving to be able to start climbing stairs")]
+
+		[Header("制約")]
+		/// the minimum horizontal speed at which the character must be moving to be able to start climbing stairs
+		[Tooltip("階段乗り開始最小速度")]
+		[Header("階段乗り開始最小速度")]
 		public float MinimumSpeedToBoardStairs = 0.1f;
 		/// if this is true, a ray will be cast downwards from PreventClimbingRaycastOffset, for PreventClimbingRaycastLength
 		/// if that ray hits stairs, you won't be able to get up on them.
 		/// usually you'll want to position this ray's origin just in front of your character's head, and have it be slightly shorter than your character's height
 		[Tooltip("if this is true, a ray will be cast downwards from PreventClimbingRaycastOffset, for PreventClimbingRaycastLength " +
 		         "if that ray hits stairs, you won't be able to get up on them." +
-		         " usually you'll want to position this ray's origin just in front of your character's head, and have it be slightly shorter than your character's height")] 
+		         " usually you'll want to position this ray's origin just in front of your character's head, and have it be slightly shorter than your character's height")]
+		[Header("階段頂点への登りを阻止")]
 		public bool PreventClimbingPastStairs = false;
 		/// the offset to apply to the character's position to determine the prevent climbing raycast's origin
-		[Tooltip("the offset to apply to the character's position to determine the prevent climbing raycast's origin")]
+		[Tooltip("登り阻止レイキャストオフセット")]
 		[MMCondition("PreventClimbingPastStairs", true)]
+		[Header("登り阻止レイキャストオフセット")]
 		public Vector3 PreventClimbingRaycastOffset = new Vector3(0.22f, 0.2f, 0f);
 		/// the length of the raycast used to prevent climbing past stairs
-		[Tooltip("the length of the raycast used to prevent climbing past stairs")]
+		[Tooltip("登り阻止レイキャスト距離")]
 		[MMCondition("PreventClimbingPastStairs", true)]
+		[Header("登り阻止レイキャスト距離")]
 		public float PreventClimbingRaycastLength = 0.5f;
         
 		protected bool _stairsInputUp = false;

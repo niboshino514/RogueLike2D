@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,81 +12,94 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterDash : CharacterAbility
 	{		
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component allows your character to dash. Here you can define the distance the dash should cover, " +
-													  "how much force to apply during the dash (which impacts its duration), whether forces should be reset on dash exit (otherwise inertia will apply)." +
-													  "Then you can define how to pick the dash's direction, whether or not the character should be automatically flipped to match the dash's direction, and " +
-													  "whether or not you want to correct the trajectory to prevent grounded characters to not dash if the input was slightly wrong." +
-													  "And finally you can tweak the cooldown between the end of a dash and the start of the next one."; }
+		public override string HelpBoxText() { return "このコンポーネントでキャラクターにダッシュを追加できます。ダッシュ距離、ダッシュ中に加える力（持続時間に影響）、終了時に力をリセットするか（しない場合は慣性が残る）を設定できます。ダッシュ方向の決め方、方向に合わせて自動反転するか、接地中に誤入力で地面に向かってダッシュしないよう軌道を補正するかも設定できます。最後に、ダッシュ終了から次のダッシュ開始までのクールダウンも調整できます。"; }
 
-		[Header("Dash")]
+		[Header("ダッシュ")]
 
 		/// the distance this dash should cover
-		[Tooltip("the distance this dash should cover")]
+		[Tooltip("ダッシュ距離")]
+		[Header("ダッシュ距離")]
 		public float DashDistance = 3f;
 		/// the force of the dash
-		[Tooltip("the force of the dash")]
+		[Tooltip("ダッシュの力")]
+		[Header("ダッシュの力")]
 		public float DashForce = 40f;
 		/// if this is true, forces will be reset on dash exit (killing inertia)
-		[Tooltip("if this is true, forces will be reset on dash exit (killing inertia)")]
+		[Tooltip("終了時に力をリセット")]
+		[Header("終了時に力をリセット")]
 		public bool ResetForcesOnExit = false;
 		/// if this is true, position will be forced on exit to match an exact distance
-		[Tooltip("if this is true, position will be forced on exit to match an exact distance")]
+		[Tooltip("正確な距離を強制")]
+		[Header("正確な距離を強制")]
 		public bool ForceExactDistance = false;
 		/// if this is true, the character's controller will detach from moving platforms when dash starts
-		[Tooltip("if this is true, the character's controller will detach from moving platforms when dash starts")]
+		[Tooltip("ダッシュ開始時に移動プラットフォームから切り離す")]
+		[Header("ダッシュ開始時に移動プラットフォームから切り離す")]
 		public bool DetachFromMovingPlatformsOnDash = false;
 
-		[Header("Direction")]
+		[Header("方向")]
 
 		/// the dash's aim properties
-		[Tooltip("the dash's aim properties")]
+		[Tooltip("エイムプロパティ")]
+		[Header("エイムプロパティ")]
 		public MMAim Aim;
 		/// the minimum amount of input required to apply a direction to the dash
-		[Tooltip("the minimum amount of input required to apply a direction to the dash")]
+		[Tooltip("最小入力しきい値")]
+		[Header("最小入力しきい値")]
 		public float MinimumInputThreshold = 0.1f;
 		/// if this is true, the character will flip when dashing and facing the dash's opposite direction
-		[Tooltip("if this is true, the character will flip when dashing and facing the dash's opposite direction")]
+		[Tooltip("必要時にキャラクターを反転")]
+		[Header("必要時にキャラクターを反転")]
 		public bool FlipCharacterIfNeeded = true;
 		/// if this is true, will prevent the character from dashing into the ground when already grounded
-		[Tooltip("if this is true, will prevent the character from dashing into the ground when already grounded")]
+		[Tooltip("軌道自動補正")]
+		[Header("軌道自動補正")]
 		public bool AutoCorrectTrajectory = true;
-		/// the direction threshold over which to compare direction when authorizing the dash. You'll likely want to keep it fairly close to zero 
-		[Tooltip("the direction threshold over which to compare direction when authorizing the dash. You'll likely want to keep it fairly close to zero")] 
+		/// the direction threshold over which to compare direction when authorizing the dash. You'll likely want to keep it fairly close to zero
+		[Tooltip("ダッシュ方向最小しきい値")]
+		[Header("ダッシュ方向最小しきい値")]
 		public float DashDirectionMinThreshold = 0.1f;
 
 		public enum SuccessiveDashResetMethods { Grounded, Time }
 
-		[Header("Cooldown")]
+		[Header("クールダウン")]
 		/// the duration of the cooldown between 2 dashes (in seconds)
-		[Tooltip("the duration of the cooldown between 2 dashes (in seconds)")]
+		[Tooltip("ダッシュクールダウン")]
+		[Header("ダッシュクールダウン")]
 		public float DashCooldown = 1f;
 
-		[Header("Uses")]
+		[Header("使用回数")]
 		/// whether or not dashes can be performed infinitely
-		[Tooltip("whether or not dashes can be performed infinitely")]
+		[Tooltip("ダッシュ回数制限あり")]
+		[Header("ダッシュ回数制限あり")]
 		public bool LimitedDashes = false;
 		/// the amount of successive dashes a character can perform, only if dashes are not infinite
-		[Tooltip("the amount of successive dashes a character can perform, only if dashes are not infinite")]
+		[Tooltip("連続ダッシュ回数")]
 		[MMCondition("LimitedDashes", true)]
+		[Header("連続ダッシュ回数")]
 		public int SuccessiveDashAmount = 1;
 		/// the amount of dashes left (runtime value only), only if dashes are not infinite
-		[Tooltip("the amount of dashes left (runtime value only), only if dashes are not infinite")]
+		[Tooltip("残りダッシュ回数")]
 		[MMCondition("LimitedDashes", true)]
 		[MMReadOnly]
+		[Header("残りダッシュ回数")]
 		public int SuccessiveDashesLeft = 1;
 		/// the method used to reset the number of dashes left, only if dashes are not infinite
-		[Tooltip("the method used to reset the number of dashes left, only if dashes are not infinite")]
+		[Tooltip("ダッシュ回数リセット方法")]
 		[MMCondition("LimitedDashes", true)]
+		[Header("ダッシュ回数リセット方法")]
 		public SuccessiveDashResetMethods SuccessiveDashResetMethod = SuccessiveDashResetMethods.Grounded;
 		/// when in time reset mode, the duration, in seconds, after which the amount of dashes left gets reset, only if dashes are not infinite
-		[Tooltip("when in time reset mode, the duration, in seconds, after which the amount of dashes left gets reset, only if dashes are not infinite")]
+		[Tooltip("ダッシュ回数リセット持続時間")]
 		[MMEnumCondition("SuccessiveDashResetMethod", (int)SuccessiveDashResetMethods.Time)]
+		[Header("ダッシュ回数リセット持続時間")]
 		public float SuccessiveDashResetDuration = 2f;
 
-		[Header("Damage")] 
+		[Header("ダメージ")]
 		/// if this is true, this character won't receive any damage while a dash is in progress
-		[Tooltip("if this is true, this character won't receive any damage while a dash is in progress")]
-		public bool InvincibleWhileDashing = false; 
+		[Tooltip("ダッシュ中無敵")]
+		[Header("ダッシュ中無敵")]
+		public bool InvincibleWhileDashing = false;
 
 		protected float _cooldownTimeStamp = 0;
 		protected float _startTime ;

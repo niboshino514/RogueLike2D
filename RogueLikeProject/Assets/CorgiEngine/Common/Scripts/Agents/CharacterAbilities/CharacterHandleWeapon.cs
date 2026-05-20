@@ -14,73 +14,90 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterHandleWeapon : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component will allow your character to pickup and use weapons. What the weapon will do is defined in the Weapon classes. This just describes the behaviour of the 'hand' holding the weapon, not the weapon itself. Here you can set an initial weapon for your character to start with, allow weapon pickup, and specify a weapon attachment (a transform inside of your character, could be just an empty child gameobject, or a subpart of your model."; }
+		public override string HelpBoxText() { return "武器の拾得と使用を可能にします。武器の挙動は Weapon クラスで定義され、ここでは武器を「持つ手」の挙動のみを設定します。初期武器、拾得許可、WeaponAttachment（キャラ内の Transform）を設定できます。"; }
 
-		[Header("Weapon")]
+		[Header("武器")]
 
 		/// the initial weapon owned by the character
-		[Tooltip("the initial weapon owned by the character")]
+		[Header("初期武器")]
+		[Tooltip("武器を拾える")]
 		public Weapon InitialWeapon;
 		/// if this is set to true, the character can pick up PickableWeapons
-		[Tooltip("if this is set to true, the character can pick up PickableWeapons")]
+		[Header("武器を拾える")]
+		[Tooltip("バインド")]
 		public bool CanPickupWeapons = true;
 
-		[Header("Binding")]
+		[Header("バインド")]
 
 		/// the position the weapon will be attached to. If left blank, will be this.transform.
-		[Tooltip("the position the weapon will be attached to. If left blank, will be this.transform.")]
+		[Header("武器アタッチメント")]
+		[Tooltip("装備時スケールリセット")]
 		public Transform WeaponAttachment;
 		/// if this is true, the weapon's scale will be forced to 1,1,1 when equipped
-		[Tooltip("if this is true, the weapon's scale will be forced to 1,1,1 when equipped")]
+		[Header("装備時スケールリセット")]
+		[Tooltip("装備時回転リセット")]
 		public bool ForceWeaponScaleResetOnEquip = false;
 		/// if this is true, the weapon's rotation will be forced to Identity when equipped
-		[Tooltip("if this is true, the weapon's rotation will be forced to Identity when equipped")]
+		[Header("装備時回転リセット")]
+		[Tooltip("自動アニメーターバインド")]
 		public bool ForceWeaponRotationResetOnEquip = false;
-		/// if this is true this animator will be automatically bound to the weapon 
-		[Tooltip("if this is true this animator will be automatically bound to the weapon")]
+		/// if this is true this animator will be automatically bound to the weapon
+		[Header("自動アニメーターバインド")]
+		[Tooltip("弾薬表示ID")]
 		public bool AutomaticallyBindAnimator = true;
 		/// the ID of the AmmoDisplay this ability should update
-		[Tooltip("the ID of the AmmoDisplay this ability should update")]
+		[Header("弾薬表示ID")]
+		[Tooltip("入力と自動化")]
 		public int AmmoDisplayID = 0;
 
-		[Header("Input and automation")]
+		[Header("入力と自動化")]
 
 		/// if this is true you won't have to release your fire button to auto reload
-		[Tooltip("if this is true you won't have to release your fire button to auto reload")]
+		[Header("連続押しで自動リロード")]
+		[Tooltip("被弾で攻撃中断")]
 		public bool ContinuousPress = false;
 		/// whether or not this character getting hit should interrupt its attack (will only work if the weapon is marked as interruptable)
-		[Tooltip("whether or not this character getting hit should interrupt its attack (will only work if the weapon is marked as interruptable)")]
+		[Header("被弾で攻撃中断")]
+		[Tooltip("はしご中に射撃可能")]
 		public bool GettingHitInterruptsAttack = false;
 		/// whether or not this character is allowed to shoot while on a ladder)
-		[Tooltip("whether or not this character is allowed to shoot while on a ladder")]
+		[Header("はしご中に射撃可能")]
+		[Tooltip("武器方向を向く")]
 		public bool CanShootFromLadders = false;
 		/// if this is set to true, the character will be forced to face the current weapon direction
-		[Tooltip("if this is set to true, the character will be forced to face the current weapon direction")]
+		[Header("武器方向を向く")]
+		[Tooltip("壁つかみ中に水平狙いを反転")]
 		public bool FaceWeaponDirection = false;
 		/// if this is true, horizontal aim will be inverted when shooting while wallclinging, to shoot away from the wall
-		[Tooltip("if this is true, horizontal aim will be inverted when shooting while wallclinging, to shoot away from the wall")] 
+		[Header("壁つかみ中に水平狙いを反転")]
+		[Tooltip("常時射撃強制")]
 		public bool InvertHorizontalAimWhenWallclinging = false;
 		/// if this is true, the character will continuously fire its weapon
-		[Tooltip("if this is true, the character will continuously fire its weapon")]
+		[Header("常時射撃強制")]
+		[Tooltip("バッファリング")]
 		public bool ForceAlwaysShoot = false;
 
-		[Header("Buffering")]
+		[Header("バッファリング")]
 
 		/// whether or not attack input should be buffered, letting you prepare an attack while another is being performed, making it easier to chain them
-		[Tooltip("whether or not attack input should be buffered, letting you prepare an attack while another is being performed, making it easier to chain them")]
+		[Header("入力をバッファリング")]
+		[Tooltip("新入力でバッファ延長")]
 		public bool BufferInput;
 		/// if this is true, every new input will prolong the buffer
 		[MMCondition("BufferInput", true)]
-		[Tooltip("if this is true, every new input will prolong the buffer")]
+		[Header("新入力でバッファ延長")]
+		[Tooltip("バッファ最大持続時間")]
 		public bool NewInputExtendsBuffer;
 		/// the maximum duration for the buffer, in seconds
 		[MMCondition("BufferInput", true)]
-		[Tooltip("the maximum duration for the buffer, in seconds")]
+		[Header("バッファ最大持続時間")]
+		[Tooltip("デバッグ")]
 		public float MaximumBufferDuration = 0.25f;
-        
-		[Header("Debug")]
+
+		[Header("デバッグ")]
 		/// returns the current equipped weapon
 		[MMReadOnly]
+		[Header("現在の武器")]
 		[Tooltip("returns the current equipped weapon")]
 		public Weapon CurrentWeapon;
 

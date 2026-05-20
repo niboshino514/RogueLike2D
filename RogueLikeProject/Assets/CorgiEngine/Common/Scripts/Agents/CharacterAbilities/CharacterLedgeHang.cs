@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -11,19 +11,22 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Ledge Hang")]
 	public class CharacterLedgeHang : CharacterAbility, MMEventListener<LedgeEvent>
 	{                
-		public override string HelpBoxText() { return "This component allows you to hang from objects with a Ledge component on them. From the inspector here you'll be able to specify the name of the Idle animation to return to after the climb, the duration of the climb animation (in seconds), and a minimum buffer delay for the hang time (0.2s is a safe value)."; }
+		public override string HelpBoxText() { return "Ledge コンポーネント付きオブジェクトからぶら下がれます。登攀後の Idle アニメ名、登攀アニメの長さ（秒）、ぶら下がり最小バッファ（0.2 秒が安全）を設定できます。"; }
 
-		[Header("Animation")]
+		[Header("アニメーション")]
 
 		/// the name of the animation to play after the climb animation is complete (usually your Idle animation)
-		[Tooltip("the name of the animation to play after the climb animation is complete (usually your Idle animation)")]
+		[Tooltip("待機アニメーション名")]
+		[Header("待機アニメーション名")]
 		public string IdleAnimationName = "Idle";
 		/// the duration of your climbing animation, after this it'll transition to IdleAnimationName automatically
-		[Tooltip("the duration of your climbing animation, after this it'll transition to IdleAnimationName automatically")]
+		[Tooltip("登りアニメーション持続時間")]
+		[Header("登りアニメーション持続時間")]
 		public float ClimbingAnimationDuration = 0.5f;
-		[Header("Settings")]
+		[Header("設定")]
 		/// the minimum time the Character must have been LedgeHanging before it can LedgeClimb. 0.2s (or more) will prevent any glitches and unwanted input conflicts
-		[Tooltip("the minimum time the Character must have been LedgeHanging before it can LedgeClimb. 0.2s (or more) will prevent any glitches and unwanted input conflicts")]
+		[Tooltip("最小ぶら下がり時間")]
+		[Header("最小ぶら下がり時間")]
 		public float MinimumHangingTime = 0.2f;
 
 		public bool Hanging => _hanging;

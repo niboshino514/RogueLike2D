@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
@@ -15,7 +15,7 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterJump : CharacterAbility
 	{	
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component handles jumps. Here you can define the jump height, whether the jump is proportional to the press length or not, the minimum air time (how long a character should stay in the air before being able to go down if the player has released the jump button), a jump window duration (the time during which, after falling off a cliff, a jump is still possible), jump restrictions, how many jumps the character can perform without touching the ground again, and how long collisions should be disabled when exiting 1-way platforms or moving platforms."; }
+		public override string HelpBoxText() { return "ジャンプを扱うコンポーネントです。ジャンプ高さ、ボタン押下時間に比例するか、最小滞空時間（ジャンプボタンを離した後、落下を開始できるまでの時間）、ジャンプウィンドウ（崖から落ちた直後でもジャンプ可能な時間）、ジャンプ制限、接地前に何回まで空中ジャンプできるか、一方通行／移動プラットフォームから出たときにコリジョンを無効にする時間などを設定できます。"; }
 
 		/// the possible jump restrictions
 		public enum JumpBehavior
@@ -27,73 +27,90 @@ namespace MoreMountains.CorgiEngine
 			CanJumpAnywhereAnyNumberOfTimes
 		}
 
-		[Header("Jump Behaviour")]
+		[Header("ジャンプ挙動")]
 
 		/// the maximum number of jumps allowed (0 : no jump, 1 : normal jump, 2 : double jump, etc...)
-		[Tooltip("the maximum number of jumps allowed (0 : no jump, 1 : normal jump, 2 : double jump, etc...)")]
+		[Tooltip("ジャンプ数")]
+		[Header("ジャンプ数")]
 		public int NumberOfJumps = 2;
 		/// defines how high the character can jump
-		[Tooltip("defines how high the character can jump")]
+		[Tooltip("ジャンプの高さ")]
+		[Header("ジャンプの高さ")]
 		public float JumpHeight = 3.025f;
 		/// basic rules for jumps : where can the player jump ?
-		[Tooltip("basic rules for jumps : where can the player jump ?")]
+		[Tooltip("ジャンプ制限")]
+		[Header("ジャンプ制限")]
 		public JumpBehavior JumpRestrictions = JumpBehavior.CanJumpAnywhere;
 		/// if this is true, camera offset will be reset on jump
-		[Tooltip("if this is true, camera offset will be reset on jump")]
+		[Tooltip("ジャンプ時にカメラオフセットをリセット")]
+		[Header("ジャンプ時にカメラオフセットをリセット")]
 		public bool ResetCameraOffsetOnJump = false;
 		/// if this is true, this character can jump down one way platforms by doing down + jump
-		[Tooltip("if this is true, this character can jump down one way platforms by doing down + jump")]
+		[Tooltip("一方通行プラットフォームから飛び降り可能")]
+		[Header("一方通行プラットフォームから飛び降り可能")]
 		public bool CanJumpDownOneWayPlatforms = true;
 		/// deducts an additional jump if the sequence begins in the air. This keeps aerial jump count consistent regardless of whether the first jump began in the air or on the ground.
-		[Tooltip("deducts an additional jump if the sequence begins in the air. This keeps aerial jump count consistent regardless of whether the first jump began in the air or on the ground.")]
+		[Tooltip("空中ジャンプ数を固定")]
+		[Header("空中ジャンプ数を固定")]
 		public bool FixedAerialJumpCount = false;
 
-		[Header("Proportional jumps")]
+		[Header("プレス時間比例ジャンプ")]
 
 		/// if true, the jump duration/height will be proportional to the duration of the button's press
-		[Tooltip("if true, the jump duration/height will be proportional to the duration of the button's press")]
+		[Tooltip("プレス時間に比例したジャンプ")]
+		[Header("プレス時間に比例したジャンプ")]
 		public bool JumpIsProportionalToThePressTime = true;
 		/// the minimum time in the air allowed when jumping - this is used for pressure controlled jumps
-		[Tooltip("the minimum time in the air allowed when jumping - this is used for pressure controlled jumps")]
+		[Tooltip("ジャンプ最小空中時間")]
+		[Header("ジャンプ最小空中時間")]
 		public float JumpMinimumAirTime = 0.1f;
 		/// the amount by which we'll modify the current speed when the jump button gets released
-		[Tooltip("the amount by which we'll modify the current speed when the jump button gets released")]
+		[Tooltip("ジャンプ解放力係数")]
+		[Header("ジャンプ解放力係数")]
 		public float JumpReleaseForceFactor = 2f;
 		
-		[Header("Quality of Life")]
-		
+		[Header("操作支援")]
+
 		/// a timeframe during which, after leaving the ground, the character can still trigger a jump
-		[Tooltip("a timeframe during which, after leaving the ground, the character can still trigger a jump")]
+		[Tooltip("コヨーテタイム")]
+		[Header("コヨーテタイム")]
 		public float CoyoteTime = 0f;
-		
-		/// if the character lands, and the jump button's been pressed during that InputBufferDuration, a new jump will be triggered 
-		[Tooltip("if the character lands, and the jump button's been pressed during that InputBufferDuration, a new jump will be triggered")]
+
+		/// if the character lands, and the jump button's been pressed during that InputBufferDuration, a new jump will be triggered
+		[Tooltip("入力バッファ持続時間")]
+		[Header("入力バッファ持続時間")]
 		public float InputBufferDuration = 0f;
 
-		[Header("Collisions")]
+		[Header("コリジョン")]
 
 		/// duration (in seconds) we need to disable collisions when jumping down a 1 way platform
-		[Tooltip("duration (in seconds) we need to disable collisions when jumping down a 1 way platform")]
+		[Tooltip("一方通行プラットフォーム降下時のコリジョン無効時間")]
+		[Header("一方通行プラットフォーム降下時のコリジョン無効時間")]
 		public float OneWayPlatformsJumpCollisionOffDuration = 0.3f;
 		/// extra duration (in seconds) we need to disable collisions when jumping down a moving 1 way platform
-		[Tooltip("extra duration (in seconds) we need to disable collisions when jumping down a moving 1 way platform")]
+		[Tooltip("移動一方通行プラットフォーム降下時のコリジョン無効時間")]
+		[Header("移動一方通行プラットフォーム降下時のコリジョン無効時間")]
 		public float MovingOneWayPlatformsJumpCollisionOffDuration = 0.2f;
 		/// duration (in seconds) we need to disable collisions when jumping off a moving platform
-		[Tooltip("duration (in seconds) we need to disable collisions when jumping off a moving platform")]
+		[Tooltip("移動プラットフォームからのジャンプ時コリジョン無効時間")]
+		[Header("移動プラットフォームからのジャンプ時コリジョン無効時間")]
 		public float MovingPlatformsJumpCollisionOffDuration = 0.05f;
 
-		[Header("Feedbacks")]
+		[Header("フィードバック")]
 
 		/// the MMFeedbacks to play when jumping in the air
-		[Tooltip("the MMFeedbacks to play when jumping in the air")]
+		[Tooltip("空中ジャンプフィードバック")]
+		[Header("空中ジャンプフィードバック")]
 		public MMFeedbacks AirJumpFeedbacks;
 		/// the MMFeedbacks to play when double jumping
-		[Tooltip("the MMFeedbacks to play when double jumping")]
+		[Tooltip("二段ジャンプフィードバック")]
+		[Header("二段ジャンプフィードバック")]
 		public MMFeedbacks DoubleJumpFeedbacks;
 
 		/// the number of jumps left to the character
 		[MMReadOnly]
-		[Tooltip("the number of jumps left to the character")]
+		[Tooltip("残りジャンプ数")]
+		[Header("残りジャンプ数")]
 		public int NumberOfJumpsLeft;
 
 		/// whether or not the jump happened this frame

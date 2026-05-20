@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 
@@ -12,21 +12,24 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterLookUp : CharacterAbility 
 	{
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
-		public override string HelpBoxText() { return "This component allows your character to look up when pressing up while grounded. How much the camera will move in this situation is defined on the CameraController's inspector. And here you can specify how much horizontal movement is too much to prevent looking up."; }
+		public override string HelpBoxText() { return "接地中に上を押すと見上げます。カメラの移動量は CameraController で設定します。ここでは見上げを禁止する水平移動量のしきい値を指定できます。"; }
 
-		[Header("Input")]
+		[Header("入力")]
 
 		/// the threshold of horizontal input above which the character should stop looking up
-		[Tooltip("the threshold of horizontal input above which the character should stop looking up")]
+		[Tooltip("水平入力しきい値")]
+		[Header("水平入力しきい値")]
 		public float HorizontalInputThreshold = 0.5f;
 
 		[Header("Cinemachine")]
 
 		/// whether or not the camera should move when looking up
-		[Tooltip("whether or not the camera should move when looking up")]
+		[Tooltip("カメラターゲットを移動")]
+		[Header("カメラターゲットを移動")]
 		public bool MoveCameraTarget = true;
 		/// the offset by which to move the camera when looking up
-		[Tooltip("the offset by which to move the camera when looking up")]
+		[Tooltip("カメラターゲットオフセット")]
+		[Header("カメラターゲットオフセット")]
 		public Vector3 CameraTargetOffset = new Vector3(0f, 6f, 0f);
 
 		protected bool _lookingUp = false;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,25 +14,31 @@ namespace MoreMountains.CorgiEngine
 	public class CharacterAbility : CorgiMonoBehaviour 
 	{
 		/// the feedbacks to play when the ability starts
-		[Tooltip("the feedbacks to play when the ability starts")]
+		[Tooltip("アビリティ開始フィードバック")]
+		[Header("アビリティ開始フィードバック")]
 		public MMFeedbacks AbilityStartFeedbacks;
 		/// the feedbacks to play when the ability stops
-		[Tooltip("the feedbacks to play when the ability stops")]
+		[Tooltip("アビリティ停止フィードバック")]
+		[Header("アビリティ停止フィードバック")]
 		public MMFeedbacks AbilityStopFeedbacks;
         
-		[Header("Permissions")]
+		[Header("パーミッション")]
 
 		/// if true, this ability can perform as usual, if not, it'll be ignored. You can use this to unlock abilities over time for example
-		[Tooltip("if true, this ability can perform as usual, if not, it'll be ignored. You can use this to unlock abilities over time for example")]
+		[Tooltip("アビリティ有効")]
+		[Header("アビリティ有効")]
 		public bool AbilityPermitted = true;
 		/// an array containing all the blocking movement states. If the Character is in one of these states and tries to trigger this ability, it won't be permitted. Useful to prevent this ability from being used while Idle or Swimming, for example.
-		[Tooltip("an array containing all the blocking movement states. If the Character is in one of these states and tries to trigger this ability, it won't be permitted. Useful to prevent this ability from being used while Idle or Swimming, for example.")]
+		[Tooltip("ブロック中の移動状態")]
+		[Header("ブロック中の移動状態")]
 		public CharacterStates.MovementStates[] BlockingMovementStates;
 		/// an array containing all the blocking condition states. If the Character is in one of these states and tries to trigger this ability, it won't be permitted. Useful to prevent this ability from being used while dead, for example.
-		[Tooltip("an array containing all the blocking condition states. If the Character is in one of these states and tries to trigger this ability, it won't be permitted. Useful to prevent this ability from being used while dead, for example.")]
+		[Tooltip("ブロック中のコンディション状態")]
+		[Header("ブロック中のコンディション状態")]
 		public CharacterStates.CharacterConditions[] BlockingConditionStates;
 		/// an array containing all the blocking weapon states. If one of the character's weapons is in one of these states and yet the character tries to trigger this ability, it won't be permitted. Useful to prevent this ability from being used while attacking, for example.
-		[Tooltip("an array containing all the blocking weapon states. If one of the character's weapons is in one of these states and yet the character tries to trigger this ability, it won't be permitted. Useful to prevent this ability from being used while attacking, for example.")]
+		[Tooltip("ブロック中の武器状態")]
+		[Header("ブロック中の武器状態")]
 		public Weapon.WeaponStates[] BlockingWeaponStates;
 
 		public virtual bool AbilityAuthorized

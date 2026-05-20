@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
@@ -11,23 +11,28 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Time Control")] 
 	public class CharacterTimeControl : CharacterAbility
 	{
-		[Header("Time Control")]
+		[Header("時間制御")]
 		[MMInformation("This ability lets a character alter the timescale when pressing down the TimeControl button.", MMInformationAttribute.InformationType.Info, false)]
 
 		/// the time scale to switch to when the time control button gets pressed
-		[Tooltip("the time scale to switch to when the time control button gets pressed")]
+		[Tooltip("時間スケール")]
+		[Header("時間スケール")]
 		public float TimeScale = 0.5f;
 		/// the duration for which to keep the timescale changed
-		[Tooltip("the duration for which to keep the timescale changed")]
+		[Tooltip("持続時間")]
+		[Header("持続時間")]
 		public float Duration = 1f;
 		/// whether or not the timescale should get lerped
-		[Tooltip("whether or not the timescale should get lerped")]
+		[Tooltip("時間スケールをLerpする")]
+		[Header("時間スケールをLerpする")]
 		public bool LerpTimeScale = true;
 		/// the speed at which to lerp the timescale
-		[Tooltip("the speed at which to lerp the timescale")]
+		[Tooltip("Lerp速度")]
+		[Header("Lerp速度")]
 		public float LerpSpeed = 5f;
 		/// the cooldown for this ability
-		[Tooltip("the cooldown for this ability")]
+		[Tooltip("クールダウン")]
+		[Header("クールダウン")]
 		public MMCooldown Cooldown;
 
 		protected bool _timeControlled = false;

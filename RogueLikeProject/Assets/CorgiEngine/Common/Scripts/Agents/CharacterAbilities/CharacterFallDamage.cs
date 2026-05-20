@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
@@ -14,37 +14,41 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Abilities/Character Fall Damage")]
 	public class CharacterFallDamage : CharacterAbility
 	{
-		public override string HelpBoxText() { return "This component will apply damage to the character if it falls from a height " +
-		                                              "higher than the specified MinimumDamageFallHeight." +
-		                                              "Use the min and max damage fall heights to define the remap rules." +
-		                                              "You can also decide to clamp damage to the max damage, or just have it proportional."; }
+		public override string HelpBoxText() { return "指定の MinimumDamageFallHeight より高い場所から落ちるとダメージを与えます。最小／最大落下高でリマップ規則を定義し、最大ダメージでクランプするか比例のみかを選べます。"; }
 
-		[Header("Fall Height")]
+		[Header("落下高さ")]
 		/// the minimum height at which a character has to fall for damage to be applied
-		[Tooltip("the minimum height at which a character has to fall for damage to be applied")]
+		[Header("最小ダメージ落下高さ")]
+		[Tooltip("最大ダメージ落下高さ")]
 		public float MinimumDamageFallHeight = 5f;
 		/// the height at which you'd have to fall to apply the highest damage
-		[Tooltip("the height at which you'd have to fall to apply the highest damage")]
+		[Header("最大ダメージ落下高さ")]
+		[Tooltip("落下ダメージ")]
 		public float MaximumDamageFallHeight = 10f;
-		
-		[Header("Fall Damage")]
+
+		[Header("落下ダメージ")]
 		/// the damage to apply when falling from the min height
-		[Tooltip("the damage to apply when falling from the min height")]
+		[Header("最小ダメージ")]
+		[Tooltip("最大ダメージ")]
 		public float MinimumDamage = 10f;
 		/// the damage to apply when falling from the max height
-		[Tooltip("the damage to apply when falling from the max height")]
+		[Header("最大ダメージ")]
+		[Tooltip("ダメージ上限あり")]
 		public float MaximumDamage = 50f;
 		/// whether or not to clamp the damage to MaximumDamage. If not clamped, falling from an even higher height will apply even more damage.
-		[Tooltip("whether or not to clamp the damage to MaximumDamage. If not clamped, falling from an even higher height will apply even more damage.")]
+		[Header("ダメージ上限あり")]
+		[Tooltip("ダメージ種別")]
 		public bool ClampedDamage = true;
-		
-		[Header("Damage Types")]
-		/// an optional list of damage types to apply when fall damage kicks in  
-		[Tooltip("an optional list of damage types to apply when fall damage kicks in")]
+
+		[Header("ダメージ種別")]
+		/// an optional list of damage types to apply when fall damage kicks in
+		[Header("落下ダメージ種別リスト")]
+		[Tooltip("速度")]
 		public List<TypedDamage> FallDamageTypes;
 
-		[Header("Velocity")] 
-		/// the minimum (absolute) velocity the character has to hit the ground at for damage to apply  
+		[Header("速度")]
+		/// the minimum (absolute) velocity the character has to hit the ground at for damage to apply
+		[Header("ダメージ速度しきい値")]
 		[Tooltip("the minimum (absolute) velocity the character has to hit the ground at for damage to apply")]
 		public float DamageVelocityThreshold = 5f;
 		

@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using MoreMountains.Tools;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
 namespace MoreMountains.CorgiEngine
-{	
+{
 	/// <summary>
 	/// Add this class to a GUI object, and it'll handle the instantiation and management of hearts based on the current lives of the player character
 	/// It's best used on a HorizontalLayoutGroup that will handle correct positioning natively
@@ -12,16 +12,20 @@ namespace MoreMountains.CorgiEngine
 	public class HeartsGUI : CorgiMonoBehaviour, MMEventListener<CorgiEngineEvent>
 	{
 		/// the sprite to use when the heart is full
-		[Tooltip("the sprite to use when the heart is full")]
+		[Tooltip("ハート（満）スプライト")]
+		[Header("ハート（満）スプライト")]
 		public Sprite HeartFull;
 		/// the sprite to use when the heart is empty
-		[Tooltip("the sprite to use when the heart is empty")]
+		[Tooltip("ハート（空）スプライト")]
+		[Header("ハート（空）スプライト")]
 		public Sprite HeartEmpty;
 		/// the size of the heart to display
-		[Tooltip("the size of the heart to display")]
+		[Tooltip("ハートサイズ")]
+		[Header("ハートサイズ")]
 		public Vector2 HeartSize = new Vector2(50,50);
 		/// the number of hearts to provision (if you know you'll never have more than, say, 5 hearts in your game, set it to 5.
-		[Tooltip("the number of hearts to provision (if you know you'll never have more than, say, 5 hearts in your game, set it to 5.")]
+		[Tooltip("ハート予備数")]
+		[Header("ハート予備数")]
 		public int HeartProvision = 10;
 
 		protected List<Image> Hearts;
@@ -88,14 +92,14 @@ namespace MoreMountains.CorgiEngine
 			{
 				Initialization ();
 			}
-			
+
 			for (int i=0; i < HeartProvision; i++)
 			{
 				if ((i < GameManager.Instance.MaximumLives) && (Hearts [i].sprite != HeartEmpty))
 				{
 					Hearts [i].sprite = HeartEmpty;
 				}
-					
+
 				if ((i < GameManager.Instance.CurrentLives) && (Hearts [i].sprite != HeartFull))
 				{
 					Hearts [i].sprite = HeartFull;
@@ -112,7 +116,7 @@ namespace MoreMountains.CorgiEngine
 				}
 			}
 		}
-		
+
 		/// <summary>
 		/// OnDisable, we start listening to events.
 		/// </summary>
