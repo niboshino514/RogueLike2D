@@ -3,7 +3,8 @@
     "allow": [
       "Bash(Get-ChildItem -Recurse -Filter \"*.cs\" \"D:\\\\☆サークル関連\\\\作業中フォルダ\\\\ゲーム\\\\RogueLike2D\\\\RogueLikeProject\\\\Assets\\\\CorgiEngine\")",
       "Bash(Measure-Object)",
-      "Bash(Select-Object -ExpandProperty Count)"
+      "Bash(Select-Object -ExpandProperty Count)",
+      "mcp__UnityMCP__read_console"
     ]
   }
 }

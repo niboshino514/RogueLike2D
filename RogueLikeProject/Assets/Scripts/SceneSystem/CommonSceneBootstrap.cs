@@ -17,7 +17,7 @@ namespace SceneSystem
         /// <summary>
         /// ゲーム起動時にコモンシーンを加算ロードする
         /// </summary>
-        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void LoadCommonScene()
         {
             // コモンシーン加算ロード
