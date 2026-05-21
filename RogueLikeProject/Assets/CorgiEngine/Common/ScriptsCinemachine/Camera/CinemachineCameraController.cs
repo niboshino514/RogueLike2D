@@ -66,11 +66,11 @@ namespace MoreMountains.CorgiEngine
 		public float OrthographicZoomSpeed = 0.4f;
 
 		[Space(10)]
-		[Header("Perspective Zoom")]
-		[MMInformation("Determine here the min and max zoom, and the zoom speed when the camera is in perspective mode. You can pick two zoom methods, either playing with the field of view or the transposer's distance.", MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
+		[Header("遠近法によるズーム")]
+		[MMInformation("ここでは、カメラがパースペクティブモードにある際のズームの最小値と最大値、およびズーム速度を設定します。視野角を調整する方法と、トランスフォーマーの距離を調整する方法の2つのズーム方式から選択できます。", MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
 
 		/// if this is true, perspective zoom will be processed every frame
-		[Tooltip("if this is true, perspective zoom will be processed every frame")]
+		[Tooltip("もしこれがtrueなら、パースペクティブズームは毎フレーム処理されることになる")]
 		public bool UsePerspectiveZoom = false;
 		/// the zoom method for this camera
 		[MMCondition("UsePerspectiveZoom", true)]

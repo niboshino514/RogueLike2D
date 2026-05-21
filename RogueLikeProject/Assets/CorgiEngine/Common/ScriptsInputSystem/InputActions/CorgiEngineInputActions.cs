@@ -116,7 +116,7 @@ namespace MoreMountains.CorgiEngine
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""314ace32-fb21-4bab-a569-ebe4e48f2102"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -369,6 +369,17 @@ namespace MoreMountains.CorgiEngine
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""094ddf63-7071-4507-8276-ebeebb759e92"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
