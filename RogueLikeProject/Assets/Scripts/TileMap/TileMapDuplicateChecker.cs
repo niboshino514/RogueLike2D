@@ -7,6 +7,8 @@ namespace TileMap
 {
     public class TileMapDuplicateChecker : MonoBehaviour
     {
+#if UNITY_EDITOR
+
         private void OnValidate()
         {
             if (!EditorApplication.isPlayingOrWillChangePlaymode)
@@ -49,6 +51,6 @@ namespace TileMap
                 }
             }
         }
+#endif
     }
-
 }

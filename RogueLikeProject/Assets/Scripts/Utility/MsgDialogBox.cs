@@ -2,7 +2,7 @@
 
 namespace Utility
 {
-    public class MsgDialogBox
+    public static class MsgDialogBox
     {
         /// <summary>
         /// メッセージボックス情報
