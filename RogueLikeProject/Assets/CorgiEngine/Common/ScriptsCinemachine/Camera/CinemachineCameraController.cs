@@ -22,96 +22,92 @@ namespace MoreMountains.CorgiEngine
 
 		[Header("Settings")]
 
-		/// if this is true, this camera will follow a player
-		[Tooltip("if this is true, this camera will follow a player")]
-		public bool FollowsAPlayer = true;
-		/// whether this camera should be confined by the bounds determined in the LevelManager or not
-		[Tooltip("whether this camera should be confined by the bounds determined in the LevelManager or not")]
-		public bool ConfineCameraToLevelBounds = true;
-		/// How high (or low) from the Player the camera should move when looking up/down
-		[Tooltip("How high (or low) from the Player the camera should move when looking up/down")]
-		public float ManualUpDownLookDistance = 3;
-		/// the min and max speed to consider for this character (when dealing with the zoom)
-		[MMVector("Min", "Max")]
-		[Tooltip("the min and max speed to consider for this character (when dealing with the zoom)")]
-		public Vector2 CharacterSpeed = new Vector2(0f, 16f);
-		/// the target character this camera follows
-		[MMReadOnly]
-		[Tooltip("the target character this camera follows")]
-		public Character TargetCharacter;
-		/// the controller bound to the character this camera follows
-		[MMReadOnly]
-		[Tooltip("the controller bound to the character this camera follows")]
-		public CorgiController TargetController;
+        [Header("プレイヤー追従設定")]
+        [Tooltip("カメラがプレイヤーを追従するかどうか")]
+        public bool FollowsAPlayer = true;
 
-		[Space(10)]
-		[Header("Orthographic Zoom")]
-		[MMInformation("Determine here the min and max zoom, and the zoom speed. By default the engine will zoom out when your character is going at full speed, and zoom in when you slow down (or stop).", MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
+        [Tooltip("カメラがステージ境界内に制限されるかどうか")]
+        public bool ConfineCameraToLevelBounds = true;
 
-		/// Whether this camera should zoom in or out as the character moves
-		[Tooltip("Whether this camera should zoom in or out as the character moves")]
-		public bool UseOrthographicZoom = false;
-		/// the minimum & maximum orthographic camera zoom
-		[MMCondition("UseOrthographicZoom", true)]
-		[MMVector("Min", "Max")]
-		[Tooltip("the minimum & maximum orthographic camera zoom")]
-		public Vector2 OrthographicZoom = new Vector2(5f, 9f);
-		/// the initial zoom value when using an orthographic zoom
-		[MMCondition("UseOrthographicZoom", true)]
-		[Tooltip("the initial zoom value when using an orthographic zoom")]
-		public float InitialOrthographicZoom = 5f;
-		/// the speed at which the orthographic camera zooms
-		[MMCondition("UseOrthographicZoom", true)]
-		[Tooltip("the speed at which the orthographic camera zooms")]
-		public float OrthographicZoomSpeed = 0.4f;
+        [Tooltip("上/下を見たときにカメラがどれだけ上下に動くか")]
+        public float ManualUpDownLookDistance = 3f;
 
-		[Space(10)]
-		[Header("遠近法によるズーム")]
-		[MMInformation("ここでは、カメラがパースペクティブモードにある際のズームの最小値と最大値、およびズーム速度を設定します。視野角を調整する方法と、トランスフォーマーの距離を調整する方法の2つのズーム方式から選択できます。", MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
+        [Header("キャラクター速度（ズーム計算用）")]
+        [MMVector("最小速度", "最大速度")]
+        [Tooltip("キャラクターの速度に応じてズームを変えるための速度範囲")]
+        public Vector2 CharacterSpeed = new Vector2(0f, 16f);
 
-		/// if this is true, perspective zoom will be processed every frame
-		[Tooltip("もしこれがtrueなら、パースペクティブズームは毎フレーム処理されることになる")]
-		public bool UsePerspectiveZoom = false;
-		/// the zoom method for this camera
-		[MMCondition("UsePerspectiveZoom", true)]
-		[Tooltip("the zoom method for this camera")]
-		public PerspectiveZoomMethods PerspectiveZoomMethod = PerspectiveZoomMethods.FramingTransposerDistance;
-		/// the min and max perspective camera zooms
-		[MMCondition("UsePerspectiveZoom", true)]
-		[MMVector("Min", "Max")]
-		[Tooltip("the min and max perspective camera zooms")]
-		public Vector2 PerspectiveZoom = new Vector2(10f, 15f);
-		/// the initial zoom to apply to the camera when in perspective mode
-		[MMCondition("UsePerspectiveZoom", true)]
-		[Tooltip("the initial zoom to apply to the camera when in perspective mode")]
-		public float InitialPerspectiveZoom = 5f;
-		/// the speed at which the perspective camera zooms
-		[MMCondition("UsePerspectiveZoom", true)]
-		[Tooltip("the speed at which the perspective camera zooms")]
-		public float PerspectiveZoomSpeed = 0.4f;
+        [MMReadOnly]
+        [Tooltip("このカメラが追従するキャラクター")]
+        public Character TargetCharacter;
 
-		[Space(10)]
-		[Header("Respawn")]
+        [MMReadOnly]
+        [Tooltip("追従対象キャラクターのコントローラー")]
+        public CorgiController TargetController;
 
-		/// if this is true, the camera will teleport to the player's location on respawn, otherwise it'll move there at its regular speed
-		[Tooltip("if this is true, the camera will teleport to the player's location on respawn, otherwise it'll move there at its regular speed")]
-		public bool InstantRepositionCameraOnRespawn = false;
-		/// if this is true, the controller will disable the virtual camera on stop follow. It will be re-enabled on start follow orders
-		[Tooltip("if this is true, the controller will disable the virtual camera on stop follow. It will be re-enabled on start follow orders")]
-		public bool DisableVirtualCameraOnStopFollow = true;
+        [Space(10)]
+        [Header("🔍 オーソグラフィックズーム（2D）")]
+        [Tooltip("キャラクターの速度に応じてズームイン/アウトするかどうか")]
+        public bool UseOrthographicZoom = false;
 
-		[Header("Debug")] 
-		[MMInspectorButton("StartFollowing")]
-		public bool StartFollowingBtn;
-		[MMInspectorButton("StopFollowing")]
-		public bool StopFollowingBtn;
+        [MMCondition("UseOrthographicZoom", true)]
+        [MMVector("最小ズーム", "最大ズーム")]
+        [Tooltip("オーソグラフィックカメラのズーム範囲")]
+        public Vector2 OrthographicZoom = new Vector2(5f, 9f);
 
-		#if MM_CINEMACHINE
+        [MMCondition("UseOrthographicZoom", true)]
+        [Tooltip("ゲーム開始時の初期ズーム値")]
+        public float InitialOrthographicZoom = 5f;
+
+        [MMCondition("UseOrthographicZoom", true)]
+        [Tooltip("ズームのスピード")]
+        public float OrthographicZoomSpeed = 0.4f;
+
+        [Space(10)]
+        [Space(10)]
+        [Header("パースペクティブズーム（3D）")]
+        [Tooltip("パースペクティブカメラでズームを使うかどうか")]
+        public bool UsePerspectiveZoom = false;
+
+        [MMCondition("UsePerspectiveZoom", true)]
+        [Tooltip("ズーム方式（視野角 or FramingTransposer の距離）")]
+        public PerspectiveZoomMethods PerspectiveZoomMethod = PerspectiveZoomMethods.FramingTransposerDistance;
+
+        [MMCondition("UsePerspectiveZoom", true)]
+        [MMVector("最小ズーム", "最大ズーム")]
+        [Tooltip("パースペクティブカメラのズーム範囲")]
+        public Vector2 PerspectiveZoom = new Vector2(10f, 15f);
+
+        [MMCondition("UsePerspectiveZoom", true)]
+        [Tooltip("ゲーム開始時の初期ズーム値")]
+        public float InitialPerspectiveZoom = 5f;
+
+        [MMCondition("UsePerspectiveZoom", true)]
+        [Tooltip("ズームのスピード")]
+        public float PerspectiveZoomSpeed = 0.4f;
+
+        [Space(10)]
+        [Header("リスポーン時の動作")]
+        [Tooltip("リスポーン時にカメラを瞬間移動させるかどうか")]
+        public bool InstantRepositionCameraOnRespawn = false;
+
+        [Tooltip("追従停止時に VirtualCamera を無効化するかどうか")]
+        public bool DisableVirtualCameraOnStopFollow = true;
+
+        [Space(10)]
+        [Header("デバッグ")]
+        [MMInspectorButton("StartFollowing")]
+        public bool StartFollowingBtn;
+
+        [MMInspectorButton("StopFollowing")]
+        public bool StopFollowingBtn;
+
+#if MM_CINEMACHINE
 		protected CinemachineVirtualCamera _virtualCamera;
 		protected CinemachineConfiner _confiner;
 		protected CinemachineFramingTransposer _framingTransposer;
-		#elif MM_CINEMACHINE3
-		protected CinemachineCamera _virtualCamera;
+#elif MM_CINEMACHINE3
+        protected CinemachineCamera _virtualCamera;
 		protected CinemachineConfiner3D _confiner3D;
 		protected CinemachineConfiner2D _confiner2D;
 		#endif
