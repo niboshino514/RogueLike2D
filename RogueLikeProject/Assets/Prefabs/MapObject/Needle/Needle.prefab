@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8371444450794200533}
   - component: {fileID: 4083153551268243151}
   - component: {fileID: 7261674406876062046}
+  - component: {fileID: 4605423743593752687}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -143,6 +144,18 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 1
+--- !u!114 &4605423743593752687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148067770047582263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea70cd4b789a4b5593a26c4f4ace44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MoreMountains.CorgiEngine::MoreMountains.CorgiEngine.KillPlayerOnTouch
 --- !u!1 &5426237943608392720
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +165,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3377081651767226375}
-  - component: {fileID: 7501131894465730624}
   m_Layer: 0
   m_Name: Needle
   m_TagString: Untagged
@@ -176,15 +188,3 @@ Transform:
   - {fileID: 8371444450794200533}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7501131894465730624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5426237943608392720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea70cd4b789a4b5593a26c4f4ace44c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: MoreMountains.CorgiEngine::MoreMountains.CorgiEngine.KillPlayerOnTouch

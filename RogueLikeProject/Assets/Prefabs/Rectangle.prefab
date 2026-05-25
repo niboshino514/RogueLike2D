@@ -281,7 +281,7 @@ MonoBehaviour:
   RotateModelOnDirectionChange: 0
   ModelRotationValue: {x: 0, y: 180, z: 0}
   ModelRotationSpeed: 0
-  CharacterHealth: {fileID: 0}
+  CharacterHealth: {fileID: 114000011356687900}
   SendStateChangeEvents: 1
   SendStateUpdateEvents: 1
   AirborneDistance: 0.5
@@ -736,7 +736,7 @@ MonoBehaviour:
   InitialHealth: 300
   MaximumHealth: 300
   Invulnerable: 0
-  ResetHealthOnEnable: 1
+  ResetHealthOnEnable: 0
   ImmuneToDamage: 0
   DamageFeedbacks: {fileID: 1159074697136316710}
   TriggerDamageFeedbackOnDeath: 1
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119040}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8abe6344b7148db4687d3c84e7712904, type: 3}
   m_Name: 
@@ -6537,7 +6537,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 435a2d27a31b7e942bf80841ed053ca1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.59509873, g: 0.9528302, b: 0.33708617, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
