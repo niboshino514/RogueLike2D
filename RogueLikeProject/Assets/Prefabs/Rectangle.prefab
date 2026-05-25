@@ -434,7 +434,7 @@ MonoBehaviour:
   CanJumpDownOneWayPlatforms: 1
   FixedAerialJumpCount: 0
   JumpIsProportionalToThePressTime: 1
-  JumpMinimumAirTime: 0.2
+  JumpMinimumAirTime: 0.1
   JumpReleaseForceFactor: 2
   CoyoteTime: 0
   InputBufferDuration: 0.2
@@ -733,8 +733,8 @@ MonoBehaviour:
   CurrentHealth: 0
   TemporarilyInvulnerable: 0
   PostDamageInvulnerable: 0
-  InitialHealth: 300
-  MaximumHealth: 300
+  InitialHealth: 1
+  MaximumHealth: 1
   Invulnerable: 0
   ResetHealthOnEnable: 0
   ImmuneToDamage: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
   TriggerDamageFeedbackOnDeath: 1
   FeedbackIsProportionalToDamage: 0
   FlickerSpriteOnHit: 1
-  FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
+  FlickerColor: {r: 1, g: 0.5801887, b: 0.5801887, a: 1}
   ImmuneToKnockback: 0
   ImmuneToKnockbackIfZeroDamage: 0
   DeathFeedbacks: {fileID: 1527780577824011739}
@@ -770,12 +770,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119040}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8abe6344b7148db4687d3c84e7712904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarType: 1
+  HealthBarType: 0
   TimeScale: 0
   HealthBarPrefab: {fileID: 0}
   TargetProgressBar: {fileID: 0}

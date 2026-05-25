@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
@@ -53,164 +53,191 @@ namespace MoreMountains.CorgiEngine
 	[AddComponentMenu("Corgi Engine/Character/Core/Health")]
 	public class Health : MMMonoBehaviour, MMEventListener<HealthDeathEvent>
 	{
-		[MMInspectorGroup("Status", true, 1)]
-		
-		/// the current health of the character
-		[MMReadOnly] [Tooltip("the current health of the character")]
-		public float CurrentHealth;
-		
-		/// If this is true, this object can't take damage at the moment
-		[MMReadOnly] [Tooltip("If this is true, this object can't take damage at the moment")]
-		public bool TemporarilyInvulnerable = false;
+        // ===============================
+        // ■ ステータス
+        // ===============================
+        [Header("【ステータス】")]
+        [MMInspectorGroup("Status", true, 1)]
 
-		/// If this is true, this object is in post damage invulnerability state
-		[MMReadOnly] [Tooltip("If this is true, this object is in post damage invulnerability state")]
-		public bool PostDamageInvulnerable = false;
-		
-		[MMInformation(
-			"Add this component to an object and it'll have health, will be able to get damaged and potentially die.",
-			MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
-		
-		[MMInspectorGroup("Health", true, 2)]
-		
-		/// the initial amount of health of the object
-		[Tooltip("the initial amount of health of the object")]
-		public float InitialHealth = 10;
+        /// <summary>現在の体力</summary>
+        [MMReadOnly]
+        [Tooltip("現在の体力")]
+        public float CurrentHealth;
 
-		/// the maximum amount of health of the object
-		[Tooltip("the maximum amount of health of the object")]
-		public float MaximumHealth = 10;
+        /// <summary>一時的に無敵状態かどうか</summary>
+        [MMReadOnly]
+        [Tooltip("一時的に無敵状態かどうか")]
+        public bool TemporarilyInvulnerable = false;
 
-		/// if this is true, this object can't take damage
-		[Tooltip("if this is true, this object can't take damage")]
-		public bool Invulnerable = false;
+        /// <summary>ダメージ後の無敵時間中かどうか</summary>
+        [MMReadOnly]
+        [Tooltip("ダメージ後の無敵時間中かどうか")]
+        public bool PostDamageInvulnerable = false;
 
-		/// if this is true, health will be reset automatically on enable (after a respawn for instance). You may want to turn this off when using a SwitchManager for example.
-		[Tooltip("if this is true, health will be reset automatically on enable (after a respawn for instance). You may want to turn this off when using a SwitchManager for example.")]
-		public bool ResetHealthOnEnable = true;
 
-		[MMInspectorGroup("Damage", true, 3)]
-		
-		[MMInformation(
-			"Here you can specify an effect and a sound FX to instantiate when the object gets damaged, and also how long the object should flicker when hit (only works for sprites).",
-			MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
-        
-		/// whether or not this Health object can be damaged, you can play with this on top of Invulnerable, which will be turned on/off temporarily for temporary invulnerability. ImmuneToDamage is more of a permanent solution. 
-		[Tooltip("whether or not this Health object can be damaged, you can play with this on top of Invulnerable, which will be turned on/off temporarily for temporary invulnerability. ImmuneToDamage is more of a permanent solution.")]
-		public bool ImmuneToDamage = false;
-        
-		/// the MMFeedbacks to play when the character gets hit
-		[Tooltip("the MMFeedbacks to play when the character gets hit")]
-		public MMFeedbacks DamageFeedbacks;
-		
-		/// if this is true, the DamageFeedback will play, whether this is a fatal hit or not
-		[Tooltip("if this is true, the DamageFeedback will play, whether this is a fatal hit or not")]
-		public bool TriggerDamageFeedbackOnDeath = true;
-        
-		/// if this is true, the damage value will be passed to the MMFeedbacks as its Intensity parameter, letting you trigger more intense feedbacks as damage increases
-		[Tooltip("if this is true, the damage value will be passed to the MMFeedbacks as its Intensity parameter, letting you trigger more intense feedbacks as damage increases")]
-		public bool FeedbackIsProportionalToDamage = false;
+        // ===============================
+        // ■ 体力設定
+        // ===============================
+        [Header("【体力設定】")]
+        [MMInspectorGroup("Health", true, 2)]
 
-		/// should the sprite (if there's one) flicker when getting damage ?
-		[Tooltip("should the sprite (if there's one) flicker when getting damage ?")]
-		public bool FlickerSpriteOnHit = true;
+        /// <summary>初期体力（シーン開始時の体力）</summary>
+        [Tooltip("初期体力（シーン開始時の体力）")]
+        public float InitialHealth = 10;
 
-		/// the color the sprite should flicker to
-		[Tooltip("the color the sprite should flicker to")] [MMCondition("FlickerSpriteOnHit", true)]
-		public Color FlickerColor = new Color32(255, 20, 20, 255);
+        /// <summary>最大体力</summary>
+        [Tooltip("最大体力")]
+        public float MaximumHealth = 10;
 
-		[MMInspectorGroup("Knockback", true, 6)]
-		
-		/// whether or not this object can get knockback
-		[Tooltip("whether or not this object can get knockback")]
-		public bool ImmuneToKnockback = false;
+        /// <summary>常に無敵状態にするかどうか</summary>
+        [Tooltip("常に無敵状態にするかどうか")]
+        public bool Invulnerable = false;
 
-		/// whether or not this object is immune to damage knockback if the damage received is zero
-		[Tooltip("whether or not this object is immune to damage knockback if the damage received is zero")]
-		public bool ImmuneToKnockbackIfZeroDamage = false;
+        /// <summary>リスポーン時に体力を自動リセットするか</summary>
+        [Tooltip("リスポーン時に体力を自動リセットするか")]
+        public bool ResetHealthOnEnable = true;
 
-		[MMInspectorGroup("Death", true, 7)]
-		
-		[MMInformation(
-			"Here you can set an effect to instantiate when the object dies, a force to apply to it (corgi controller required), how many points to add to the game score, and where the character should respawn (for non-player characters only).",
-			MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
-		/// the MMFeedbacks to play when the character dies
-		[Tooltip("the MMFeedbacks to play when the character dies")]
-		public MMFeedbacks DeathFeedbacks;
 
-		/// if this is not true, the object will remain there after its death
-		[Tooltip("if this is not true, the object will remain there after its death")]
-		public bool DestroyOnDeath = true;
+        // ===============================
+        // ■ ダメージ設定
+        // ===============================
+        [Header("【ダメージ設定】")]
+        [MMInspectorGroup("Damage", true, 3)]
 
-		/// the time (in seconds) before the character is destroyed or disabled
-		[Tooltip("the time (in seconds) before the character is destroyed or disabled")]
-		public float DelayBeforeDestruction = 0f;
+        /// <summary>ダメージを受けない（恒久的な無敵）</summary>
+        [Tooltip("ダメージを受けない（恒久的な無敵）")]
+        public bool ImmuneToDamage = false;
 
-		/// if this is true, collisions will be turned off when the character dies
-		[Tooltip("if this is true, collisions will be turned off when the character dies")]
-		public bool CollisionsOffOnDeath = true;
+        /// <summary>ダメージを受けたときのフィードバック</summary>
+        [Tooltip("ダメージを受けたときのフィードバック")]
+        public MMFeedbacks DamageFeedbacks;
 
-		/// if this is true, gravity will be turned off on death
-		[Tooltip("if this is true, gravity will be turned off on death")]
-		public bool GravityOffOnDeath = false;
+        /// <summary>死亡時にもダメージフィードバックを再生するか</summary>
+        [Tooltip("死亡時にもダメージフィードバックを再生するか")]
+        public bool TriggerDamageFeedbackOnDeath = true;
 
-		/// the points the player gets when the object's health reaches zero
-		[Tooltip("the points the player gets when the object's health reaches zero")]
-		public int PointsWhenDestroyed;
+        /// <summary>ダメージ量をフィードバックの強度に反映するか</summary>
+        [Tooltip("ダメージ量をフィードバックの強度に反映するか")]
+        public bool FeedbackIsProportionalToDamage = false;
 
-		/// if this is set to false, the character will respawn at the location of its death, otherwise it'll be moved to its initial position (when the scene started)
-		[Tooltip(
-			"if this is set to false, the character will respawn at the location of its death, otherwise it'll be moved to its initial position (when the scene started)")]
-		public bool RespawnAtInitialLocation = false;
+        /// <summary>ダメージ時にスプライトを点滅させるか</summary>
+        [Tooltip("ダメージ時にスプライトを点滅させるか")]
+        public bool FlickerSpriteOnHit = true;
 
-		[MMInspectorGroup("Death Forces", true, 10)]
-		
-		/// whether or not to apply a force on death
-		[Tooltip("whether or not to apply a force on death")]
-		public bool ApplyDeathForce = true;
+        /// <summary>点滅時の色</summary>
+        [Tooltip("点滅時の色")]
+        [MMCondition("FlickerSpriteOnHit", true)]
+        public Color FlickerColor = new Color32(255, 20, 20, 255);
 
-		/// the force applied when the character dies
-		[Tooltip("the force applied when the character dies")]
-		public Vector2 DeathForce = new Vector2(0, 10);
 
-		/// whether or not the controller's forces should be set to 0 on death
-		[Tooltip("whether or not the controller's forces should be set to 0 on death")]
-		public bool ResetForcesOnDeath = false;
-        
-		/// if this is true, color will be reset on revive
-		[Tooltip("if this is true, color will be reset on revive")]
-		public bool ResetColorOnRevive = true;
-		/// the name of the property on your renderer's shader that defines its color 
-		[Tooltip("the name of the property on your renderer's shader that defines its color")]
-		[MMCondition("ResetColorOnRevive", true)]
-		public string ColorMaterialPropertyName = "_Color";
-		/// if this is true, this component will use material property blocks instead of working on an instance of the material.
-		[Tooltip("if this is true, this component will use material property blocks instead of working on an instance of the material.")] 
-		public bool UseMaterialPropertyBlocks = false;
+        // ===============================
+        // ■ ノックバック設定
+        // ===============================
+        [Header("【ノックバック設定】")]
+        [MMInspectorGroup("Knockback", true, 6)]
 
-		[MMInspectorGroup("Shared Health and Damage Resistance", true, 11)]
+        /// <summary>ノックバックを受けない</summary>
+        [Tooltip("ノックバックを受けない")]
+        public bool ImmuneToKnockback = false;
 
-		/// the Character this Health should impact, if left empty, will pick one on the same game object
-		[Tooltip("the Character this Health should impact, if left empty, will pick one on the same game object")]
-		public Character AssociatedCharacter;
-		
-		/// another Health component (usually on another character) towards which all health will be redirected
-		[Tooltip("another Health component (usually on another character) towards which all health will be redirected")]
-		public Health MasterHealth;
+        /// <summary>ダメージが0のときはノックバックを無効にする</summary>
+        [Tooltip("ダメージが0のときはノックバックを無効にする")]
+        public bool ImmuneToKnockbackIfZeroDamage = false;
 
-		/// if this is true, when using a MasterHealth, this Health won't take damage, and all damage will be redirected. If this is false, this Health will be able to die when its own Health is consumed
-		[Tooltip("if this is true, when using a MasterHealth, this Health won't take damage, and all damage will be redirected. If this is false, this Health will be able to die when its own Health is consumed")]
-		public bool OnlyDamageMaster = true;
 
-		/// if this is true, when using a MasterHealth, if the MasterHealth dies, this Health will also die
-		[Tooltip("if this is true, when using a MasterHealth, if the MasterHealth dies, this Health will also die")]
-		public bool KillOnMasterHealthDeath = false;
-		
-		/// a DamageResistanceProcessor this Health will use to process damage when it's received
-		[Tooltip("a DamageResistanceProcessor this Health will use to process damage when it's received")]
-		public DamageResistanceProcessor TargetDamageResistanceProcessor;
+        // ===============================
+        // ■ 死亡設定
+        // ===============================
+        [Header("【死亡設定】")]
+        [MMInspectorGroup("Death", true, 7)]
 
-		public float LastDamage { get; set; }
+        /// <summary>死亡時のフィードバック</summary>
+        [Tooltip("死亡時のフィードバック")]
+        public MMFeedbacks DeathFeedbacks;
+
+        /// <summary>死亡時にオブジェクトを破壊するか</summary>
+        [Tooltip("死亡時にオブジェクトを破壊するか")]
+        public bool DestroyOnDeath = true;
+
+        /// <summary>破壊までの遅延時間</summary>
+        [Tooltip("破壊までの遅延時間")]
+        public float DelayBeforeDestruction = 0f;
+
+        /// <summary>死亡時に衝突判定をオフにするか</summary>
+        [Tooltip("死亡時に衝突判定をオフにするか")]
+        public bool CollisionsOffOnDeath = true;
+
+        /// <summary>死亡時に重力をオフにするか</summary>
+        [Tooltip("死亡時に重力をオフにするか")]
+        public bool GravityOffOnDeath = false;
+
+        /// <summary>死亡時に加算されるポイント</summary>
+        [Tooltip("死亡時に加算されるポイント")]
+        public int PointsWhenDestroyed;
+
+        /// <summary>初期位置にリスポーンするか（false なら死亡位置）</summary>
+        [Tooltip("初期位置にリスポーンするか（false なら死亡位置）")]
+        public bool RespawnAtInitialLocation = false;
+
+
+        // ===============================
+        // ■ 死亡時の力
+        // ===============================
+        [Header("【死亡時の力】")]
+        [MMInspectorGroup("Death Forces", true, 10)]
+
+        /// <summary>死亡時に力を加えるか</summary>
+        [Tooltip("死亡時に力を加えるか")]
+        public bool ApplyDeathForce = true;
+
+        /// <summary>死亡時に加える力</summary>
+        [Tooltip("死亡時に加える力")]
+        public Vector2 DeathForce = new Vector2(0, 10);
+
+        /// <summary>死亡時にコントローラーの力をリセットするか</summary>
+        [Tooltip("死亡時にコントローラーの力をリセットするか")]
+        public bool ResetForcesOnDeath = false;
+
+        /// <summary>復活時に色をリセットするか</summary>
+        [Tooltip("復活時に色をリセットするか")]
+        public bool ResetColorOnRevive = true;
+
+        /// <summary>色を制御するマテリアルプロパティ名</summary>
+        [Tooltip("色を制御するマテリアルプロパティ名")]
+        [MMCondition("ResetColorOnRevive", true)]
+        public string ColorMaterialPropertyName = "_Color";
+
+        /// <summary>マテリアルプロパティブロックを使用するか</summary>
+        [Tooltip("マテリアルプロパティブロックを使用するか")]
+        public bool UseMaterialPropertyBlocks = false;
+
+
+        // ===============================
+        // ■ 共有ヘルス設定
+        // ===============================
+        [Header("【共有ヘルス設定】")]
+        [MMInspectorGroup("Shared Health and Damage Resistance", true, 11)]
+
+        /// <summary>関連付けられたキャラクター</summary>
+        [Tooltip("関連付けられたキャラクター")]
+        public Character AssociatedCharacter;
+
+        /// <summary>ダメージを共有するマスターHealth</summary>
+        [Tooltip("ダメージを共有するマスターHealth")]
+        public Health MasterHealth;
+
+        /// <summary>MasterHealth のみがダメージを受けるか</summary>
+        [Tooltip("MasterHealth のみがダメージを受けるか")]
+        public bool OnlyDamageMaster = true;
+
+        /// <summary>MasterHealth が死んだらこのキャラも死ぬか</summary>
+        [Tooltip("MasterHealth が死んだらこのキャラも死ぬか")]
+        public bool KillOnMasterHealthDeath = false;
+
+        /// <summary>ダメージ耐性処理</summary>
+        [Tooltip("ダメージ耐性処理")]
+        public DamageResistanceProcessor TargetDamageResistanceProcessor;
+        public float LastDamage { get; set; }
 		public Vector3 LastDamageDirection { get; set; }
 		public bool Initialized => _initialized;
 		public CorgiController AssociatedController => _controller;

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -754,10 +754,21 @@ namespace MoreMountains.CorgiEngine
 			}
 		}
 
-		/// <summary>
-		/// Toggles Character Pause
-		/// </summary>
-		public virtual void ToggleCharacterPause()
+        /// <summary>
+        /// キャラクター復活
+        /// </summary>
+        public void RespawnCharacter()
+        {
+            if (CurrentCheckPoint != null)
+            {
+                CurrentCheckPoint.SpawnPlayer(Players[0]);
+            }
+        }
+
+        /// <summary>
+        /// Toggles Character Pause
+        /// </summary>
+        public virtual void ToggleCharacterPause()
 		{
 			foreach (Character player in Players)
 			{
