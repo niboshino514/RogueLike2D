@@ -188,7 +188,7 @@ namespace MoreMountains.CorgiEngine
 		protected BoxCollider _collider;
 		protected BoxCollider2D _collider2D;
 		protected Bounds _originalBounds;
-		
+
 		/// <summary>
 		/// Statics initialization to support enter play modes
 		/// </summary>
@@ -754,16 +754,16 @@ namespace MoreMountains.CorgiEngine
 			}
 		}
 
-        /// <summary>
-        /// キャラクター復活
-        /// </summary>
-        public void RespawnCharacter()
-        {
-            if (CurrentCheckPoint != null)
-            {
-                CurrentCheckPoint.SpawnPlayer(Players[0]);
-            }
-        }
+		/// <summary>
+		/// キャラクター復活
+		/// </summary>
+		public virtual void RespawnCharacter() {}
+
+		/// <summary>
+		/// キャラクター画像を表示するかどうか
+		/// </summary>
+		/// <param name="isDraw"></param>
+		public virtual void IsDrawCharacter(bool isDraw) { }
 
         /// <summary>
         /// Toggles Character Pause

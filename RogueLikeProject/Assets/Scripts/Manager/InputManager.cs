@@ -20,6 +20,7 @@ namespace Manager
             Down,
             Left,
             Right,
+            Respawn
         }
 
         /// <summary>
@@ -104,6 +105,7 @@ namespace Manager
                 { BtnType.Down,  _input.Player.Move },
                 { BtnType.Left,  _input.Player.Move },
                 { BtnType.Right, _input.Player.Move },
+                { BtnType.Respawn, _input.Player.Respawn}
             };
 
             // アクションマップ代入

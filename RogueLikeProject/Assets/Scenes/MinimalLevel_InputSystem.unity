@@ -2346,7 +2346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1452265318}
   m_Layer: 5
-  m_Name: Death
+  m_Name: DeathScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5194,7 +5194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a1f1fdedab94d41b4b35e0745c905c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hander.DeathHandler
-  deathScreenUI: {fileID: 1452265317}
+  _deathScreenUI: {fileID: 1452265317}
 --- !u!4 &1741869823
 Transform:
   m_ObjectHideFlags: 0

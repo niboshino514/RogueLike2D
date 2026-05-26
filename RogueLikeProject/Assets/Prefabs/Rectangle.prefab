@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 114000010795265024}
   - component: {fileID: 114000011047386926}
   - component: {fileID: 114000011356687900}
-  - component: {fileID: 114522235302448242}
+  - component: {fileID: -5547776182805130841}
   - component: {fileID: 114408133200064378}
   - component: {fileID: 114679018816720190}
   - component: {fileID: -4342895061800036961}
@@ -763,7 +763,7 @@ MonoBehaviour:
   OnlyDamageMaster: 1
   KillOnMasterHealthDeath: 0
   TargetDamageResistanceProcessor: {fileID: 0}
---- !u!114 &114522235302448242
+--- !u!114 &-5547776182805130841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -772,29 +772,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 119040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8abe6344b7148db4687d3c84e7712904, type: 3}
+  m_Script: {fileID: 11500000, guid: 78871e12c2caf8247858f2eb379b1ab5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  HealthBarType: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Custom.CustomMMHealthBar
+  HealthBarType: 1
   TimeScale: 0
   HealthBarPrefab: {fileID: 0}
   TargetProgressBar: {fileID: 0}
-  Size: {x: 0.5, y: 0.1}
+  Size: {x: 1, y: 0.2}
   BackgroundPadding: {x: 0.01, y: 0.01}
   InitialRotationAngles: {x: 0, y: 0, z: 0}
   ForegroundColor:
     serializedVersion: 2
-    key0: {r: 0.9150943, g: 0.3499014, b: 0, a: 1}
-    key1: {r: 0.5372549, g: 0.76470596, b: 0.09019608, a: 1}
-    key2: {r: 0.8460261, g: 0.9150943, b: 0.004316493, a: 0}
+    key0: {r: 1, g: 0.09411765, b: 0, a: 1}
+    key1: {r: 1, g: 0.09411765, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 22359
-    ctime2: 65535
+    ctime1: 65535
+    ctime2: 0
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -810,12 +810,12 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 3
+    m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   DelayedColor:
     serializedVersion: 2
-    key0: {r: 1, g: 0.43137258, b: 0, a: 1}
-    key1: {r: 1, g: 0.43137258, b: 0, a: 1}
+    key0: {r: 1, g: 0.64705884, b: 0, a: 1}
+    key1: {r: 1, g: 0.64705884, b: 0, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -844,8 +844,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   BorderColor:
     serializedVersion: 2
-    key0: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
-    key1: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
+    key0: {r: 0.98039216, g: 0.92156863, b: 0.84313726, a: 1}
+    key1: {r: 0.98039216, g: 0.92156863, b: 0.84313726, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -874,8 +874,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   BackgroundColor:
     serializedVersion: 2
-    key0: {r: 0.3773585, g: 0, b: 0, a: 1}
-    key1: {r: 0.37647063, g: 0, b: 0, a: 1}
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -920,17 +920,8 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5364064
-      value: 1.4978379
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
@@ -938,8 +929,8 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -949,8 +940,8 @@ MonoBehaviour:
   NestDrawnHealthBar: 0
   Billboard: 0
   InstantiatedOnDeath: {fileID: 0}
-  HealthBarOffset: {x: 0, y: 0.5, z: 0}
-  AlwaysVisible: 0
+  HealthBarOffset: {x: 0, y: 1, z: 0}
+  AlwaysVisible: 1
   DisplayDurationOnHit: 1
   HideBarAtZero: 1
   HideBarAtZeroDelay: 1
@@ -1488,7 +1479,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -1541,7 +1532,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -5748,7 +5739,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1888fd7255deebd458cfba33e8407e1f, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5958,7 +5948,7 @@ MonoBehaviour:
         Active: 1
         UniqueID: -996944914
         Label: Sound
-        OriginalLabel: 
+        OriginalLabel: Sound
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -6083,7 +6073,7 @@ MonoBehaviour:
         Active: 1
         UniqueID: 2082614045
         Label: Particles Instantiation
-        OriginalLabel: 
+        OriginalLabel: Particles Instantiation
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -6361,7 +6351,7 @@ MonoBehaviour:
         Active: 1
         UniqueID: -1541982994
         Label: Particles Instantiation
-        OriginalLabel: 
+        OriginalLabel: Particles Instantiation
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
