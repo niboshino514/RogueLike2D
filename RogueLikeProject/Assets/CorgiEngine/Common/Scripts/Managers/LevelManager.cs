@@ -75,7 +75,7 @@ namespace MoreMountains.CorgiEngine
 		public List<Character> SceneCharacters;
 
 		[Header("チェックポイント")]
-		[MMInformation("Here you can select a checkpoint attribution axis (if your level is horizontal go for X, Y if it's vertical), and a debug spawn where your player character will spawn from while in editor mode.",MMInformationAttribute.InformationType.Info,false)]
+		[MMInformation("ここでは、チェックポイントのアトリビューション軸（レベルが水平方向の場合はX、垂直方向の場合はYを選択）と、エディタモード中にプレイヤーキャラクターが出現するデバッグ用スポーン位置を選択できます。", MMInformationAttribute.InformationType.Info,false)]
 
 		/// A checkpoint to use to force the character to spawn at
 		[Tooltip("デバッグスポーン地点")]
