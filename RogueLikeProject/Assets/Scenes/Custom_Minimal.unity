@@ -423,7 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62adb58e2f9a1041a668597a65b6253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TileMapTester
-  _tilemap: {fileID: 1229670368}
   _levelManager: {fileID: 741263091}
 --- !u!4 &584154039
 Transform:

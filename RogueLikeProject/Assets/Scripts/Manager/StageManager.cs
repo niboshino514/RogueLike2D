@@ -8,12 +8,16 @@ namespace Manager
 {
     public class StageManager : SingletonMonoBehaviour<StageManager>
     {
-        
         /// <summary>
         /// タイルマップオブジェクト
         /// </summary>
         [Header("タイルマップオブジェクト"),SerializeField]
         private GameObject[] _TileMapObjArray;
+
+        /// <summary>
+        /// タイルマップ境界
+        /// </summary>
+        private TilemapBoundsManager _TileMapBoundsManager;
 
         /// <summary>
         /// 現在のステージ番号
@@ -22,13 +26,18 @@ namespace Manager
 
         protected override void Awake()
         {
+            // 既存の処理実行
             base.Awake();
-
-            // 特定のコンポーネントがあるか確認
-            //CheckPrefabIdentifier();
 
             // ステージ番号代入
             CurrentStageNumber = 0;
+        }
+
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            // インスタンス取得
+            _TileMapBoundsManager = TilemapBoundsManager.Instance;
 
             foreach (var tilemap in _TileMapObjArray)
             {
@@ -38,11 +47,8 @@ namespace Manager
 
             // ステージを表示
             _TileMapObjArray[CurrentStageNumber].SetActive(true);
-        }
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
+            SetStageBounds();
         }
 
         public void NextStage(Transform playerTransform)
@@ -54,6 +60,8 @@ namespace Manager
 
             // ステージがあるかどうかを確認
             CheckTileMapObj();
+
+            SetStageBounds();
 
             // 次のステージを表示する
             _TileMapObjArray[CurrentStageNumber].SetActive(true);
@@ -86,6 +94,13 @@ namespace Manager
             }
 
             return null; // 見つからなかった
+        }
+
+        private void SetStageBounds()
+        {
+            Tilemap tilemap = _TileMapObjArray[CurrentStageNumber].GetComponent<Tilemap>();
+
+            _TileMapBoundsManager.CalculateBounds(tilemap);
         }
 
         private void CheckTileMapObj()

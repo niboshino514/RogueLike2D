@@ -12,6 +12,22 @@ namespace Custom
         private SpriteRenderer _playerSpriteRenderer;
 
         /// <summary>
+        /// BoxCollider2D
+        /// </summary>
+        private BoxCollider2D _boxCollider;
+
+        public override void Start()
+        {
+            // 既存処理
+            base.Start();
+
+            // コンポーネント取得
+            _playerSpriteRenderer = Players[0].GetComponentInChildren<SpriteRenderer>(true);
+            _boxCollider = this.GetComponent<BoxCollider2D>();
+        }
+
+
+        /// <summary>
         /// Playerが死亡した瞬間の処理
         /// </summary>
         /// <param name="player"></param>
@@ -46,6 +62,19 @@ namespace Custom
 
             // オブジェクトをisDrawフラグに応じて、表示非表示を行う
             _playerSpriteRenderer.gameObject.SetActive(isDraw);
+        }
+
+        /// <summary>
+        /// 境界線をセットする
+        /// </summary>
+        /// <param name="bounds"></param>
+        public void SetStageBounds(Bounds bounds)
+        {
+            // 境界サイズ計算
+            _boxCollider.size.Set(bounds.size.x, bounds.size.y);
+
+            // 境界線セット
+            SetNewLevelBounds(bounds);
         }
     }
 }
