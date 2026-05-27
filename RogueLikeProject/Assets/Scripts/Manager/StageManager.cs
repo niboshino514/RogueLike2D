@@ -1,5 +1,6 @@
 ﻿using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Utility;
 using Utility.Core;
 
@@ -11,7 +12,7 @@ namespace Manager
         /// <summary>
         /// タイルマップオブジェクト
         /// </summary>
-        [Header("タイルマップオブジェクト")]
+        [Header("タイルマップオブジェクト"),SerializeField]
         private GameObject[] _TileMapObjArray;
 
         /// <summary>
@@ -19,8 +20,10 @@ namespace Manager
         /// </summary>
         public int CurrentStageNumber { get; private set; }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             // 特定のコンポーネントがあるか確認
             //CheckPrefabIdentifier();
 
@@ -48,10 +51,21 @@ namespace Manager
             _TileMapObjArray[CurrentStageNumber].SetActive(false);
             // ステージ番号を増やす
             CurrentStageNumber++;
+
+            // ステージがあるかどうかを確認
+            CheckTileMapObj();
+
             // 次のステージを表示する
             _TileMapObjArray[CurrentStageNumber].SetActive(true);
 
-            //Transform levelStartTransform = FindActiveChildWithTag(_TileMapObjArray[CurrentStageNumber],);
+            // レベルスタートのTransform取得
+            Transform levelStartTransform =
+                FindActiveChildWithTag(
+                    _TileMapObjArray[CurrentStageNumber].transform,
+                    TagName.LevelStart).transform;
+
+            // レベルスタートの座標を代入
+            playerTransform.position = levelStartTransform.position;
         }
 
         public GameObject FindActiveChildWithTag(Transform parent, string tag)
@@ -74,6 +88,22 @@ namespace Manager
             return null; // 見つからなかった
         }
 
+        private void CheckTileMapObj()
+        {
+#if UNITY_EDITOR
+            if (_TileMapObjArray.Length <= CurrentStageNumber)
+            {
+                // エラーメッセージ表示
+                MsgDialogBox.MesBoxInfo mesBoxInfo = new();
+                mesBoxInfo.titleText = "ステージエラー";
+                mesBoxInfo.msgText = $"[{CurrentStageNumber}] 番ステージは存在しません。";
+                MsgDialogBox.Open(mesBoxInfo);
+
+                // ゲームを落とす
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+#endif
+        }
 
         /// <summary>
         /// _TileMapObjArrayの要素全てにPrefabIdentifierが入っているかを確認する

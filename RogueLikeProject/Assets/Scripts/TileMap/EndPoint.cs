@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TileMap
 {
-    public class EndChip : CorgiMonoBehaviour
+    public class EndPoint : CorgiMonoBehaviour
     {
         /// <summary>
         /// ステージマネージャー
@@ -22,10 +22,17 @@ namespace TileMap
         {
             Character character = other.GetComponent<Character>();
 
-            if (character == null) { return; }
-            if (character.CharacterType != Character.CharacterTypes.Player) { return; }
+            if (character == null) 
+            {
+                return; 
+            }
+            if (character.CharacterType != Character.CharacterTypes.Player)
+            {
+                return; 
+            }
 
-            _stageManager.NextStage(character.transform);
+            // 次のステージ遷移
+            StageManager.Instance.NextStage(character.transform);
         }
     }
 }
