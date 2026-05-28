@@ -10,34 +10,34 @@ namespace MoreMountains.CorgiEngine
 		public enum OneWayLevelDirections { None, Left, Right, Up, Down }
 		public enum OneWayLevelKillModes { NoKill, Kill }
 
-		[Header("One Way Levels")]
+		[Header("一方通行ステージ設定")]
 		[MMInformation("Add this component to a LevelManager, and it'll let you define one way level behaviours. " +
 		               "A one way level is one where scrolling is controlled in one specific direction. You can simply prevent going back in the opposite direction, " +
 		               "or even force auto scrolling in a direction.", MMInformationAttribute.InformationType.Info, false)]
 
 		/// specifies the direction of the level (from level start to finish/goal - Mario's levels would typically be Right here)
-		[Tooltip("specifies the direction of the level (from level start to finish/goal - Mario's levels would typically be Right here)")]
+		[Header("ステージの進行方向を指定します（例：右スクロールなら Right）")]
 		public OneWayLevelDirections OneWayLevelDirection = OneWayLevelDirections.None;
 		/// if this is true you won't be able to go back in the level
-		[Tooltip("if this is true you won't be able to go back in the level")]
+		[Tooltip("true にすると、プレイヤーが進行方向と逆方向に戻れなくなります")]
 		public bool PreventGoingBack = true;
 		/// the maximum distance at which the NoGoingBack object should stay from the player character
 		[MMCondition("PreventGoingBack", true)]
-		[Tooltip("the maximum distance at which the NoGoingBack object should stay from the player character")]
+		[Tooltip("戻り禁止の境界がプレイヤーからどれだけ離れるかの距離")]
 		public float ThresholdDistance = 5f;
         
-		[Header("Auto Scrolling")]
+		[Header("オートスクロール設定")]
 
 		/// if this is true, the level bounds will be modified so that the level auto scrolls towards the OneWayLevelDirection
-		[Tooltip("if this is true, the level bounds will be modified so that the level auto scrolls towards the OneWayLevelDirection")]
+		[Header("true にすると、ステージが自動でスクロールします")]
 		public bool OneWayLevelAutoScrolling = false;
 		/// the main camera to use to compute the size of the modified constrained bounds
 		[MMCondition("OneWayLevelAutoScrolling", true)]
-		[Tooltip("the main camera to use to compute the size of the modified constrained bounds")]
+		[Header("オートスクロール時に使用するメインカメラ")]
 		public Camera MainCamera;
 		/// the speed at which the level should auto scroll
 		[MMCondition("OneWayLevelAutoScrolling", true)]
-		[Tooltip("the speed at which the level should auto scroll")]
+		[Header("オートスクロールの速度")]
 		public float OneWayLevelAutoScrollingSpeed = 1f;
 
 		protected Transform _cameraTarget;

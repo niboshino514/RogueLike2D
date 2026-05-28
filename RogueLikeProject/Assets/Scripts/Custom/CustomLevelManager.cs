@@ -7,8 +7,12 @@ namespace Custom
 {
     public class CustomLevelManager : LevelManager
     {
-        [Header("CinemachineのCinemachineConfiner2D")]
-        public CinemachineConfiner2D _confiner;
+        [Header("CinemachineのCinemachineConfiner2D"), SerializeField]
+        private CinemachineConfiner2D _confiner;
+
+        [Header("CustomOneWayLevelManager"),SerializeField]
+        private CustomOneWayLevelManager _customOneWay;
+
         /// <summary>
         /// PlayerのSpriteRenderer
         /// </summary>
@@ -78,6 +82,8 @@ namespace Custom
             // 境界サイズ計算
             _boxCollider.size = bounds.size;
             _boxCollider.offset = bounds.center;
+
+            _customOneWay.SyncInternalBoundsWithLevelManager();
 
             // 範囲変更後にカメラの現在位置を再計算させる
             _confiner.InvalidateBoundingShapeCache();
