@@ -1,16 +1,18 @@
 ﻿using Microsoft.Unity.VisualStudio.Editor;
 using MoreMountains.CorgiEngine;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Custom
 {
     public class CustomLevelManager : LevelManager
     {
+        [Header("CinemachineのCinemachineConfiner2D")]
+        public CinemachineConfiner2D _confiner;
         /// <summary>
         /// PlayerのSpriteRenderer
         /// </summary>
         private SpriteRenderer _playerSpriteRenderer;
-
         /// <summary>
         /// BoxCollider2D
         /// </summary>
@@ -70,11 +72,15 @@ namespace Custom
         /// <param name="bounds"></param>
         public void SetStageBounds(Bounds bounds)
         {
-            // 境界サイズ計算
-            _boxCollider.size.Set(bounds.size.x, bounds.size.y);
-
             // 境界線セット
             SetNewLevelBounds(bounds);
+
+            // 境界サイズ計算
+            _boxCollider.size = bounds.size;
+            _boxCollider.offset = bounds.center;
+
+            // 範囲変更後にカメラの現在位置を再計算させる
+            _confiner.InvalidateBoundingShapeCache();
         }
     }
 }
