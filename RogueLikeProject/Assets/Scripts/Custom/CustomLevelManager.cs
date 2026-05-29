@@ -1,8 +1,10 @@
-﻿using Microsoft.Unity.VisualStudio.Editor;
+﻿using Manager;
+using Microsoft.Unity.VisualStudio.Editor;
 using MoreMountains.CorgiEngine;
+using Sirenix.OdinInspector;
 using Unity.Cinemachine;
 using UnityEngine;
-
+using UnityEngine.Tilemaps;
 namespace Custom
 {
     public class CustomLevelManager : LevelManager
@@ -10,7 +12,7 @@ namespace Custom
         [Header("CinemachineのCinemachineConfiner2D"), SerializeField]
         private CinemachineConfiner2D _confiner;
 
-        [Header("CustomOneWayLevelManager"),SerializeField]
+        [Header("CustomOneWayLevelManager"), SerializeField]
         private CustomOneWayLevelManager _customOneWay;
 
         /// <summary>
@@ -22,6 +24,8 @@ namespace Custom
         /// </summary>
         private BoxCollider2D _boxCollider;
 
+        private StageScroller _stageScroller;
+
         public override void Start()
         {
             // 既存処理
@@ -30,6 +34,8 @@ namespace Custom
             // コンポーネント取得
             _playerSpriteRenderer = Players[0].GetComponentInChildren<SpriteRenderer>(true);
             _boxCollider = this.GetComponent<BoxCollider2D>();
+
+            _stageScroller = StageScroller.Instance;
         }
 
 
@@ -83,7 +89,7 @@ namespace Custom
             _boxCollider.size = bounds.size;
             _boxCollider.offset = bounds.center;
 
-            _customOneWay.SyncInternalBoundsWithLevelManager();
+            //_customOneWay.SyncInternalBoundsWithLevelManager();
 
             // 範囲変更後にカメラの現在位置を再計算させる
             _confiner.InvalidateBoundingShapeCache();

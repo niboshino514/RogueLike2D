@@ -7,7 +7,20 @@ namespace MoreMountains.CorgiEngine
 {
 	public class OneWayLevelManager : MMSingleton<OneWayLevelManager>, MMEventListener<CorgiEngineEvent>
 	{
-		public enum OneWayLevelDirections { None, Left, Right, Up, Down }
+		public enum OneWayLevelDirections 
+		{
+            [InspectorName("未設定")]
+            None,
+            [InspectorName("左")]
+            Left,
+            [InspectorName("右")]
+            Right,
+            [InspectorName("上")]
+            Up,
+            [InspectorName("下")]
+            Down 
+		}
+
 		public enum OneWayLevelKillModes { NoKill, Kill }
 
 		[Header("一方通行ステージ設定")]

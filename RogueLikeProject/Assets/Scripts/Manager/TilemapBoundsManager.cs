@@ -1,5 +1,7 @@
 ﻿using Custom;
 using MoreMountains.CorgiEngine;
+using MoreMountains.Tools;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Utility.Core;
@@ -11,10 +13,11 @@ namespace Manager
         /// <summary>
         /// カスタムレベルマネージャー
         /// </summary>
-        [Header("カスタムレベルマネージャー"),SerializeField]
+        [Header("カスタムレベルマネージャー"), SerializeField]
         CustomLevelManager _levelManager;
 
-        
+        public Tilemap tilemap;
+
         /// <summary>
         /// 境界を計算
         /// </summary>
@@ -95,6 +98,13 @@ namespace Manager
 
                 return new Vector2(width, height);
             }
+        }
+
+
+        [Button]
+        public void Test()
+        {
+            CalculateBounds(tilemap);
         }
     }
 }

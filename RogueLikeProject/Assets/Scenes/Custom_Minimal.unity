@@ -164,11 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomOneWayLevelManager
   OneWayLevelDirection: 2
-  PreventGoingBack: 1
-  ThresholdDistance: 5
+  PreventGoingBack: 0
+  ThresholdDistance: 10
   OneWayLevelAutoScrolling: 1
   MainCamera: {fileID: 269342564}
-  OneWayLevelAutoScrollingSpeed: 1
+  OneWayLevelAutoScrollingSpeed: 3
 --- !u!1001 &110517557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -474,6 +474,58 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 8040196612217246658}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &326898343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326898345}
+  - component: {fileID: 326898344}
+  m_Layer: 0
+  m_Name: StageScroller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &326898344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326898343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c49c803f6b3354bb35694c30a3158d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageScroller
+  _stageScrollInfo:
+    oneWayLevelDirection: 1
+    preventGoingBack: 1
+    thresholdDistance: 5
+  OneWayLevelAutoScrolling: 0
+  MainCamera: {fileID: 0}
+  OneWayLevelAutoScrollingSpeed: 1
+  _customLevelManager: {fileID: 0}
+--- !u!4 &326898345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326898343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.64047, y: 0.99171, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355221225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8040196612289779002, guid: 67e9e6648638ca94eaaa9e41373f42f2,
@@ -602,6 +654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test.TileMapTester
   _levelManager: {fileID: 741263091}
+  tilemap: {fileID: 1229670368}
 --- !u!4 &584154039
 Transform:
   m_ObjectHideFlags: 0
@@ -795,8 +848,8 @@ MonoBehaviour:
   ResetPointsOnRestart: 1
   BoundsMode: 0
   LevelBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 21.44, y: 5.4900002, z: 0}
+    m_Center: {x: -4.4738884, y: 0, z: 0}
+    m_Extent: {x: 14.226112, y: 5.4900002, z: 0}
   ConvertToColliderBoundsButton: 0
   LoadingSceneMode: 1
   LoadingSceneName: LoadingScreen
@@ -11747,3 +11800,4 @@ SceneRoots:
   - {fileID: 1858949006}
   - {fileID: 211130845}
   - {fileID: 580403479}
+  - {fileID: 326898345}
