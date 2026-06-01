@@ -12,9 +12,10 @@ namespace Custom
         [Header("CinemachineのCinemachineConfiner2D"), SerializeField]
         private CinemachineConfiner2D _confiner;
 
-        [Header("CustomOneWayLevelManager"), SerializeField]
+        /// <summary>
+        /// 一方通行設定
+        /// </summary>
         private CustomOneWayLevelManager _customOneWay;
-        
         /// <summary>
         /// PlayerのSpriteRenderer
         /// </summary>
@@ -24,6 +25,10 @@ namespace Custom
         /// </summary>
         private BoxCollider2D _boxCollider;
 
+        /// <summary>
+        /// ステージの境界
+        /// </summary>
+        public Bounds _stageBounds;
 
         public override void Start()
         {
@@ -33,6 +38,7 @@ namespace Custom
             // コンポーネント取得
             _playerSpriteRenderer = Players[0].GetComponentInChildren<SpriteRenderer>(true);
             _boxCollider = this.GetComponent<BoxCollider2D>();
+            _customOneWay = CustomInstanceManager.Instance.GetCustomOneWayLevelManager();
         }
 
 
@@ -44,6 +50,8 @@ namespace Custom
         {
             // キャラクターを非表示にする
             IsDrawCharacter(false);
+            // プレイヤーを死亡判定にする
+            _customOneWay.IsPlayerDead = true;
         }
 
         /// <summary>
@@ -55,6 +63,29 @@ namespace Custom
             {
                 CurrentCheckPoint.SpawnPlayer(Players[0]);
             }
+            // プレイヤーを生きている判定にする
+            _customOneWay.IsPlayerDead = false;
+
+
+            Vector3 pos = LevelBounds.center;
+            pos.x = Players[0].transform.position.x;
+            // カメラの幅分下げたらうまく行くかも
+            pos.x += (Mathf.Abs(_stageBounds.center.x) * 2.0f);
+            LevelBounds.center = pos;
+
+            //Vector3 pos = LevelBounds.center;
+            //pos.x = Players[0].transform.position.x;
+            //pos.x -= Mathf.Abs( _stageBounds.center.x);
+
+            //if (pos.x >= _stageBounds.center.x)
+            //{
+            //    LevelBounds.center = pos;
+            //}
+            //else
+            //{
+            //    LevelBounds.center = _stageBounds.center;
+            //}
+
         }
 
         /// <summary>
@@ -79,6 +110,9 @@ namespace Custom
         /// <param name="bounds"></param>
         public void SetStageBounds(Bounds bounds)
         {
+            // ステージの境界を保存
+            _stageBounds = bounds;
+
             // 境界線セット
             SetNewLevelBounds(bounds);
 

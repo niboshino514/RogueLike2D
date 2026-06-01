@@ -21,12 +21,19 @@ public class CustomOneWayLevelManager : OneWayLevelManager
     /// </summary>
     private LevelManager _levelManager;
 
+    /// <summary>
+    /// プレイヤーが死亡しているかどうか
+    /// </summary>
+    public bool IsPlayerDead { get; set; }
+
     protected override void Awake()
     {
         // 基底処理
         base.Awake();
         // インスタンス取得
         _levelManager = LevelManager.Instance;
+        // フラグ初期化
+        IsPlayerDead = false;
     }
 
     public void ScrollConfig(StageScroller stageScroller)
@@ -72,6 +79,12 @@ public class CustomOneWayLevelManager : OneWayLevelManager
     {
         // 自動スクロールがfalseの場合、ここで処理を終了する
         if (!_isAutoScroll)
+        {
+            return;
+        }
+
+        // プレイヤーが死亡していた場合、ここで処理を終了する
+        if (IsPlayerDead)
         {
             return;
         }
