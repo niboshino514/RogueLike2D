@@ -18,7 +18,7 @@ namespace Manager
         /// <summary>
         /// 一方通行マネージャー
         /// </summary>
-        CustomOneWayLevelManager _oneWay;
+        private CustomOneWayLevelManager _oneWay;
 
         /// <summary>
         /// タイルマップ境界
@@ -76,14 +76,6 @@ namespace Manager
 
             // 次のステージを表示する
             _TileMapObjArray[CurrentStageNumber].SetActive(true);
-
-            // レベルスタートのTransform取得
-            Transform levelStartTransform =
-                FindActiveChildWithTag(
-                    _TileMapObjArray[CurrentStageNumber].transform,
-                    TagName.LevelStart).transform;
-            // プレイヤーにレベルスタートの座標を代入
-            playerTransform.position = levelStartTransform.position;
         }
 
         /// <summary>
@@ -95,6 +87,8 @@ namespace Manager
             SetupStageBounds();
             // 一方通行設定
             SetupOneWayLevel();
+            // プレイヤーの開始位置を設定
+            SetupPlayerStartPos();
         }
 
         /// <summary>
@@ -145,6 +139,21 @@ namespace Manager
         }
 
 
+        private void SetupPlayerStartPos()
+        {
+            // レベルスタートのTransform取得
+            Transform levelStartTransform =
+                FindActiveChildWithTag(
+                    _TileMapObjArray[CurrentStageNumber].transform,
+                    TagName.LevelStart).transform;
+
+            // プレイヤーのTransform取得
+            Transform playerTransform =
+                CustomInstanceManager.Instance.GetCustomLevelManager().Players[0].transform;
+
+            // プレイヤーにレベルスタートの座標を代入
+            playerTransform.position = levelStartTransform.position;
+        }
 
         /// <summary>
         /// 指定した番号のタイルマップが存在するかどうかを確認する

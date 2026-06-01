@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Utility.Core;
+using Custom;
 
 public class CustomInstanceManager : SingletonMonoBehaviour<CustomInstanceManager>
 {
@@ -10,8 +11,19 @@ public class CustomInstanceManager : SingletonMonoBehaviour<CustomInstanceManage
     private CustomOneWayLevelManager _customOneWay;
 
     /// <summary>
+    /// カスタムレベル
+    /// </summary>
+    [Header("カスタムレベル"), SerializeField]
+    private CustomLevelManager _customLevel;
+
+    /// <summary>
     /// カスタム一方通行設定を返す
     /// </summary>
     /// <returns></returns>
     public CustomOneWayLevelManager GetCustomOneWayLevelManager() => _customOneWay;
+    /// <summary>
+    /// カスタムレベルを返す
+    /// </summary>
+    /// <returns></returns>
+    public CustomLevelManager GetCustomLevelManager() => _customLevel;
 }

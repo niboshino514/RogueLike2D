@@ -9,6 +9,11 @@ namespace Custom
 {
     public class CustomLevelManager : LevelManager
     {
+        /// <summary>
+        /// X軸Scroll調整値
+        /// </summary>
+        private const float ScrollAdjustmentX = 12.0f;
+
         [Header("CinemachineのCinemachineConfiner2D"), SerializeField]
         private CinemachineConfiner2D _confiner;
 
@@ -41,7 +46,6 @@ namespace Custom
             _customOneWay = CustomInstanceManager.Instance.GetCustomOneWayLevelManager();
         }
 
-
         /// <summary>
         /// Playerが死亡した瞬間の処理
         /// </summary>
@@ -66,26 +70,19 @@ namespace Custom
             // プレイヤーを生きている判定にする
             _customOneWay.IsPlayerDead = false;
 
-
             Vector3 pos = LevelBounds.center;
             pos.x = Players[0].transform.position.x;
-            // カメラの幅分下げたらうまく行くかも
-            pos.x += (Mathf.Abs(_stageBounds.center.x) * 2.0f);
-            LevelBounds.center = pos;
+            pos.x += ScrollAdjustmentX;
 
-            //Vector3 pos = LevelBounds.center;
-            //pos.x = Players[0].transform.position.x;
-            //pos.x -= Mathf.Abs( _stageBounds.center.x);
-
-            //if (pos.x >= _stageBounds.center.x)
-            //{
-            //    LevelBounds.center = pos;
-            //}
-            //else
-            //{
-            //    LevelBounds.center = _stageBounds.center;
-            //}
-
+            if (pos.x >= _stageBounds.center.x)
+            {
+                // カメラの幅分下げたらうまく行くかも
+                LevelBounds.center = pos;
+            }
+            else
+            {
+                LevelBounds.center = _stageBounds.center;
+            }
         }
 
         /// <summary>
