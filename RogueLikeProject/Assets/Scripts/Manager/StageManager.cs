@@ -1,4 +1,5 @@
-﻿using UnityEditor.U2D.Aseprite;
+﻿using MoreMountains.CorgiEngine;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Utility;
@@ -15,6 +16,11 @@ namespace Manager
         private GameObject[] _TileMapObjArray;
 
         /// <summary>
+        /// 一方通行マネージャー
+        /// </summary>
+        CustomOneWayLevelManager _oneWay;
+
+        /// <summary>
         /// タイルマップ境界
         /// </summary>
         private TilemapBoundsManager _TileMapBoundsManager;
@@ -28,7 +34,6 @@ namespace Manager
         {
             // 既存の処理実行
             base.Awake();
-
             // ステージ番号代入
             CurrentStageNumber = 0;
         }
@@ -38,19 +43,25 @@ namespace Manager
         {
             // インスタンス取得
             _TileMapBoundsManager = TilemapBoundsManager.Instance;
+            _oneWay = CustomInstanceManager.Instance.GetCustomOneWayLevelManager();
 
+            // 全てのステージを非表示
             foreach (var tilemap in _TileMapObjArray)
             {
                 // ステージを非表示
                 tilemap.SetActive(false);
             }
-
-            // ステージを表示
+            // 指定された番号のステージを表示
             _TileMapObjArray[CurrentStageNumber].SetActive(true);
 
-            SetStageBounds();
+            // ステージのセットアップ
+            SetupStage();
         }
 
+        /// <summary>
+        /// 次のステージへ進む
+        /// </summary>
+        /// <param name="playerTransform"></param>
         public void NextStage(Transform playerTransform)
         {
             // 現在のステージを非表示にする
@@ -60,8 +71,8 @@ namespace Manager
 
             // ステージがあるかどうかを確認
             CheckTileMapObj();
-
-            SetStageBounds();
+            // ステージのセットアップ
+            SetupStage();
 
             // 次のステージを表示する
             _TileMapObjArray[CurrentStageNumber].SetActive(true);
@@ -71,11 +82,49 @@ namespace Manager
                 FindActiveChildWithTag(
                     _TileMapObjArray[CurrentStageNumber].transform,
                     TagName.LevelStart).transform;
-
-            // レベルスタートの座標を代入
+            // プレイヤーにレベルスタートの座標を代入
             playerTransform.position = levelStartTransform.position;
         }
 
+        /// <summary>
+        /// ステージのセットアップ
+        /// </summary>
+        private void SetupStage()
+        {
+            // ステージの境界を設定
+            SetupStageBounds();
+            // 一方通行設定
+            SetupOneWayLevel();
+        }
+
+        /// <summary>
+        /// ステージの境界を設定
+        /// </summary>
+        private void SetupStageBounds()
+        {
+            // Tilemapコンポーネント取得
+            Tilemap tilemap = _TileMapObjArray[CurrentStageNumber].GetComponent<Tilemap>();
+            // _TileMapBoundsManagerで境界を計算
+            _TileMapBoundsManager.CalculateBounds(tilemap);
+        }
+
+        /// <summary>
+        /// 一方通行設定
+        /// </summary>
+        private void SetupOneWayLevel()
+        {
+            // ステージスクローラーコンポーネント取得
+            StageScroller stageScroller = _TileMapObjArray[CurrentStageNumber].GetComponent<StageScroller>();
+            // ステージ設定
+            _oneWay.ScrollConfig(stageScroller);
+        }
+
+        /// <summary>
+        /// 特定タグのオブジェクトを探す
+        /// </summary>
+        /// <param name="parent">親オブジェクト</param>
+        /// <param name="tag">タグ</param>
+        /// <returns></returns>
         public GameObject FindActiveChildWithTag(Transform parent, string tag)
         {
             // 子オブジェクトをすべて取得（非アクティブも含む）
@@ -92,17 +141,14 @@ namespace Manager
                     return child.gameObject;
                 }
             }
-
             return null; // 見つからなかった
         }
 
-        private void SetStageBounds()
-        {
-            Tilemap tilemap = _TileMapObjArray[CurrentStageNumber].GetComponent<Tilemap>();
 
-            _TileMapBoundsManager.CalculateBounds(tilemap);
-        }
 
+        /// <summary>
+        /// 指定した番号のタイルマップが存在するかどうかを確認する
+        /// </summary>
         private void CheckTileMapObj()
         {
 #if UNITY_EDITOR
@@ -116,29 +162,6 @@ namespace Manager
 
                 // ゲームを落とす
                 UnityEditor.EditorApplication.isPlaying = false;
-            }
-#endif
-        }
-
-        /// <summary>
-        /// _TileMapObjArrayの要素全てにPrefabIdentifierが入っているかを確認する
-        /// </summary>
-        private void CheckPrefabIdentifier()
-        {
-#if UNITY_EDITOR
-            foreach (var tilemap in _TileMapObjArray)
-            {
-                if (tilemap.GetComponent<PrefabIdentifier>() == null)
-                {
-                    // エラーメッセージ表示
-                    MsgDialogBox.MesBoxInfo mesBoxInfo = new();
-                    mesBoxInfo.titleText = "コンポーネントエラー";
-                    mesBoxInfo.msgText = $"[{tilemap.name}] に、[PrefabIdentifier]コンポーネントが入っていないようです。";
-                    MsgDialogBox.Open(mesBoxInfo);
-
-                    // ゲームを落とす
-                    UnityEditor.EditorApplication.isPlaying = false;
-                }
             }
 #endif
         }

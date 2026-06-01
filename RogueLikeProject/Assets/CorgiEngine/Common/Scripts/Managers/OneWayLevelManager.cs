@@ -143,10 +143,10 @@ namespace MoreMountains.CorgiEngine
 			}            
 		}
 
-		/// <summary>
-		/// Modifies the level bounds to prevent being able to go back
-		/// </summary>
-		protected virtual void HandlePreventGoingBack()
+        /// <summary>
+        /// Modifies the level bounds to prevent being able to go back
+        /// </summary>
+        protected virtual void HandlePreventGoingBack()
 		{
 			MinBounds = LevelManager.Instance.LevelBounds.min;
 			MaxBounds = LevelManager.Instance.LevelBounds.max;

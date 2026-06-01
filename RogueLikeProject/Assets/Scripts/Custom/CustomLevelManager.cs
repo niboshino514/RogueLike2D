@@ -14,7 +14,7 @@ namespace Custom
 
         [Header("CustomOneWayLevelManager"), SerializeField]
         private CustomOneWayLevelManager _customOneWay;
-
+        
         /// <summary>
         /// PlayerのSpriteRenderer
         /// </summary>
@@ -24,7 +24,6 @@ namespace Custom
         /// </summary>
         private BoxCollider2D _boxCollider;
 
-        private StageScroller _stageScroller;
 
         public override void Start()
         {
@@ -34,8 +33,6 @@ namespace Custom
             // コンポーネント取得
             _playerSpriteRenderer = Players[0].GetComponentInChildren<SpriteRenderer>(true);
             _boxCollider = this.GetComponent<BoxCollider2D>();
-
-            _stageScroller = StageScroller.Instance;
         }
 
 
@@ -88,8 +85,6 @@ namespace Custom
             // 境界サイズ計算
             _boxCollider.size = bounds.size;
             _boxCollider.offset = bounds.center;
-
-            //_customOneWay.SyncInternalBoundsWithLevelManager();
 
             // 範囲変更後にカメラの現在位置を再計算させる
             _confiner.InvalidateBoundingShapeCache();

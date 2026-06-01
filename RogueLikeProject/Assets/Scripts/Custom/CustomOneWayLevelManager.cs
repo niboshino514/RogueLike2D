@@ -1,22 +1,112 @@
-﻿using MoreMountains.CorgiEngine;
+﻿using Custom;
+using MoreMountains.CorgiEngine;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomOneWayLevelManager : OneWayLevelManager
 {
-    //private Bounds _originalBounds;
-    //private bool _initialized = false;
+    /// <summary>
+    /// 自動スクロールフラグ
+    /// </summary>
+    private bool _isAutoScroll;
 
-    //protected override void Initialization()
-    //{
-    //    base.Initialization();
+    /// <summary>
+    /// 自動スクロール速度
+    /// </summary>
+    private float _autoScrollSpeed;
 
-    //    if (!_initialized)
-    //    {
-    //        _originalBounds = LevelManager.Instance.LevelBounds;
-    //        _initialized = true;
-    //    }
-    //}
+    /// <summary>
+    /// レベルマネージャー
+    /// </summary>
+    private LevelManager _levelManager;
+
+    protected override void Awake()
+    {
+        // 基底処理
+        base.Awake();
+        // インスタンス取得
+        _levelManager = LevelManager.Instance;
+    }
+
+    public void ScrollConfig(StageScroller stageScroller)
+    {
+        // 移動方向代入
+        OneWayLevelDirection = stageScroller._oneWayLevelDirection;
+
+        // スクロール機能を停止する
+        if (stageScroller._oneWayLevelDirection == OneWayLevelDirections.None)
+        {
+            // プレイヤーが進行方向と逆に進むことができる
+            PreventGoingBack = false;
+            // 自動スクロールを行わない
+            OneWayLevelAutoScrolling = false;
+            _isAutoScroll = false;
+
+            return;
+        }
+
+        // 一方通行設定
+        if (stageScroller._scrollType == StageScroller.ScrollType.OneWay)
+        {
+            // プレイヤーが進行方向と逆に進むことが出来ない
+            PreventGoingBack = true;
+            // 戻り禁止の境界距離代入
+            ThresholdDistance = stageScroller._thresholdDistance;
+            // 自動スクロールを行わない
+            OneWayLevelAutoScrolling = false;
+            _isAutoScroll = false;
+        }
+        else if (stageScroller._scrollType == StageScroller.ScrollType.Auto)
+        {
+            // プレイヤーが進行方向と逆に進むことができる
+            PreventGoingBack = false;
+            // 自動スクロールを行う
+            _isAutoScroll = true;
+            // 自動スクロール速度代入
+            _autoScrollSpeed = stageScroller._autoScrollSpeed;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        // 自動スクロールがfalseの場合、ここで処理を終了する
+        if (!_isAutoScroll)
+        {
+            return;
+        }
+
+        // 境界線
+        Bounds bounds = _levelManager.LevelBounds;
+        // 境界の中心座標
+        Vector3 center = bounds.center;
+
+        if (OneWayLevelDirection == OneWayLevelDirections.Right)
+        {
+            // 右に移動
+            center.x += (_autoScrollSpeed * Time.deltaTime);
+        }
+        else if (OneWayLevelDirection == OneWayLevelDirections.Left)
+        {
+            // 左に移動
+            center.x -= (_autoScrollSpeed * Time.deltaTime);
+        }
+        else if (OneWayLevelDirection == OneWayLevelDirections.Up)
+        {
+            // 上に移動
+            center.y += (_autoScrollSpeed * Time.deltaTime);
+        }
+        else if (OneWayLevelDirection == OneWayLevelDirections.Down)
+        {
+            // 下に移動
+            center.y -= (_autoScrollSpeed * Time.deltaTime);
+        }
+
+        // 計算した境界の中心座標代入
+        bounds.center = center;
+        // 境界線代入
+        _levelManager.LevelBounds = bounds;
+    }
 
     //// ★ StageManager が Bounds を設定した後に呼ぶ
     //public void ApplyPreventGoingBack(Vector2 playerPos)

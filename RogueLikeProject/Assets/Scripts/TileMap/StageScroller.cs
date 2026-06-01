@@ -7,7 +7,7 @@ using Utility.Core;
 using static MoreMountains.CorgiEngine.OneWayLevelManager;
 
 [AddComponentMenu("ステージのスクロール設定")]
-public class StageScroller : SingletonMonoBehaviour<StageScroller>
+public class StageScroller : MonoBehaviour
 {
     /// <summary>
     /// スクロールタイプ
@@ -26,7 +26,7 @@ public class StageScroller : SingletonMonoBehaviour<StageScroller>
     [LabelText("ステージの進行方向"),SerializeField]
     [LabelWidth(200)]
     [Tooltip("強制スクロールを行わないのなら[未設定]\n右スクロール(右に進むステージ)なら[右]\netc...")]
-    private OneWayLevelDirections _oneWayLevelDirection = OneWayLevelDirections.None;
+    public OneWayLevelDirections _oneWayLevelDirection = OneWayLevelDirections.None;
 
     /// <summary>
     /// スクロールタイプ
@@ -35,7 +35,7 @@ public class StageScroller : SingletonMonoBehaviour<StageScroller>
     [LabelText("スクロールを行う際のタイプ"), SerializeField]
     [LabelWidth(200), Indent(1)]
     [Tooltip("[一方通行]：進行方向と反対に戻れなくなる(初代マリオ等)\n[自動]：進行方向に向かって自動スクロール")]
-    private ScrollType _scrollType;
+    public ScrollType _scrollType;
 
     /// <summary>
     /// 自動スクロールの速度
@@ -73,29 +73,5 @@ public class StageScroller : SingletonMonoBehaviour<StageScroller>
     private bool IsDrawThresholdDistance()
     {
         return _oneWayLevelDirection != OneWayLevelDirections.None && _scrollType == ScrollType.OneWay;
-    }
-
-    public CustomLevelManager _customLevelManager;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void FixedUpdate()
-    {
-        Vector3 test = _customLevelManager.LevelBounds.center;
-        test.x += (_autoScrollSpeed * Time.deltaTime);
-        Bounds bounds = _customLevelManager.LevelBounds;
-        bounds.center = test;
-
-        _customLevelManager.LevelBounds = bounds;
     }
 }
