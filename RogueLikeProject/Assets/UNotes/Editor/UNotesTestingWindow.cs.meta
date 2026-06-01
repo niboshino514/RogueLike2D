@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9132e1cc729224310bc49f3ed5a022e6
+timeCreated: 1512597767
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51149
+  packageName: UNotes
+  packageVersion: 2.0.0
+  assetPath: Assets/UNotes/Editor/UNotesTestingWindow.cs
+  uploadId: 243399

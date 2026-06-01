@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 51eb5809e03db4da09ffd0aad70042e2
+timeCreated: 1516402760
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51149
+  packageName: UNotes
+  packageVersion: 2.0.0
+  assetPath: Assets/UNotes/Documentation/Tutorial.unity
+  uploadId: 243399

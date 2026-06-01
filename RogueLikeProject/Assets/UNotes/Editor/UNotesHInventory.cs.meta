@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 985fa643aaee94d569cfb780b3e38f80
+timeCreated: 1512597650
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51149
+  packageName: UNotes
+  packageVersion: 2.0.0
+  assetPath: Assets/UNotes/Editor/UNotesHInventory.cs
+  uploadId: 243399

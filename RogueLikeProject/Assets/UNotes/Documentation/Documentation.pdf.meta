@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c75c58dd9298c4819ad71b9b7c53296f
+timeCreated: 1523313587
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51149
+  packageName: UNotes
+  packageVersion: 2.0.0
+  assetPath: Assets/UNotes/Documentation/Documentation.pdf
+  uploadId: 243399
