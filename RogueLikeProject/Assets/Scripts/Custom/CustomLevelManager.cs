@@ -5,15 +5,11 @@ using Sirenix.OdinInspector;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static MoreMountains.CorgiEngine.OneWayLevelManager;
 namespace Custom
 {
     public class CustomLevelManager : LevelManager
     {
-        /// <summary>
-        /// X軸Scroll調整値
-        /// </summary>
-        private const float ScrollAdjustmentX = 12.0f;
-
         [Header("CinemachineのCinemachineConfiner2D"), SerializeField]
         private CinemachineConfiner2D _confiner;
 
@@ -33,7 +29,7 @@ namespace Custom
         /// <summary>
         /// ステージの境界
         /// </summary>
-        public Bounds _stageBounds;
+        private Bounds _stageBounds;
 
         public override void Start()
         {
@@ -70,19 +66,7 @@ namespace Custom
             // プレイヤーを生きている判定にする
             _customOneWay.IsPlayerDead = false;
 
-            Vector3 pos = LevelBounds.center;
-            pos.x = Players[0].transform.position.x;
-            pos.x += ScrollAdjustmentX;
-
-            if (pos.x >= _stageBounds.center.x)
-            {
-                // カメラの幅分下げたらうまく行くかも
-                LevelBounds.center = pos;
-            }
-            else
-            {
-                LevelBounds.center = _stageBounds.center;
-            }
+            SetupScroll();
         }
 
         /// <summary>
@@ -119,6 +103,68 @@ namespace Custom
 
             // 範囲変更後にカメラの現在位置を再計算させる
             _confiner.InvalidateBoundingShapeCache();
+        }
+
+        public void SetupScroll()
+        {
+            // スクロールの方向
+            OneWayLevelDirections direction = _customOneWay.OneWayLevelDirection;
+
+            // スクロールの方向がNoneの場合、ここで処理を終了する
+            if (direction == OneWayLevelDirections.None)
+            {
+                return;
+            }
+
+            Vector3 center = LevelBounds.center;
+            if (direction == OneWayLevelDirections.Left ||
+                direction == OneWayLevelDirections.Right)
+            {
+                center.x = Players[0].transform.position.x;
+                float cameraHalfSizeX = GetCameraWorldSize().x * 0.5f;
+
+                if (direction == OneWayLevelDirections.Right)
+                {
+                    center.x += (_stageBounds.extents.x - cameraHalfSizeX);
+
+                    if (center.x >= _stageBounds.center.x)
+                    {
+                        LevelBounds.center = center;
+                    }
+                    else
+                    {
+                        LevelBounds.center = _stageBounds.center;
+                    }
+                }
+                else
+                {
+                    center.x -= (_stageBounds.extents.x - cameraHalfSizeX);
+
+                    if (center.x <= _stageBounds.center.x)
+                    {
+                        LevelBounds.center = center;
+                    }
+                    else
+                    {
+                        LevelBounds.center = _stageBounds.center;
+                    }
+                }
+            }
+
+
+
+           
+
+            // カメラのワールドサイズ計算
+            Vector2 GetCameraWorldSize()
+            {
+                Camera cam = Camera.main;
+
+                float height = cam.orthographicSize * 2f;
+                float width = height * cam.aspect;
+
+                return new Vector2(width, height);
+            }
         }
     }
 }

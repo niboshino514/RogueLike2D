@@ -71,11 +71,10 @@ namespace Manager
 
             // ステージがあるかどうかを確認
             CheckTileMapObj();
-            // ステージのセットアップ
-            SetupStage();
-
             // 次のステージを表示する
             _TileMapObjArray[CurrentStageNumber].SetActive(true);
+            // ステージのセットアップ
+            SetupStage();
         }
 
         /// <summary>
