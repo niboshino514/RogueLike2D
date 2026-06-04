@@ -4,3 +4,7 @@ https://bbptrdintro.hateblo.jp/entry/2020/10/25/042930
 〇便利Asset
 https://note.com/yamasho55/n/n5f84ab1b47d0
 https://note.com/yamasho55/n/naf5c2efc9791
+
+〇テキスト関連
+https://baba-s.hatenablog.com/entry/2018/12/26/090000
+https://github.com/ina-amagami/TextMeshProRuby
